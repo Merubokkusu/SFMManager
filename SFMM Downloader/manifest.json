@@ -1,0 +1,25 @@
+{
+   "background": {
+      "persistent": false,
+      "scripts": [ "background.js" ]
+   },
+   "browser_action": {
+      "default_popup": "popup.html"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "downloader.js" ],
+      "matches": [ "*://*.sfmlab.com/item/*" ]
+   } ],
+   "description": "Downloads Content To SFMM",
+   "icons": {
+      "128": "icon.png",
+      "16": "icon.png",
+      "48": "icon.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAllAKzVhCi0Ycv43BXdbVtN1ovDHgPMzT0TiLER91hYpUqfJpp1gNrm40p/JzoFCNHiiWX/b+rKIcL9bYntnD8tS7xpbSshjbVc/f4IdqeSYmiiINc4Rw6kDURJ+7/uiFtWIPLtHIyaBYEAMg0vLXsnsFS4qd5wxqW9cX9DiLQmvC0SDCOErPbzwwHOm1Xmey28arqTBiNuLEptMM3OnwN060xW7gq36u2AkJgzAIT0mRYQAN95P9DC227zJXvuKxWsLc9Q53BNcpai/PwSB3l3n+rq68fx3Zrfk/gkJdb/8DMmomGMBcyHTE1JbQh7DYNVeeHF69OvU2Qv7oYlmy9wIDAQAB",
+   "manifest_version": 2,
+   "name": "SFMM Downloader",
+   "permissions": [ "*://*/*", "tabs", "activeTab"],
+   "version": "1.5"
+}

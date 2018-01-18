@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>yCInJgyNX1t+CAQoPg1FlMlPWhsREO+0s85sV3nHhAQ=</dsig:DigestValue>
+        <dsig:DigestValue>XaBKgTXyA0JqRB0rdZTIbnJWE8f/yMGZnQKhoY2m354=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -105,13 +105,13 @@
       <dsig:DigestValue>pigTgLC+/R4azJiWG0Y9zHodsCPdgRxefxFtZVAz1Kc=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SFMManager.exe.config" size="2020">
+  <file name="SFMManager.exe.config" size="1979">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>3gyhcQisxlxqpzh09nLrVHfM0H79ltUbGPCTKMiIpQ4=</dsig:DigestValue>
+      <dsig:DigestValue>/y//hY9Dhr5sfsdZ79PRfDtdJhqVrhPxs9ptfR7+mog=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

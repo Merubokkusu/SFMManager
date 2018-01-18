@@ -17,7 +17,7 @@ using System.Windows.Forms;
 namespace WindowsFormsApplication1 {
 
     public partial class Form1 : Form {
-        public static float CurrentVer = 6.1f;
+        public static float CurrentVer = 6.2f;
         public static string SFMPATH = ConfigurationManager.AppSettings["SFM_PATH"];
         public static string adWeb = ConfigurationManager.AppSettings["Show_Ad"];
         public static bool SplashOver = false;

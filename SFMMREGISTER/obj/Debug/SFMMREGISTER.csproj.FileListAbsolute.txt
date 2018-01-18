@@ -1,0 +1,8 @@
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMMREGISTER\bin\Debug\SFMMREGISTER.exe
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMMREGISTER\bin\Debug\SFMMREGISTER.pdb
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMMREGISTER\obj\Debug\SFMMREGISTER.Form1.resources
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMMREGISTER\obj\Debug\SFMMREGISTER.Properties.Resources.resources
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMMREGISTER\obj\Debug\SFMMREGISTER.csproj.GenerateResource.Cache
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMMREGISTER\obj\Debug\SFMMREGISTER.csproj.CoreCompileInputs.cache
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMMREGISTER\obj\Debug\SFMMREGISTER.exe
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMMREGISTER\obj\Debug\SFMMREGISTER.pdb

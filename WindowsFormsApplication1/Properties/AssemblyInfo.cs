@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SFMManager")]
 [assembly: AssemblyDescription("Manages SFM Addons.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Bas!cGirl")]
-[assembly: AssemblyProduct("SourceFilmMakerMananger")]
-[assembly: AssemblyCopyright("Copyright © Bas!cGirl 2016")]
+[assembly: AssemblyCompany("SFMM")]
+[assembly: AssemblyProduct("SourceFilmMakerManager")]
+[assembly: AssemblyCopyright("Copyright © SFMM 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,6 +32,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("6.1.0.0")]
-[assembly: AssemblyFileVersion("6.1.0.0")]
+[assembly: AssemblyVersion("6.3.0.0")]
+[assembly: AssemblyFileVersion("6.3.0.0")]
 [assembly: NeutralResourcesLanguage("en")]
