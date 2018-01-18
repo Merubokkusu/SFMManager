@@ -1,0 +1,685 @@
+12-6 8-34-07
+=============================
+==========LOG START==========
+=============================
+
+Crashed?, send this log file to basicgirlnsfw@gmail.com
+
+Compressed addon is .zip
+Adding Addon Arcade
+Compressed addon is .7z
+Adding Addon MGS4 DSLR - Copy
+Using 7za.exe
+Starting Folder Checker
+Addon is a Normal
+Starting File Finder
+Found SFM\Manager\MGS4 DSLR - Copy\MGS4_DSLR\Materials
+addon.txt
+Materials\Models\MGS4\weapons\DSLR\camera_body.vmt
+Materials\Models\MGS4\weapons\DSLR\camera_body_green.vmt
+Materials\Models\MGS4\weapons\DSLR\camera_d.vtf
+Materials\Models\MGS4\weapons\DSLR\camera_green_d.vtf
+Materials\Models\MGS4\weapons\DSLR\camera_n.vtf
+Materials\Models\MGS4\weapons\DSLR\camera_transparent.vmt
+Materials\Models\MGS4\weapons\DSLR\Cover_d.vtf
+Materials\Models\MGS4\weapons\DSLR\cover_n.vtf
+Materials\Models\MGS4\weapons\DSLR\glass_d.vtf
+Materials\Models\MGS4\weapons\DSLR\glass_n.vtf
+Materials\Models\MGS4\weapons\DSLR\lens_body.vmt
+Materials\Models\MGS4\weapons\DSLR\Lens_d.vtf
+Materials\Models\MGS4\weapons\DSLR\lens_glass_clear.vmt
+Materials\Models\MGS4\weapons\DSLR\lens_glass_green.vmt
+Materials\Models\MGS4\weapons\DSLR\lens_glass_purple.vmt
+Materials\Models\MGS4\weapons\DSLR\lens_hood.vmt
+Materials\Models\MGS4\weapons\DSLR\Lens_n.vtf
+Materials\Models\MGS4\weapons\DSLR\rt_cam_1.vmt
+Models\MGS4\weapons\DSLR.dx80.vtx
+Models\MGS4\weapons\DSLR.dx90.vtx
+Models\MGS4\weapons\dslr.mdl
+Models\MGS4\weapons\DSLR.phy
+Models\MGS4\weapons\DSLR.sw.vtx
+Models\MGS4\weapons\dslr.vvd
+-Done Adding Addon-
+Starting Folder Checker
+Addon is a Normal
+Starting File Finder
+Found SFM\Manager\Arcade\materials
+materials\models\Speeder\buildings\arcade\bigposter.vmt
+materials\models\Speeder\buildings\arcade\celing.vmt
+materials\models\Speeder\buildings\arcade\celing.vtf
+materials\models\Speeder\buildings\arcade\celing_n.vtf
+materials\models\Speeder\buildings\arcade\crate.vtf
+materials\models\Speeder\buildings\arcade\crate_n.vtf
+materials\models\Speeder\buildings\arcade\details.vmt
+materials\models\Speeder\buildings\arcade\details.vtf
+materials\models\Speeder\buildings\arcade\details_n.vtf
+materials\models\Speeder\buildings\arcade\details_s.vtf
+materials\models\Speeder\buildings\arcade\door.vmt
+materials\models\Speeder\buildings\arcade\door.vtf
+materials\models\Speeder\buildings\arcade\doorframe.vmt
+materials\models\Speeder\buildings\arcade\doorframe.vtf
+materials\models\Speeder\buildings\arcade\doorframe_n.vtf
+materials\models\Speeder\buildings\arcade\door_n.vtf
+materials\models\Speeder\buildings\arcade\door_s.vtf
+materials\models\Speeder\buildings\arcade\entrance.vmt
+materials\models\Speeder\buildings\arcade\entrance.vtf
+materials\models\Speeder\buildings\arcade\entrancesign.vmt
+materials\models\Speeder\buildings\arcade\entrancesign.vtf
+materials\models\Speeder\buildings\arcade\entrancesign_n.vtf
+materials\models\Speeder\buildings\arcade\entrancesign_s.vtf
+materials\models\Speeder\buildings\arcade\entrance_n.vtf
+materials\models\Speeder\buildings\arcade\entrance_s.vtf
+materials\models\Speeder\buildings\arcade\exit.vmt
+materials\models\Speeder\buildings\arcade\exit.vtf
+materials\models\Speeder\buildings\arcade\exit_s.vtf
+materials\models\Speeder\buildings\arcade\exterior.vmt
+materials\models\Speeder\buildings\arcade\exterior.vtf
+materials\models\Speeder\buildings\arcade\exterior_n.vtf
+materials\models\Speeder\buildings\arcade\flatposters.vmt
+materials\models\Speeder\buildings\arcade\flatposters2.vmt
+materials\models\Speeder\buildings\arcade\flatposters3.vmt
+materials\models\Speeder\buildings\arcade\floor.vmt
+materials\models\Speeder\buildings\arcade\floor.vtf
+materials\models\Speeder\buildings\arcade\floor_n.vtf
+materials\models\Speeder\buildings\arcade\floor_n2.vtf
+materials\models\Speeder\buildings\arcade\generator.vmt
+materials\models\Speeder\buildings\arcade\generator.vtf
+materials\models\Speeder\buildings\arcade\generator_n.vtf
+materials\models\Speeder\buildings\arcade\generator_s.vtf
+materials\models\Speeder\buildings\arcade\glass.vmt
+materials\models\Speeder\buildings\arcade\glass.vtf
+materials\models\Speeder\buildings\arcade\glassdoor.vmt
+materials\models\Speeder\buildings\arcade\glassdoor.vtf
+materials\models\Speeder\buildings\arcade\glass_n.vtf
+materials\models\Speeder\buildings\arcade\lights.vmt
+materials\models\Speeder\buildings\arcade\metal.vmt
+materials\models\Speeder\buildings\arcade\metal.vtf
+materials\models\Speeder\buildings\arcade\metalwall.vmt
+materials\models\Speeder\buildings\arcade\metalwall1.vtf
+materials\models\Speeder\buildings\arcade\metalwall1_n.vtf
+materials\models\Speeder\buildings\arcade\metalwall1_s.vtf
+materials\models\Speeder\buildings\arcade\metal_n.vtf
+materials\models\Speeder\buildings\arcade\panels.vmt
+materials\models\Speeder\buildings\arcade\railing.vtf
+materials\models\Speeder\buildings\arcade\railings.vmt
+materials\models\Speeder\buildings\arcade\railing_n.vtf
+materials\models\Speeder\buildings\arcade\railing_s.vtf
+materials\models\Speeder\buildings\arcade\sign.vmt
+materials\models\Speeder\buildings\arcade\sign.vtf
+materials\models\Speeder\buildings\arcade\sign_n.vtf
+materials\models\Speeder\buildings\arcade\sign_s.vtf
+materials\models\Speeder\buildings\arcade\solarpanel.vmt
+materials\models\Speeder\buildings\arcade\solarpanel.vtf
+materials\models\Speeder\buildings\arcade\solarpanel_n.vtf
+materials\models\Speeder\buildings\arcade\wall1.vmt
+materials\models\Speeder\buildings\arcade\wall1.vtf
+materials\models\Speeder\buildings\arcade\wall1_n.vtf
+materials\models\Speeder\buildings\arcade\wall1_s.vtf
+materials\models\Speeder\buildings\arcade\wideposts.vmt
+materials\models\Speeder\buildings\arcade\wideposts2.vmt
+materials\models\Speeder\buildings\arcade\wideposts3.vmt
+materials\models\Speeder\buildings\arcade\wideposts4.vmt
+materials\models\Speeder\buildings\arcade\window.vtf
+materials\models\Speeder\buildings\arcade\windows.vmt
+materials\models\Speeder\buildings\arcade\window_n.vtf
+materials\models\Speeder\buildings\arcade\window_s.vtf
+materials\models\Speeder\buildings\arcade\wood.vmt
+materials\models\Speeder\buildings\arcade\wood1.vtf
+materials\models\Speeder\buildings\arcade\wood1_n.vtf
+materials\models\Speeder\buildings\arcade\wood2.vmt
+materials\models\Speeder\buildings\arcade\wood2.vtf
+materials\models\Speeder\buildings\arcade\wood2_n.vtf
+materials\models\Speeder\buildings\arcade\wood3.vmt
+materials\models\Speeder\buildings\arcade\wood3.vtf
+materials\models\Speeder\buildings\arcade\wood3_n.vtf
+materials\models\Speeder\props\ArcadeCabinet\altscreen.vtf
+materials\models\Speeder\props\ArcadeCabinet\altscreen2.vtf
+materials\models\Speeder\props\ArcadeCabinet\altscreen3.vtf
+materials\models\Speeder\props\ArcadeCabinet\altscreen4.vtf
+materials\models\Speeder\props\ArcadeCabinet\altscreen5.vtf
+materials\models\Speeder\props\ArcadeCabinet\cabinet.vmt
+materials\models\Speeder\props\ArcadeCabinet\cabinet.vtf
+materials\models\Speeder\props\ArcadeCabinet\cabinet2.vmt
+materials\models\Speeder\props\ArcadeCabinet\cabinet2.vtf
+materials\models\Speeder\props\ArcadeCabinet\cabinet3.vmt
+materials\models\Speeder\props\ArcadeCabinet\cabinet3.vtf
+materials\models\Speeder\props\ArcadeCabinet\cabinet_n.vtf
+materials\models\Speeder\props\ArcadeCabinet\crack.vmt
+materials\models\Speeder\props\ArcadeCabinet\crack.vtf
+materials\models\Speeder\props\ArcadeCabinet\crack_n.vtf
+materials\models\Speeder\props\ArcadeCabinet\games.vmt
+materials\models\Speeder\props\ArcadeCabinet\games10.vmt
+materials\models\Speeder\props\ArcadeCabinet\games11.vmt
+materials\models\Speeder\props\ArcadeCabinet\games12.vmt
+materials\models\Speeder\props\ArcadeCabinet\games13.vmt
+materials\models\Speeder\props\ArcadeCabinet\scanners.vtf
+materials\models\Speeder\props\ArcadeCabinet\screen.vmt
+materials\models\Speeder\props\ArcadeCabinet\screen.vtf
+materials\models\Speeder\props\ArcadeCabinet\screen2.vmt
+materials\models\Speeder\props\ArcadeCabinet\screen2.vtf
+materials\models\Speeder\props\ArcadeCabinet\screen3.vmt
+materials\models\Speeder\props\ArcadeCabinet\screen3.vtf
+materials\models\Speeder\props\ArcadeCabinet\screen4.vmt
+materials\models\Speeder\props\ArcadeCabinet\screen4.vtf
+materials\models\Speeder\props\ArcadeCabinet\screen5.vmt
+materials\models\Speeder\props\ArcadeCabinet\screen5.vtf
+materials\models\Speeder\props\ArcadeCabinet\screen6.vmt
+materials\models\Speeder\props\ArcadeCabinet\screen6.vtf
+materials\models\Speeder\props\ArcadeCabinet\screen7.vmt
+materials\models\Speeder\props\ArcadeCabinet\screen7.vtf
+materials\models\Speeder\props\ArcadeCabinet\screen8.vmt
+materials\models\Speeder\props\ArcadeCabinet\screen8.vtf
+materials\models\Speeder\props\ArcadeCabinet\signs.vmt
+materials\models\Speeder\props\ArcadeCabinet\signs.vtf
+materials\models\Speeder\props\ArcadeCabinet\signs_s.vtf
+materials\models\Speeder\props\Clawmachine\glass.vmt
+materials\models\Speeder\props\Clawmachine\glass.vtf
+materials\models\Speeder\props\Clawmachine\plushy.vmt
+materials\models\Speeder\props\Clawmachine\plushy.vtf
+materials\models\Speeder\props\Clawmachine\plushy_n.vtf
+materials\models\Speeder\props\Clawmachine\toymachine.vmt
+materials\models\Speeder\props\Clawmachine\toymachine.vtf
+materials\models\Speeder\props\Clawmachine\toymachine2.vmt
+materials\models\Speeder\props\Clawmachine\toymachine2.vtf
+materials\models\Speeder\props\Clawmachine\toymachine_e - Copy.vtf
+materials\models\Speeder\props\Clawmachine\toymachine_e.vtf
+materials\models\Speeder\props\Clawmachine\toymachine_n - Copy.vtf
+materials\models\Speeder\props\Clawmachine\toymachine_n.vtf
+materials\models\Speeder\props\miscprops\bigposter.vmt
+materials\models\Speeder\props\miscprops\bigposter.vtf
+materials\models\Speeder\props\miscprops\chair.vmt
+materials\models\Speeder\props\miscprops\chair.vtf
+materials\models\Speeder\props\miscprops\chair_n.vtf
+materials\models\Speeder\props\miscprops\chair_s.vtf
+materials\models\Speeder\props\miscprops\crate.vmt
+materials\models\Speeder\props\miscprops\crate.vtf
+materials\models\Speeder\props\miscprops\crate_n.vtf
+materials\models\Speeder\props\miscprops\flatposters.vmt
+materials\models\Speeder\props\miscprops\flatposters.vtf
+materials\models\Speeder\props\miscprops\flatposters2.vmt
+materials\models\Speeder\props\miscprops\flatposters2.vtf
+materials\models\Speeder\props\miscprops\flatposters3.vmt
+materials\models\Speeder\props\miscprops\flatposters3.vtf
+materials\models\Speeder\props\miscprops\lamp.vmt
+materials\models\Speeder\props\miscprops\lamp.vtf
+materials\models\Speeder\props\miscprops\lamp_e.vtf
+materials\models\Speeder\props\miscprops\lamp_n.vtf
+materials\models\Speeder\props\miscprops\lamp_s.vtf
+materials\models\Speeder\props\miscprops\lightsquares.vtf
+materials\models\Speeder\props\miscprops\lightsquares_e.vtf
+materials\models\Speeder\props\miscprops\lightsquares_e2.vtf
+materials\models\Speeder\props\miscprops\lightsquares_e3.vtf
+materials\models\Speeder\props\miscprops\lightsquares_n.vtf
+materials\models\Speeder\props\miscprops\light_hanging.vmt
+materials\models\Speeder\props\miscprops\light_hanging.vtf
+materials\models\Speeder\props\miscprops\light_hanging_e.vtf
+materials\models\Speeder\props\miscprops\light_hanging_n.vtf
+materials\models\Speeder\props\miscprops\light_hanging_off.vmt
+materials\models\Speeder\props\miscprops\stool.vmt
+materials\models\Speeder\props\miscprops\stool.vtf
+materials\models\Speeder\props\miscprops\stool2.vmt
+materials\models\Speeder\props\miscprops\stool2.vtf
+materials\models\Speeder\props\miscprops\stool3.vmt
+materials\models\Speeder\props\miscprops\stool3.vtf
+materials\models\Speeder\props\miscprops\stoolmet.vmt
+materials\models\Speeder\props\miscprops\stool_n.vtf
+materials\models\Speeder\props\miscprops\stool_s.vtf
+materials\models\Speeder\props\miscprops\table.vmt
+materials\models\Speeder\props\miscprops\table.vtf
+materials\models\Speeder\props\miscprops\table_n.vtf
+materials\models\Speeder\props\miscprops\table_s.vtf
+materials\models\Speeder\props\miscprops\trashcan.vmt
+materials\models\Speeder\props\miscprops\trashcan.vtf
+materials\models\Speeder\props\miscprops\trashcan_n.vtf
+materials\models\Speeder\props\miscprops\trashcan_s.vtf
+materials\models\Speeder\props\miscprops\walllights.vmt
+materials\models\Speeder\props\miscprops\walllights2.vmt
+materials\models\Speeder\props\miscprops\walllights3.vmt
+materials\models\Speeder\props\miscprops\wideposts.vmt
+materials\models\Speeder\props\miscprops\wideposts.vtf
+materials\models\Speeder\props\miscprops\wideposts2.vmt
+materials\models\Speeder\props\miscprops\wideposts2.vtf
+materials\models\Speeder\props\miscprops\wideposts3.vmt
+materials\models\Speeder\props\miscprops\wideposts3.vtf
+materials\models\Speeder\props\miscprops\wideposts4.vmt
+materials\models\Speeder\props\miscprops\wideposts4.vtf
+materials\models\Speeder\props\Vendingmachine\glass.vmt
+materials\models\Speeder\props\Vendingmachine\glass.vtf
+materials\models\Speeder\props\Vendingmachine\vendingmachine - Copy.vtf
+materials\models\Speeder\props\Vendingmachine\vendingmachine.vtf
+materials\models\Speeder\props\Vendingmachine\vendingmachine2.vtf
+materials\models\Speeder\props\Vendingmachine\vendingmachine3.vtf
+materials\models\Speeder\props\Vendingmachine\vendingmachine_e.vtf
+materials\models\Speeder\props\Vendingmachine\vendingmachine_g.vtf
+materials\models\Speeder\props\Vendingmachine\vendingmachine_n.vtf
+materials\models\Speeder\props\Vendingmachine\vendmachine.vmt
+materials\models\Speeder\props\Vendingmachine\vendmachine2.vmt
+materials\models\Speeder\props\Vendingmachine\vendmachine3.vmt
+models\Overwatch\buildings\building.dx90.vtx
+models\Overwatch\buildings\building.mdl
+models\Overwatch\buildings\building.vvd
+models\Overwatch\buildings\floor.dx90.vtx
+models\Overwatch\buildings\floor.mdl
+models\Overwatch\buildings\floor.vvd
+models\Overwatch\props\Arcade_Cabinet.dx90.vtx
+models\Overwatch\props\arcade_cabinet.mdl
+models\Overwatch\props\arcade_cabinet.vvd
+models\Overwatch\props\Chair.dx90.vtx
+models\Overwatch\props\chair.mdl
+models\Overwatch\props\chair.vvd
+models\Overwatch\props\Claw_Machine.dx90.vtx
+models\Overwatch\props\claw_machine.mdl
+models\Overwatch\props\claw_machine.vvd
+models\Overwatch\props\Lamp.dx90.vtx
+models\Overwatch\props\lamp.mdl
+models\Overwatch\props\lamp.vvd
+models\Overwatch\props\Light_Hanging.dx90.vtx
+models\Overwatch\props\light_hanging.mdl
+models\Overwatch\props\light_hanging.vvd
+models\Overwatch\props\plushy.dx90.vtx
+models\Overwatch\props\plushy.mdl
+models\Overwatch\props\plushy.vvd
+models\Overwatch\props\Poster1.dx90.vtx
+models\Overwatch\props\poster1.mdl
+models\Overwatch\props\poster1.vvd
+models\Overwatch\props\Poster2.dx90.vtx
+models\Overwatch\props\poster2.mdl
+models\Overwatch\props\poster2.vvd
+models\Overwatch\props\Poster_Big.dx90.vtx
+models\Overwatch\props\poster_big.mdl
+models\Overwatch\props\poster_big.vvd
+models\Overwatch\props\Stool.dx90.vtx
+models\Overwatch\props\stool.mdl
+models\Overwatch\props\stool.vvd
+models\Overwatch\props\Table.dx90.vtx
+models\Overwatch\props\table.mdl
+models\Overwatch\props\table.vvd
+models\Overwatch\props\Trashcan.dx90.vtx
+models\Overwatch\props\trashcan.mdl
+models\Overwatch\props\trashcan.vvd
+models\Overwatch\props\Vending_Machine.dx90.vtx
+models\Overwatch\props\vending_machine.mdl
+models\Overwatch\props\vending_machine.vvd
+models\Overwatch\props\walllight_single1.dx90.vtx
+models\Overwatch\props\walllight_single1.mdl
+models\Overwatch\props\walllight_single1.vvd
+models\Overwatch\props\walllight_single2.dx90.vtx
+models\Overwatch\props\walllight_single2.mdl
+models\Overwatch\props\walllight_single2.vvd
+models\Overwatch\props\walllight_single3.dx90.vtx
+models\Overwatch\props\walllight_single3.mdl
+models\Overwatch\props\walllight_single3.vvd
+models\Overwatch\props\walllight_single4.dx90.vtx
+models\Overwatch\props\walllight_single4.mdl
+models\Overwatch\props\walllight_single4.vvd
+models\Overwatch\props\walllight_single5.dx90.vtx
+models\Overwatch\props\walllight_single5.mdl
+models\Overwatch\props\walllight_single5.vvd
+models\Overwatch\props\walllight_single6.dx90.vtx
+models\Overwatch\props\walllight_single6.mdl
+models\Overwatch\props\walllight_single6.vvd
+models\Overwatch\props\walllight_single7.dx90.vtx
+models\Overwatch\props\walllight_single7.mdl
+models\Overwatch\props\walllight_single7.vvd
+models\Overwatch\props\Wall_Lights.dx90.vtx
+models\Overwatch\props\wall_lights.mdl
+models\Overwatch\props\wall_lights.vvd
+models\Overwatch\props\arcade\crate.dx90.vtx
+models\Overwatch\props\arcade\crate.mdl
+models\Overwatch\props\arcade\crate.vvd
+models\Overwatch\props\arcade\building\door.dx90.vtx
+models\Overwatch\props\arcade\building\door.mdl
+models\Overwatch\props\arcade\building\door.vvd
+models\Overwatch\props\arcade\building\doorframe.dx90.vtx
+models\Overwatch\props\arcade\building\doorframe.mdl
+models\Overwatch\props\arcade\building\doorframe.vvd
+models\Overwatch\props\arcade\building\entrance.dx90.vtx
+models\Overwatch\props\arcade\building\entrance.mdl
+models\Overwatch\props\arcade\building\entrance.vvd
+models\Overwatch\props\arcade\building\exit.dx90.vtx
+models\Overwatch\props\arcade\building\exit.mdl
+models\Overwatch\props\arcade\building\exit.vvd
+models\Overwatch\props\arcade\building\metalwall.dx90.vtx
+models\Overwatch\props\arcade\building\metalwall.mdl
+models\Overwatch\props\arcade\building\metalwall.vvd
+models\Overwatch\props\arcade\building\sign.dx90.vtx
+models\Overwatch\props\arcade\building\sign.mdl
+models\Overwatch\props\arcade\building\sign.vvd
+models\Overwatch\props\arcade\building\solarpanel.dx90.vtx
+models\Overwatch\props\arcade\building\solarpanel.mdl
+models\Overwatch\props\arcade\building\solarpanel.vvd
+models\Overwatch\props\arcade\building\wall.dx90.vtx
+models\Overwatch\props\arcade\building\wall.mdl
+models\Overwatch\props\arcade\building\wall.vvd
+-Done Adding Addon-
+Removing materials\models\Speeder\buildings\arcade\bigposter.vmt
+Removing materials\models\Speeder\buildings\arcade\celing.vmt
+Removing materials\models\Speeder\buildings\arcade\celing.vtf
+Removing materials\models\Speeder\buildings\arcade\celing_n.vtf
+Removing materials\models\Speeder\buildings\arcade\crate.vtf
+Removing materials\models\Speeder\buildings\arcade\crate_n.vtf
+Removing materials\models\Speeder\buildings\arcade\details.vmt
+Removing materials\models\Speeder\buildings\arcade\details.vtf
+Removing materials\models\Speeder\buildings\arcade\details_n.vtf
+Removing materials\models\Speeder\buildings\arcade\details_s.vtf
+Removing materials\models\Speeder\buildings\arcade\door.vmt
+Removing materials\models\Speeder\buildings\arcade\door.vtf
+Removing materials\models\Speeder\buildings\arcade\doorframe.vmt
+Removing materials\models\Speeder\buildings\arcade\doorframe.vtf
+Removing materials\models\Speeder\buildings\arcade\doorframe_n.vtf
+Removing materials\models\Speeder\buildings\arcade\door_n.vtf
+Removing materials\models\Speeder\buildings\arcade\door_s.vtf
+Removing materials\models\Speeder\buildings\arcade\entrance.vmt
+Removing materials\models\Speeder\buildings\arcade\entrance.vtf
+Removing materials\models\Speeder\buildings\arcade\entrancesign.vmt
+Removing materials\models\Speeder\buildings\arcade\entrancesign.vtf
+Removing materials\models\Speeder\buildings\arcade\entrancesign_n.vtf
+Removing materials\models\Speeder\buildings\arcade\entrancesign_s.vtf
+Removing materials\models\Speeder\buildings\arcade\entrance_n.vtf
+Removing materials\models\Speeder\buildings\arcade\entrance_s.vtf
+Removing materials\models\Speeder\buildings\arcade\exit.vmt
+Removing materials\models\Speeder\buildings\arcade\exit.vtf
+Removing materials\models\Speeder\buildings\arcade\exit_s.vtf
+Removing materials\models\Speeder\buildings\arcade\exterior.vmt
+Removing materials\models\Speeder\buildings\arcade\exterior.vtf
+Removing materials\models\Speeder\buildings\arcade\exterior_n.vtf
+Removing materials\models\Speeder\buildings\arcade\flatposters.vmt
+Removing materials\models\Speeder\buildings\arcade\flatposters2.vmt
+Removing materials\models\Speeder\buildings\arcade\flatposters3.vmt
+Removing materials\models\Speeder\buildings\arcade\floor.vmt
+Removing materials\models\Speeder\buildings\arcade\floor.vtf
+Removing materials\models\Speeder\buildings\arcade\floor_n.vtf
+Removing materials\models\Speeder\buildings\arcade\floor_n2.vtf
+Removing materials\models\Speeder\buildings\arcade\generator.vmt
+Removing materials\models\Speeder\buildings\arcade\generator.vtf
+Removing materials\models\Speeder\buildings\arcade\generator_n.vtf
+Removing materials\models\Speeder\buildings\arcade\generator_s.vtf
+Removing materials\models\Speeder\buildings\arcade\glass.vmt
+Removing materials\models\Speeder\buildings\arcade\glass.vtf
+Removing materials\models\Speeder\buildings\arcade\glassdoor.vmt
+Removing materials\models\Speeder\buildings\arcade\glassdoor.vtf
+Removing materials\models\Speeder\buildings\arcade\glass_n.vtf
+Removing materials\models\Speeder\buildings\arcade\lights.vmt
+Removing materials\models\Speeder\buildings\arcade\metal.vmt
+Removing materials\models\Speeder\buildings\arcade\metal.vtf
+Removing materials\models\Speeder\buildings\arcade\metalwall.vmt
+Removing materials\models\Speeder\buildings\arcade\metalwall1.vtf
+Removing materials\models\Speeder\buildings\arcade\metalwall1_n.vtf
+Removing materials\models\Speeder\buildings\arcade\metalwall1_s.vtf
+Removing materials\models\Speeder\buildings\arcade\metal_n.vtf
+Removing materials\models\Speeder\buildings\arcade\panels.vmt
+Removing materials\models\Speeder\buildings\arcade\railing.vtf
+Removing materials\models\Speeder\buildings\arcade\railings.vmt
+Removing materials\models\Speeder\buildings\arcade\railing_n.vtf
+Removing materials\models\Speeder\buildings\arcade\railing_s.vtf
+Removing materials\models\Speeder\buildings\arcade\sign.vmt
+Removing materials\models\Speeder\buildings\arcade\sign.vtf
+Removing materials\models\Speeder\buildings\arcade\sign_n.vtf
+Removing materials\models\Speeder\buildings\arcade\sign_s.vtf
+Removing materials\models\Speeder\buildings\arcade\solarpanel.vmt
+Removing materials\models\Speeder\buildings\arcade\solarpanel.vtf
+Removing materials\models\Speeder\buildings\arcade\solarpanel_n.vtf
+Removing materials\models\Speeder\buildings\arcade\wall1.vmt
+Removing materials\models\Speeder\buildings\arcade\wall1.vtf
+Removing materials\models\Speeder\buildings\arcade\wall1_n.vtf
+Removing materials\models\Speeder\buildings\arcade\wall1_s.vtf
+Removing materials\models\Speeder\buildings\arcade\wideposts.vmt
+Removing materials\models\Speeder\buildings\arcade\wideposts2.vmt
+Removing materials\models\Speeder\buildings\arcade\wideposts3.vmt
+Removing materials\models\Speeder\buildings\arcade\wideposts4.vmt
+Removing materials\models\Speeder\buildings\arcade\window.vtf
+Removing materials\models\Speeder\buildings\arcade\windows.vmt
+Removing materials\models\Speeder\buildings\arcade\window_n.vtf
+Removing materials\models\Speeder\buildings\arcade\window_s.vtf
+Removing materials\models\Speeder\buildings\arcade\wood.vmt
+Removing materials\models\Speeder\buildings\arcade\wood1.vtf
+Removing materials\models\Speeder\buildings\arcade\wood1_n.vtf
+Removing materials\models\Speeder\buildings\arcade\wood2.vmt
+Removing materials\models\Speeder\buildings\arcade\wood2.vtf
+Removing materials\models\Speeder\buildings\arcade\wood2_n.vtf
+Removing materials\models\Speeder\buildings\arcade\wood3.vmt
+Removing materials\models\Speeder\buildings\arcade\wood3.vtf
+Removing materials\models\Speeder\buildings\arcade\wood3_n.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\altscreen.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\altscreen2.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\altscreen3.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\altscreen4.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\altscreen5.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\cabinet.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\cabinet.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\cabinet2.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\cabinet2.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\cabinet3.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\cabinet3.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\cabinet_n.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\crack.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\crack.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\crack_n.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\games.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\games10.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\games11.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\games12.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\games13.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\scanners.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\screen.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\screen.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\screen2.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\screen2.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\screen3.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\screen3.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\screen4.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\screen4.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\screen5.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\screen5.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\screen6.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\screen6.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\screen7.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\screen7.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\screen8.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\screen8.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\signs.vmt
+Removing materials\models\Speeder\props\ArcadeCabinet\signs.vtf
+Removing materials\models\Speeder\props\ArcadeCabinet\signs_s.vtf
+Removing materials\models\Speeder\props\Clawmachine\glass.vmt
+Removing materials\models\Speeder\props\Clawmachine\glass.vtf
+Removing materials\models\Speeder\props\Clawmachine\plushy.vmt
+Removing materials\models\Speeder\props\Clawmachine\plushy.vtf
+Removing materials\models\Speeder\props\Clawmachine\plushy_n.vtf
+Removing materials\models\Speeder\props\Clawmachine\toymachine.vmt
+Removing materials\models\Speeder\props\Clawmachine\toymachine.vtf
+Removing materials\models\Speeder\props\Clawmachine\toymachine2.vmt
+Removing materials\models\Speeder\props\Clawmachine\toymachine2.vtf
+Removing materials\models\Speeder\props\Clawmachine\toymachine_e - Copy.vtf
+Removing materials\models\Speeder\props\Clawmachine\toymachine_e.vtf
+Removing materials\models\Speeder\props\Clawmachine\toymachine_n - Copy.vtf
+Removing materials\models\Speeder\props\Clawmachine\toymachine_n.vtf
+Removing materials\models\Speeder\props\miscprops\bigposter.vmt
+Removing materials\models\Speeder\props\miscprops\bigposter.vtf
+Removing materials\models\Speeder\props\miscprops\chair.vmt
+Removing materials\models\Speeder\props\miscprops\chair.vtf
+Removing materials\models\Speeder\props\miscprops\chair_n.vtf
+Removing materials\models\Speeder\props\miscprops\chair_s.vtf
+Removing materials\models\Speeder\props\miscprops\crate.vmt
+Removing materials\models\Speeder\props\miscprops\crate.vtf
+Removing materials\models\Speeder\props\miscprops\crate_n.vtf
+Removing materials\models\Speeder\props\miscprops\flatposters.vmt
+Removing materials\models\Speeder\props\miscprops\flatposters.vtf
+Removing materials\models\Speeder\props\miscprops\flatposters2.vmt
+Removing materials\models\Speeder\props\miscprops\flatposters2.vtf
+Removing materials\models\Speeder\props\miscprops\flatposters3.vmt
+Removing materials\models\Speeder\props\miscprops\flatposters3.vtf
+Removing materials\models\Speeder\props\miscprops\lamp.vmt
+Removing materials\models\Speeder\props\miscprops\lamp.vtf
+Removing materials\models\Speeder\props\miscprops\lamp_e.vtf
+Removing materials\models\Speeder\props\miscprops\lamp_n.vtf
+Removing materials\models\Speeder\props\miscprops\lamp_s.vtf
+Removing materials\models\Speeder\props\miscprops\lightsquares.vtf
+Removing materials\models\Speeder\props\miscprops\lightsquares_e.vtf
+Removing materials\models\Speeder\props\miscprops\lightsquares_e2.vtf
+Removing materials\models\Speeder\props\miscprops\lightsquares_e3.vtf
+Removing materials\models\Speeder\props\miscprops\lightsquares_n.vtf
+Removing materials\models\Speeder\props\miscprops\light_hanging.vmt
+Removing materials\models\Speeder\props\miscprops\light_hanging.vtf
+Removing materials\models\Speeder\props\miscprops\light_hanging_e.vtf
+Removing materials\models\Speeder\props\miscprops\light_hanging_n.vtf
+Removing materials\models\Speeder\props\miscprops\light_hanging_off.vmt
+Removing materials\models\Speeder\props\miscprops\stool.vmt
+Removing materials\models\Speeder\props\miscprops\stool.vtf
+Removing materials\models\Speeder\props\miscprops\stool2.vmt
+Removing materials\models\Speeder\props\miscprops\stool2.vtf
+Removing materials\models\Speeder\props\miscprops\stool3.vmt
+Removing materials\models\Speeder\props\miscprops\stool3.vtf
+Removing materials\models\Speeder\props\miscprops\stoolmet.vmt
+Removing materials\models\Speeder\props\miscprops\stool_n.vtf
+Removing materials\models\Speeder\props\miscprops\stool_s.vtf
+Removing materials\models\Speeder\props\miscprops\table.vmt
+Removing materials\models\Speeder\props\miscprops\table.vtf
+Removing materials\models\Speeder\props\miscprops\table_n.vtf
+Removing materials\models\Speeder\props\miscprops\table_s.vtf
+Removing materials\models\Speeder\props\miscprops\trashcan.vmt
+Removing materials\models\Speeder\props\miscprops\trashcan.vtf
+Removing materials\models\Speeder\props\miscprops\trashcan_n.vtf
+Removing materials\models\Speeder\props\miscprops\trashcan_s.vtf
+Removing materials\models\Speeder\props\miscprops\walllights.vmt
+Removing materials\models\Speeder\props\miscprops\walllights2.vmt
+Removing materials\models\Speeder\props\miscprops\walllights3.vmt
+Removing materials\models\Speeder\props\miscprops\wideposts.vmt
+Removing materials\models\Speeder\props\miscprops\wideposts.vtf
+Removing materials\models\Speeder\props\miscprops\wideposts2.vmt
+Removing materials\models\Speeder\props\miscprops\wideposts2.vtf
+Removing materials\models\Speeder\props\miscprops\wideposts3.vmt
+Removing materials\models\Speeder\props\miscprops\wideposts3.vtf
+Removing materials\models\Speeder\props\miscprops\wideposts4.vmt
+Removing materials\models\Speeder\props\miscprops\wideposts4.vtf
+Removing materials\models\Speeder\props\Vendingmachine\glass.vmt
+Removing materials\models\Speeder\props\Vendingmachine\glass.vtf
+Removing materials\models\Speeder\props\Vendingmachine\vendingmachine - Copy.vtf
+Removing materials\models\Speeder\props\Vendingmachine\vendingmachine.vtf
+Removing materials\models\Speeder\props\Vendingmachine\vendingmachine2.vtf
+Removing materials\models\Speeder\props\Vendingmachine\vendingmachine3.vtf
+Removing materials\models\Speeder\props\Vendingmachine\vendingmachine_e.vtf
+Removing materials\models\Speeder\props\Vendingmachine\vendingmachine_g.vtf
+Removing materials\models\Speeder\props\Vendingmachine\vendingmachine_n.vtf
+Removing materials\models\Speeder\props\Vendingmachine\vendmachine.vmt
+Removing materials\models\Speeder\props\Vendingmachine\vendmachine2.vmt
+Removing materials\models\Speeder\props\Vendingmachine\vendmachine3.vmt
+Removing models\Overwatch\buildings\building.dx90.vtx
+Removing models\Overwatch\buildings\building.mdl
+Removing models\Overwatch\buildings\building.vvd
+Removing models\Overwatch\buildings\floor.dx90.vtx
+Removing models\Overwatch\buildings\floor.mdl
+Removing models\Overwatch\buildings\floor.vvd
+Removing models\Overwatch\props\Arcade_Cabinet.dx90.vtx
+Removing models\Overwatch\props\arcade_cabinet.mdl
+Removing models\Overwatch\props\arcade_cabinet.vvd
+Removing models\Overwatch\props\Chair.dx90.vtx
+Removing models\Overwatch\props\chair.mdl
+Removing models\Overwatch\props\chair.vvd
+Removing models\Overwatch\props\Claw_Machine.dx90.vtx
+Removing models\Overwatch\props\claw_machine.mdl
+Removing models\Overwatch\props\claw_machine.vvd
+Removing models\Overwatch\props\Lamp.dx90.vtx
+Removing models\Overwatch\props\lamp.mdl
+Removing models\Overwatch\props\lamp.vvd
+Removing models\Overwatch\props\Light_Hanging.dx90.vtx
+Removing models\Overwatch\props\light_hanging.mdl
+Removing models\Overwatch\props\light_hanging.vvd
+Removing models\Overwatch\props\plushy.dx90.vtx
+Removing models\Overwatch\props\plushy.mdl
+Removing models\Overwatch\props\plushy.vvd
+Removing models\Overwatch\props\Poster1.dx90.vtx
+Removing models\Overwatch\props\poster1.mdl
+Removing models\Overwatch\props\poster1.vvd
+Removing models\Overwatch\props\Poster2.dx90.vtx
+Removing models\Overwatch\props\poster2.mdl
+Removing models\Overwatch\props\poster2.vvd
+Removing models\Overwatch\props\Poster_Big.dx90.vtx
+Removing models\Overwatch\props\poster_big.mdl
+Removing models\Overwatch\props\poster_big.vvd
+Removing models\Overwatch\props\Stool.dx90.vtx
+Removing models\Overwatch\props\stool.mdl
+Removing models\Overwatch\props\stool.vvd
+Removing models\Overwatch\props\Table.dx90.vtx
+Removing models\Overwatch\props\table.mdl
+Removing models\Overwatch\props\table.vvd
+Removing models\Overwatch\props\Trashcan.dx90.vtx
+Removing models\Overwatch\props\trashcan.mdl
+Removing models\Overwatch\props\trashcan.vvd
+Removing models\Overwatch\props\Vending_Machine.dx90.vtx
+Removing models\Overwatch\props\vending_machine.mdl
+Removing models\Overwatch\props\vending_machine.vvd
+Removing models\Overwatch\props\walllight_single1.dx90.vtx
+Removing models\Overwatch\props\walllight_single1.mdl
+Removing models\Overwatch\props\walllight_single1.vvd
+Removing models\Overwatch\props\walllight_single2.dx90.vtx
+Removing models\Overwatch\props\walllight_single2.mdl
+Removing models\Overwatch\props\walllight_single2.vvd
+Removing models\Overwatch\props\walllight_single3.dx90.vtx
+Removing models\Overwatch\props\walllight_single3.mdl
+Removing models\Overwatch\props\walllight_single3.vvd
+Removing models\Overwatch\props\walllight_single4.dx90.vtx
+Removing models\Overwatch\props\walllight_single4.mdl
+Removing models\Overwatch\props\walllight_single4.vvd
+Removing models\Overwatch\props\walllight_single5.dx90.vtx
+Removing models\Overwatch\props\walllight_single5.mdl
+Removing models\Overwatch\props\walllight_single5.vvd
+Removing models\Overwatch\props\walllight_single6.dx90.vtx
+Removing models\Overwatch\props\walllight_single6.mdl
+Removing models\Overwatch\props\walllight_single6.vvd
+Removing models\Overwatch\props\walllight_single7.dx90.vtx
+Removing models\Overwatch\props\walllight_single7.mdl
+Removing models\Overwatch\props\walllight_single7.vvd
+Removing models\Overwatch\props\Wall_Lights.dx90.vtx
+Removing models\Overwatch\props\wall_lights.mdl
+Removing models\Overwatch\props\wall_lights.vvd
+Removing models\Overwatch\props\arcade\crate.dx90.vtx
+Removing models\Overwatch\props\arcade\crate.mdl
+Removing models\Overwatch\props\arcade\crate.vvd
+Removing models\Overwatch\props\arcade\building\door.dx90.vtx
+Removing models\Overwatch\props\arcade\building\door.mdl
+Removing models\Overwatch\props\arcade\building\door.vvd
+Removing models\Overwatch\props\arcade\building\doorframe.dx90.vtx
+Removing models\Overwatch\props\arcade\building\doorframe.mdl
+Removing models\Overwatch\props\arcade\building\doorframe.vvd
+Removing models\Overwatch\props\arcade\building\entrance.dx90.vtx
+Removing models\Overwatch\props\arcade\building\entrance.mdl
+Removing models\Overwatch\props\arcade\building\entrance.vvd
+Removing models\Overwatch\props\arcade\building\exit.dx90.vtx
+Removing models\Overwatch\props\arcade\building\exit.mdl
+Removing models\Overwatch\props\arcade\building\exit.vvd
+Removing models\Overwatch\props\arcade\building\metalwall.dx90.vtx
+Removing models\Overwatch\props\arcade\building\metalwall.mdl
+Removing models\Overwatch\props\arcade\building\metalwall.vvd
+Removing models\Overwatch\props\arcade\building\sign.dx90.vtx
+Removing models\Overwatch\props\arcade\building\sign.mdl
+Removing models\Overwatch\props\arcade\building\sign.vvd
+Removing models\Overwatch\props\arcade\building\solarpanel.dx90.vtx
+Removing models\Overwatch\props\arcade\building\solarpanel.mdl
+Removing models\Overwatch\props\arcade\building\solarpanel.vvd
+Removing models\Overwatch\props\arcade\building\wall.dx90.vtx
+Removing models\Overwatch\props\arcade\building\wall.mdl
+Removing models\Overwatch\props\arcade\building\wall.vvd
+Removing addon.txt
+Removing Materials\Models\MGS4\weapons\DSLR\camera_body.vmt
+Removing Materials\Models\MGS4\weapons\DSLR\camera_body_green.vmt
+Removing Materials\Models\MGS4\weapons\DSLR\camera_d.vtf
+Removing Materials\Models\MGS4\weapons\DSLR\camera_green_d.vtf
+Removing Materials\Models\MGS4\weapons\DSLR\camera_n.vtf
+Removing Materials\Models\MGS4\weapons\DSLR\camera_transparent.vmt
+Removing Materials\Models\MGS4\weapons\DSLR\Cover_d.vtf
+Removing Materials\Models\MGS4\weapons\DSLR\cover_n.vtf
+Removing Materials\Models\MGS4\weapons\DSLR\glass_d.vtf
+Removing Materials\Models\MGS4\weapons\DSLR\glass_n.vtf
+Removing Materials\Models\MGS4\weapons\DSLR\lens_body.vmt
+Removing Materials\Models\MGS4\weapons\DSLR\Lens_d.vtf
+Removing Materials\Models\MGS4\weapons\DSLR\lens_glass_clear.vmt
+Removing Materials\Models\MGS4\weapons\DSLR\lens_glass_green.vmt
+Removing Materials\Models\MGS4\weapons\DSLR\lens_glass_purple.vmt
+Removing Materials\Models\MGS4\weapons\DSLR\lens_hood.vmt
+Removing Materials\Models\MGS4\weapons\DSLR\Lens_n.vtf
+Removing Materials\Models\MGS4\weapons\DSLR\rt_cam_1.vmt
+Removing Models\MGS4\weapons\DSLR.dx80.vtx
+Removing Models\MGS4\weapons\DSLR.dx90.vtx
+Removing Models\MGS4\weapons\dslr.mdl
+Removing Models\MGS4\weapons\DSLR.sw.vtx
+Removing Models\MGS4\weapons\dslr.vvd
