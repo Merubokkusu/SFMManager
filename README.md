@@ -7,8 +7,8 @@ I currently only have access to the website and SFMLAB account.
 
 I'll be migrating the updater to my website and updating/cleaning up the code.
 
+### [Road map](https://trello.com/b/wMNrZIJ4/sfmm)
+
 ## Requirements 
 [Code Font](https://www.dafont.com/code.font)
 
-## Missing
-SFMMRegister source code
