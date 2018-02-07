@@ -13,7 +13,9 @@ namespace SourceFilmMakerManager.Manager {
 
     public static class modMan {
         public static string managerDir = @"SFM\Manager\";
-
+        public static string Source = null; 
+        public static string Author = null;
+        public static string fileLink = null;
         public static string[] Folders { get; private set; }
 
         public static bool IsDirectoryEmpty(string path) {
@@ -53,11 +55,13 @@ namespace SourceFilmMakerManager.Manager {
                             //DO logic here
                         }
                         DirCheckLister(AddonName);
-                    } else {
+                    }
+                    else {
                         if (extensionName == ".bsp" || extensionName == ".py") {
                             Console.WriteLine("Since file is " + extensionName + " There is no extracting to be done, skipping to next task.");
                             CreateList(managerDir + AddonName, AddonName);
-                        } else {
+                        }
+                        else {
                             using (Stream stream = File.OpenRead(FilePath)) {
                                 var reader = ReaderFactory.Open(stream);
                                 while (reader.MoveToNextEntry()) {
@@ -72,7 +76,9 @@ namespace SourceFilmMakerManager.Manager {
                             DirCheckLister(AddonName);
                         }
                     }
-                    File.Delete(FilePath);
+                    if (FilePath.Contains("Manager")) {
+                        File.Delete(FilePath);
+                    }
                 }
                 catch (Exception ex) {
                     Console.WriteLine("An error occured in Extract: " + ex.Message);
@@ -105,7 +111,13 @@ namespace SourceFilmMakerManager.Manager {
             bw.DoWork += new DoWorkEventHandler(
             delegate (object o, DoWorkEventArgs args) {
                 try {
-                    FileStream fs1 = new FileStream(@"SFM\PuCE\" + AddonName + ".PuCE", FileMode.OpenOrCreate, FileAccess.Write);
+                    Directory.CreateDirectory(@"SFM\SFMM\" + AddonName);
+                    FileStream fs1 = new FileStream(@"SFM\SFMM\" + AddonName + @"\" + AddonName + ".SFMM", FileMode.OpenOrCreate, FileAccess.Write);
+                    var infoIni = new IniFile(@"SFM\SFMM\" + AddonName + @"\"+ "info.ini");
+                    infoIni.Write("Date", DateTime.Now.ToString());
+                    infoIni.Write("Source", Source);
+                    infoIni.Write("Author", Author);
+                    infoIni.Write("URL", fileLink);
                     StreamWriter writer = new StreamWriter(fs1);
 
                     var skipDirectory = AddonFiles.Length;
@@ -187,6 +199,9 @@ namespace SourceFilmMakerManager.Manager {
                     Form1.RefreshAddon = true;
 
                     Console.WriteLine("-Done Adding Addon-");
+                    Source = null;
+                    Author = null;
+                    fileLink = null;
 
                     //DirectoryInfo di = new DirectoryInfo(managerDir+ AddonName);
 

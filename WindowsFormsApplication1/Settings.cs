@@ -13,14 +13,9 @@ namespace WindowsFormsApplication1 {
 
         //====
         private string VERSIONID = "Alice";
-
         //=====
 
-        public Color WheelColor;
 
-        public bool TopColor = false;
-        public bool BKColor = false;
-        public bool ButtonColor = false;
 
         public static string RealColor = "FFFFFFFF";
         private string AUTOCHECKUPDATE = ConfigurationManager.AppSettings["Auto_Check_For_Updates"];
@@ -29,8 +24,8 @@ namespace WindowsFormsApplication1 {
 
         public Settings() {
             InitializeComponent();
-            label8.Text = "SFManager\nVersion: " + VERSIONID;
-            label10.Text = Form1.CurrentVer.ToString();
+            idLabel.Text = "SFManager\nVersion: " + VERSIONID;
+            id_numberLabel.Text = Form1.CurrentVer.ToString();
             textBox1.Text = ConfigurationManager.AppSettings["SFM_PATH"];
             // Enable drag and drop for this form
             // (this can also be applied to any controls)
@@ -38,8 +33,7 @@ namespace WindowsFormsApplication1 {
 
             // Add event handlers for the drag & drop functionality
 
-            //Color For Form
-            Colors();
+
 
             //RadioButtons...Duh
             RadioBottons();
@@ -70,32 +64,10 @@ namespace WindowsFormsApplication1 {
                 radioButton4.Checked = false;
                 radioButton5.Checked = true;
             }
-            if (adWeb == "0") {
-                radioButton6.Checked = true;
-                radioButton7.Checked = false;
-            } else {
-                radioButton6.Checked = false;
-                radioButton7.Checked = true;
-            }
         }
 
-        public void CreateMyBorderlessWindow() {
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.StartPosition = FormStartPosition.CenterScreen;
-            // Remove the control box so the form will only display client area.
-            this.ControlBox = false;
-        }
-
-        public void Colors() {
-            string MainBG = ConfigurationManager.AppSettings["MainBG"];
-            string TopBar = ConfigurationManager.AppSettings["TopBar"];
-            string ButtonColor = ConfigurationManager.AppSettings["Button Color"];
-
-            Color BGColor = System.Drawing.ColorTranslator.FromHtml(MainBG);
-            Color TBColor = System.Drawing.ColorTranslator.FromHtml(TopBar);
-            Color Button_Color = System.Drawing.ColorTranslator.FromHtml(ButtonColor);
+        private void Settings_Load(object sender, EventArgs e)
+        {
         }
 
         public void IgnoreExceptions(Action act) {
@@ -105,91 +77,6 @@ namespace WindowsFormsApplication1 {
             catch { }
         }
 
-        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e) {
-            Graphics g = e.Graphics;
-            Pen p = new Pen(Color.Blue, 22);
-            g.DrawRectangle(p, this.tabPage1.Bounds);
-        }
-
-        public void colorWheelTR1_ValueChanged(object sender, Color e) {
-            Color WheelColor = e;
-            RealColor = System.Drawing.ColorTranslator.ToHtml(WheelColor);
-        }
-
-        private void button6_MouseHover(object sender, EventArgs e) {
-            TopBarPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#282828");
-            BackPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#181818");
-            ButtonPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#dc8628");
-        }
-
-        private void button6_Click(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["TopBar"].Value = "#282828";
-            config.AppSettings.Settings["MainBG"].Value = "#181818";
-            config.AppSettings.Settings["Button Color"].Value = "#dc8628";
-            config.Save(ConfigurationSaveMode.Minimal);
-            MessageBox.Show("Please Relaunch SFMM");
-        }
-
-        private void button7_MouseHover(object sender, EventArgs e) {
-            TopBarPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF2C7C");
-            BackPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF325F");
-            ButtonPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF1882");
-        }
-
-        private void button7_Click(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["TopBar"].Value = "#FF2C7C";
-            config.AppSettings.Settings["MainBG"].Value = "#FF325F";
-            config.AppSettings.Settings["Button Color"].Value = "#FF1882";
-            config.Save(ConfigurationSaveMode.Minimal);
-            MessageBox.Show("Please Relaunch SFMM");
-        }
-
-        private void button5_MouseHover(object sender, EventArgs e) {
-            TopBarPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF69B4");
-            BackPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#DB7093");
-            ButtonPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#613141");
-        }
-
-        private void button5_Click(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["TopBar"].Value = "#FF69B4";
-            config.AppSettings.Settings["MainBG"].Value = "#DB7093";
-            config.AppSettings.Settings["Button Color"].Value = "#613141";
-            config.Save(ConfigurationSaveMode.Minimal);
-            MessageBox.Show("Please Relaunch SFMM");
-        }
-
-        private void button4_MouseHover(object sender, EventArgs e) {
-            TopBarPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#007fab");
-            BackPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#00aae4");
-            ButtonPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#008080");
-        }
-
-        private void button4_Click(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["TopBar"].Value = "#007fab";
-            config.AppSettings.Settings["MainBG"].Value = "#00aae4";
-            config.AppSettings.Settings["Button Color"].Value = "#008080";
-            config.Save(ConfigurationSaveMode.Minimal);
-            MessageBox.Show("Please Relaunch SFMM");
-        }
-
-        private void button10_MouseHover(object sender, EventArgs e) {
-            TopBarPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#F6DB68");
-            BackPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#2E9699");
-            ButtonPew.BackColor = System.Drawing.ColorTranslator.FromHtml("#247577");
-        }
-
-        private void button10_Click(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["TopBar"].Value = "#F6DB68";
-            config.AppSettings.Settings["MainBG"].Value = "#2E9699";
-            config.AppSettings.Settings["Button Color"].Value = "#247577";
-            config.Save(ConfigurationSaveMode.Minimal);
-            MessageBox.Show("Please Relaunch SFMM");
-        }
 
         private void button8_Click(object sender, EventArgs e) {
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -198,13 +85,7 @@ namespace WindowsFormsApplication1 {
             MessageBox.Show("Please Relaunch SFMM");
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start("https://www.patreon.com/BasicGirl");
-        }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start("https://www.paypal.me/basicgirlnsfw");
-        }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e) {
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -218,32 +99,6 @@ namespace WindowsFormsApplication1 {
             config.Save(ConfigurationSaveMode.Minimal);
         }
 
-        private void button3_Click_1(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["TopBar"].Value = RealColor;
-            config.Save(ConfigurationSaveMode.Minimal);
-            //ConfigurationManager.RefreshSection("appSettings");
-        }
-
-        private void button1_Click_1(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["MainBG"].Value = RealColor;
-            config.Save(ConfigurationSaveMode.Minimal);
-            //ConfigurationManager.RefreshSection("appSettings");
-        }
-
-        private void button2_Click(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["Button Color"].Value = RealColor;
-            config.Save(ConfigurationSaveMode.Minimal);
-            //ConfigurationManager.RefreshSection("appSettings");
-        }
-
-        private void label8_Click(object sender, EventArgs e) {
-        }
-
-        private void Settings_Load(object sender, EventArgs e) {
-        }
 
         private void button9_Click(object sender, EventArgs e) {
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true) {
@@ -289,26 +144,6 @@ namespace WindowsFormsApplication1 {
         private void radioButton5_CheckedChanged(object sender, EventArgs e) {
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             config.AppSettings.Settings["Download_Server"].Value = "3";
-            config.Save(ConfigurationSaveMode.Minimal);
-        }
-
-        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start("http://paypal.me/basicgirlnsfw");
-        }
-
-        private void linkLabel2_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start("https://www.patreon.com/BasicGirl");
-        }
-
-        private void radioButton7_CheckedChanged(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["Show_Ad"].Value = "1";
-            config.Save(ConfigurationSaveMode.Minimal);
-        }
-
-        private void radioButton6_CheckedChanged(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["Show_Ad"].Value = "0";
             config.Save(ConfigurationSaveMode.Minimal);
         }
     }//Form End

@@ -1,0 +1,9 @@
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\bin\Debug\ObjectListView.XML
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\bin\Debug\ObjectListView.dll
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\bin\Debug\ObjectListView.pdb
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Debug\BrightIdeasSoftware.Properties.Resources.resources
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Debug\BrightIdeasSoftware.ColumnSelectionForm.resources
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Debug\ObjectListView2012.csproj.GenerateResource.Cache
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Debug\ObjectListView2012.csproj.CoreCompileInputs.cache
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Debug\ObjectListView.dll
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Debug\ObjectListView.pdb

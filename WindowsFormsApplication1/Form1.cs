@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using BrightIdeasSoftware;
+using Microsoft.VisualBasic;
 using SourceFilmMakerManager;
 using SourceFilmMakerManager.Manager;
 using System;
@@ -19,7 +20,6 @@ namespace WindowsFormsApplication1 {
     public partial class Form1 : Form {
         public static float CurrentVer = 6.2f;
         public static string SFMPATH = ConfigurationManager.AppSettings["SFM_PATH"];
-        public static string adWeb = ConfigurationManager.AppSettings["Show_Ad"];
         public static bool SplashOver = false;
 
         public static long completed = 0;
@@ -37,10 +37,6 @@ namespace WindowsFormsApplication1 {
         public static bool AddingEnd = true;
         private readonly ContextMenu cm;
         private readonly List<string> list = new List<string>();
-        private int MValX;
-        private int MValY;
-
-        private int TogMove;
 
         public Form1() {
             var t = new Thread(Splashs);
@@ -48,6 +44,7 @@ namespace WindowsFormsApplication1 {
             Thread.Sleep(3000);
 
             InitializeComponent();
+            BringToFront();
 
             // Enable drag and drop for this form
             // (this can also be applied to any controls)
@@ -69,20 +66,8 @@ namespace WindowsFormsApplication1 {
             collection.Add(CM_Delete);
             //Menus
 
-            //Ad
-            if (adWeb == "0") {
-                webBrowser1.Visible = false;
-            } else {
-                webBrowser1.Visible = true;
-            }
             //Create The Log
             logTxt();
-
-            //BorderLess.
-            CreateMyBorderlessWindow();
-
-            //Color For Form
-            Colors();
 
             //Refresh addons
             AddonList();
@@ -92,7 +77,11 @@ namespace WindowsFormsApplication1 {
             ListToString();
 
             //modMan.FindFileLoc();
+            
+            
         }
+
+       
 
         protected override CreateParams CreateParams {
             get {
@@ -108,7 +97,7 @@ namespace WindowsFormsApplication1 {
 
         private void ListToString() {
             list.Clear();
-            foreach (ListViewItem str in listView1.Items) {
+            foreach (OLVListItem str in addonListView.Items) {
                 list.Add(str.Text);
             }
         }
@@ -148,9 +137,9 @@ namespace WindowsFormsApplication1 {
         }
 
         public void OnRenameClicked(object sender, EventArgs e) {
-            const string f = @"SFM\PuCE\";
-            var FileSelect = listView1.SelectedItems[0].Text + ".PuCE";
-            var PUCEFILE = f + FileSelect;
+            const string f = @"SFM\SFMM\";
+            var FileSelect = listView1.SelectedItems[0].Text + ".SFMM";
+            var SFMMFILE = f + FileSelect;
             string a;
             a = Interaction.InputBox("Type what you would like to name this file.", "Rename",
                 listView1.SelectedItems[0].Text);
@@ -161,9 +150,9 @@ namespace WindowsFormsApplication1 {
 
             if (index == -1) {
                 if (a.Length > 0) {
-                    if (!File.Exists(f + a + ".PuCE")) {
+                    if (!File.Exists(f + a + ".SFMM")) {
                         Console.WriteLine("Renamed " + listView1.SelectedItems[0].Text + " To " + a);
-                        File.Move(PUCEFILE, f + a + ".PuCE");
+                        File.Move(SFMMFILE, f + a + ".SFMM");
                         listView1.Items.Clear();
                         AddonList();
                         ListToString();
@@ -189,54 +178,33 @@ namespace WindowsFormsApplication1 {
             Console.SetError(streamwriter);
             Console.WriteLine(time.ToString(format));
         }
-
-        public void CreateMyBorderlessWindow() {
-            //this.FormBorderStyle = FormBorderStyle.None;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            StartPosition = FormStartPosition.CenterScreen;
-            // Remove the control box so the form will only display client area.
-            ControlBox = false;
-            //listView1.AllowDrop = true;
-        }
-
-        public void Colors() {
-            var MainBG = ConfigurationManager.AppSettings["MainBG"];
-            var TopBar = ConfigurationManager.AppSettings["TopBar"];
-            var ButtonColor = ConfigurationManager.AppSettings["Button Color"];
-
-            var BGColor = ColorTranslator.FromHtml(MainBG);
-            var TBColor = ColorTranslator.FromHtml(TopBar);
-            var Button_Color = ColorTranslator.FromHtml(ButtonColor);
-
-            pictureBox4.BackColor = BGColor;
-            BackColor = BGColor;
-            pictureBox1.BackColor = TBColor;
-            pictureBox2.BackColor = TBColor;
-            pictureBox3.BackColor = TBColor;
-            label1.BackColor = TBColor;
-            button1.BackColor = Button_Color;
-            button3.BackColor = Button_Color;
-            button4.BackColor = Button_Color;
-            //button5.BackColor = Button_Color;
-        }
-
+        
         private void button1_Click(object sender, EventArgs e) {
-            foreach (ListViewItem addonItem in listView1.SelectedItems) {
-                if (listView1.Items.Count > 0) {
+            
+
+            foreach (OLVListItem addonItem in addonListView.SelectedItems) {
+                if (addonListView.Items.Count > 0) {
                     var result2 = MessageBox.Show("Delete Addon? " + addonItem.Text, "Are You Sure?", MessageBoxButtons.YesNo);
                     if (result2 == DialogResult.Yes) {
                         AddingStart = true;
                         AddingEnd = false;
 
-                        const string f = @"SFM\PuCE\";
+                        const string f = @"SFM\SFMM\";
+                        var FileSelect = "";
 
-                        var FileSelect = addonItem.Text + ".PuCE";
+                        if (Directory.Exists(f+ addonItem.Text + @"\")){
+                            FileSelect = addonItem.Text + @"\" + addonItem.Text + ".SFMM";
+                        }
+                        else {
+                            FileSelect = addonItem.Text + ".SFMM";
+                        }
 
-                        var PUCEFILE = f + FileSelect;
+                        
+
+                        var SFMMFILE = f + FileSelect;
 
                         var lines = new List<string>();
-                        using (var r = new StreamReader(PUCEFILE)) {
+                        using (var r = new StreamReader(SFMMFILE)) {
                             // 3
                             // Use while != null pattern for loop
                             string line;
@@ -263,7 +231,8 @@ namespace WindowsFormsApplication1 {
                                 Console.WriteLine("COULDNT FIND " + s + " YOU MUST HAVE MOVED THE FILE.");
                             }
                         }
-                        File.Delete(@"SFM\PuCE\" + addonItem.Text + ".PuCE");
+                        File.Delete(@"SFM\SFMM\"+ addonItem.Text + @"\" + addonItem.Text + ".SFMM");
+                        Directory.Delete(@"SFM\SFMM\" + addonItem.Text);
                         processDirectory(SFMPATH + @"\models");
                         processDirectory(SFMPATH + @"\materials");
                         listView1.Items.Clear();
@@ -287,23 +256,43 @@ namespace WindowsFormsApplication1 {
         }
 
         public void AddonList() {
-            var targetDirectory = @"SFM\PuCE\";
+            var targetDirectory = @"SFM\SFMM\";
 
             // Process the list of files found in the directory.
             var fileEntries =
-                Directory.GetFiles(targetDirectory, "*.PuCE")
+                Directory.GetFiles(targetDirectory, "*.SFMM", SearchOption.AllDirectories)
                     .Select(Path.GetFileNameWithoutExtension)
                     .Select(p => p.Substring(0))
                     .ToArray();
 
+          //  List<AddToList> masterList = new List<AddToList>();
             foreach (var fileName in fileEntries) {
-                var listItem = new ListViewItem(fileName);
-                var info = new FileInfo(targetDirectory + fileName + @".PuCE");
+
+                //masterList.Add(new AddToList("Potato"));
+
+                // var listItem = new ListViewItem(fileName);
+                if(File.Exists(targetDirectory + fileName + @"\" + "info.ini")) { 
+                var infoIni = new IniFile(targetDirectory + fileName + @"\" + "info.ini");
+                var Date = infoIni.Read("Date");
+                var Source = infoIni.Read("Source");
+                var Author = infoIni.Read("Author");
+                var URL = infoIni.Read("URL");
 
                 // listItem.SubItems.Add(fileName.ToString());
-                listItem.SubItems.Add(info.CreationTime.ToString());
-                listView1.Items.Add(listItem);
+               // listItem.SubItems.Add(info.CreationTime.ToString());
+                //listView1.Items.Add(listItem);*/
+                AddToList newObject = new AddToList(fileName.ToString(), "Model", Date, Source, Author, URL);
+                addonListView.AddObject(newObject);
+                }
+                else {
+                    var info = new FileInfo(targetDirectory + fileName + @".SFMM");
+                    AddToList newObject = new AddToList(fileName.ToString(), "Model", info.CreationTime.ToString(), "?", "?", "?");
+                    addonListView.AddObject(newObject);
+                }
             }
+            
+            //addonListView.SetObjects(AddToList.GET());
+
         }
 
         private void loading() {
@@ -346,7 +335,7 @@ namespace WindowsFormsApplication1 {
             Console.WriteLine("==========LOG START==========");
             Console.WriteLine("=============================");
             Console.WriteLine("");
-            Console.WriteLine(@"Crashed?, send this log file to basicgirlnsfw@gmail.com");
+            Console.WriteLine(@"Crashed?, Open an issue to https://github.com/Merubokkusu/SFMManager/issues");
             Console.WriteLine("");
         }
 
@@ -390,25 +379,29 @@ namespace WindowsFormsApplication1 {
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e) {
+            addonListView.ModelFilter = TextMatchFilter.Contains(addonListView, textBox1.Text);
+
+            /*
             var ci = new CultureInfo("en-US");
             if (string.IsNullOrEmpty(textBox1.Text.Trim()) == false) {
-                listView1.Items.Clear();
+                addonListView.Items.Clear();
                 foreach (var str in list) {
                     if (str.StartsWith(textBox1.Text, true, ci)) {
-                        listView1.Items.Add(str);
+                        addonListView.Items.Add(str);
                     }
                 }
             } else if (textBox1.Text.Trim() == "") {
-                listView1.Items.Clear();
+                addonListView.Items.Clear();
 
                 AddonList();
-                listView1.Sort();
-            }
+                addonListView.Sort();
+            }*/
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
             if (RefreshAddon) {
-                listView1.Items.Clear();
+                //listView1.Items.Clear();
+                addonListView.Items.Clear();
                 AddonList();
                 ListToString();
                 RefreshAddon = false;
@@ -431,89 +424,6 @@ namespace WindowsFormsApplication1 {
             }
         }
 
-        //Form Controls
-        protected override void WndProc(ref Message m) {
-            const int RESIZE_HANDLE_SIZE = 10;
-
-            switch (m.Msg) {
-                case 0x0084 /*NCHITTEST*/:
-                    base.WndProc(ref m);
-
-                    if ((int)m.Result == 0x01 /*HTCLIENT*/) {
-                        var screenPoint = new Point(m.LParam.ToInt32());
-                        var clientPoint = PointToClient(screenPoint);
-                        if (clientPoint.Y <= RESIZE_HANDLE_SIZE) {
-                            if (clientPoint.X <= RESIZE_HANDLE_SIZE)
-                                m.Result = (IntPtr)13 /*HTTOPLEFT*/;
-                            else if (clientPoint.X < Size.Width - RESIZE_HANDLE_SIZE)
-                                m.Result = (IntPtr)12 /*HTTOP*/;
-                            else
-                                m.Result = (IntPtr)14 /*HTTOPRIGHT*/;
-                        } else if (clientPoint.Y <= Size.Height - RESIZE_HANDLE_SIZE) {
-                            if (clientPoint.X <= RESIZE_HANDLE_SIZE)
-                                m.Result = (IntPtr)10 /*HTLEFT*/;
-                            else if (clientPoint.X < Size.Width - RESIZE_HANDLE_SIZE)
-                                m.Result = (IntPtr)2 /*HTCAPTION*/;
-                            else
-                                m.Result = (IntPtr)11 /*HTRIGHT*/;
-                        } else {
-                            if (clientPoint.X <= RESIZE_HANDLE_SIZE)
-                                m.Result = (IntPtr)16 /*HTBOTTOMLEFT*/;
-                            else if (clientPoint.X < Size.Width - RESIZE_HANDLE_SIZE)
-                                m.Result = (IntPtr)15 /*HTBOTTOM*/;
-                            else
-                                m.Result = (IntPtr)17 /*HTBOTTOMRIGHT*/;
-                        }
-                    }
-                    return;
-            }
-            base.WndProc(ref m);
-        }
-
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
-            TogMove = 1;
-            MValX = e.X;
-            MValY = e.Y;
-        }
-
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e) {
-            TogMove = 0;
-        }
-
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e) {
-            if (TogMove == 1) {
-                SetDesktopLocation(MousePosition.X - MValX, MousePosition.Y - MValY);
-            }
-        }
-
-        private void pictureBox3_MouseHover(object sender, EventArgs e) {
-            pictureBox3.BackColor = Color.Red;
-        }
-
-        private void pictureBox3_MouseLeave(object sender, EventArgs e) {
-            var TopBar = ConfigurationManager.AppSettings["TopBar"];
-            var TBColor = ColorTranslator.FromHtml(TopBar);
-            pictureBox3.BackColor = TBColor;
-        }
-
-        private void pictureBox2_MouseEnter(object sender, EventArgs e) {
-            pictureBox2.BackColor = Color.FromArgb(50, 50, 50, 50);
-        }
-
-        private void pictureBox2_MouseLeave(object sender, EventArgs e) {
-            var TopBar = ConfigurationManager.AppSettings["TopBar"];
-            var TBColor = ColorTranslator.FromHtml(TopBar);
-            pictureBox2.BackColor = TBColor;
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e) {
-            Application.Exit();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e) {
-            WindowState = FormWindowState.Minimized;
-        }
-
         private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e) {
             //cancel the current event
             e.Cancel = true;
@@ -521,5 +431,6 @@ namespace WindowsFormsApplication1 {
             //this opens the URL in the user's default browser
             Process.Start(e.Url.ToString());
         }
+
     } //Form End
 }

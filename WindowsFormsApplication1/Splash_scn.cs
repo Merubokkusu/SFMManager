@@ -17,15 +17,31 @@ namespace SourceFilmMakerManager {
 
             //Create SFM\PuCE Folder.
             FolderCreate();
+            Migrate();
 
             onceUpdate = true;
         }
 
         private void Splash_Load(object sender, System.EventArgs e) {
         }
-
+        private void Migrate() {
+            if (Directory.Exists(@"SFM\PuCE\")) {
+                Console.WriteLine(@"Found SFM\PuCE, Migrating");
+                DirectoryInfo d = new DirectoryInfo("SFM\\PuCE\\");
+                FileInfo[] infos = d.GetFiles();
+                foreach (FileInfo f in infos) {
+                   
+                    if (f.Name.EndsWith(".PuCE")) {
+                        var fileName = f.Name.Replace(".PuCE", "");
+                        Console.WriteLine(f.FullName);
+                        Directory.Move(f.FullName, "SFM\\SFMM\\" + fileName + ".SFMM");
+                    }
+                }
+                //Directory.Delete(@"SFM\PuCE\");
+            }
+        }
         public void FolderCreate() {
-            var dirPuCE = @"SFM\PuCE\";  // folder location
+            var dirPuCE = @"SFM\SFMM\";  // folder location
             var dirManager = @"SFM\Manager\";  // folder location
             var dirDownload = @"SFM\Download\";  // folder location
 

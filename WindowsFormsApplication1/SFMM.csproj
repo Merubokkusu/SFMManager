@@ -115,18 +115,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="design\ColorWheelTR.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="design\ColorWheelTR.designer.cs" />
-    <Compile Include="design\ColorWheelTR1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ColorWheelTR.resx</DependentUpon>
-    </Compile>
     <Compile Include="design\SpinningCircles.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Manager\AddToList.cs" />
     <Compile Include="Manager\downloader.cs" />
     <Compile Include="ItemComparer.cs" />
     <Compile Include="loading_bar.cs">
@@ -137,6 +129,7 @@
     </Compile>
     <Compile Include="Manager\modMan.cs" />
     <Compile Include="OtherCodes\ArgumentsReceivedEventArgs.cs" />
+    <Compile Include="OtherCodes\IniFile.cs" />
     <Compile Include="OtherCodes\SingleInstance.cs" />
     <Compile Include="OtherCodes\updater.cs" />
     <Compile Include="Settings.cs">
@@ -167,10 +160,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OtherCodes\random.cs" />
-    <EmbeddedResource Include="design\ColorWheelTR.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ColorWheelTR1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="loading_bar.resx">
       <DependentUpon>loading_bar.cs</DependentUpon>
     </EmbeddedResource>
@@ -263,6 +252,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ObjectListView\ObjectListView2012.csproj">
+      <Project>{18feda0c-d147-4286-b39a-01204808106a}</Project>
+      <Name>ObjectListView2012</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
