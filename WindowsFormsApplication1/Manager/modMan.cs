@@ -1,5 +1,4 @@
-﻿using SharpCompress.Common;
-using SharpCompress.Readers;
+﻿using SevenZipExtractor;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -13,10 +12,11 @@ namespace SourceFilmMakerManager.Manager {
 
     public static class modMan {
         public static string managerDir = @"SFM\Manager\";
-        public static string Source = null; 
-        public static string Author = null;
-        public static string fileLink = null;
+        public static string Source = "Local";
+        public static string Author = "?";
+        public static string fileLink = "?";
         public static string[] Folders { get; private set; }
+        public static bool foundFolder = false;
 
         public static bool IsDirectoryEmpty(string path) {
             string[] dirs = System.IO.Directory.GetDirectories(path);
@@ -24,6 +24,7 @@ namespace SourceFilmMakerManager.Manager {
         }
 
         public static void Extract(string FilePath) {
+            foundFolder = false;
             Form1.AddingStart = true;
             Form1.AddingEnd = false;
             BackgroundWorker bw = new BackgroundWorker();
@@ -32,6 +33,7 @@ namespace SourceFilmMakerManager.Manager {
             delegate (object o, DoWorkEventArgs args) {
                 try {
                     string AddonName;
+                    Console.WriteLine(FilePath);
                     AddonName = Path.GetFileNameWithoutExtension(FilePath);
                     AddonName = AddonName.Replace("_", " ");
                     AddonName = Regex.Replace(AddonName, "(?<=[a-z])([A-Z])", " $1");
@@ -62,21 +64,14 @@ namespace SourceFilmMakerManager.Manager {
                             CreateList(managerDir + AddonName, AddonName);
                         }
                         else {
-                            using (Stream stream = File.OpenRead(FilePath)) {
-                                var reader = ReaderFactory.Open(stream);
-                                while (reader.MoveToNextEntry()) {
-                                    if (!reader.Entry.IsDirectory) {
-                                        reader.WriteEntryToDirectory(managerDir + AddonName, new ExtractionOptions() {
-                                            ExtractFullPath = true,
-                                            Overwrite = true
-                                        });
-                                    }
-                                }
+                            using (ArchiveFile archiveFile = new ArchiveFile(FilePath)) {
+                                archiveFile.Extract(managerDir + AddonName); // extract all
                             }
+                          
                             DirCheckLister(AddonName);
                         }
                     }
-                    if (FilePath.Contains("Manager")) {
+                    if (FilePath.Contains("Download")) {
                         File.Delete(FilePath);
                     }
                 }
@@ -88,15 +83,53 @@ namespace SourceFilmMakerManager.Manager {
         }
 
         public static void DirCheckLister(string AddonName) {
+            var doneChecking = false;
+            var foundFolder_here = false;
             Console.WriteLine("Starting Folder Checker");
-            if (!Directory.Exists(managerDir + AddonName + "materials") && !Directory.Exists(managerDir + AddonName + "models") && Directory.Exists(managerDir + AddonName + "scripts")) {
+            if (!Directory.Exists(managerDir + AddonName + "materials") && !Directory.Exists(managerDir + AddonName + "models")) {
+                if(Directory.Exists(managerDir + AddonName + "scripts")){ 
                 CreateList(managerDir + AddonName + @"scripts\sfm\animset\", AddonName);
                 Console.WriteLine("Addon is a Script (py)");
-            } else {
+                    doneChecking = true;
+                }
+
+                //string[] allfiles = System.IO.Directory.GetFiles(managerDir + AddonName, "*.wav*", System.IO.SearchOption.AllDirectories);
+                string[] folders = System.IO.Directory.GetDirectories(managerDir + AddonName, "*", System.IO.SearchOption.AllDirectories);
+                if (foundFolder_here == false) {
+                    foreach (string folder in folders) {
+                        if (folder.Contains("models") | folder.Contains("Models")) {
+                            foundFolder_here = true;
+                            GetSubDirectories(AddonName);
+                            break;
+                        }
+                    }
+                }
+
+                if (foundFolder_here == false) {
+                    string[] extensions = { "wav", "mp3", "ogg" };
+                    string[] allfiles = Directory.GetFiles(managerDir + AddonName, "*.*", System.IO.SearchOption.AllDirectories)
+                        .Where(f => extensions.Contains(f.Split('.').Last().ToLower())).ToArray();
+                    foreach (var file in allfiles) {
+                        if (doneChecking == false) {
+                            FileInfo info = new FileInfo(file);
+                            var parent = Path.GetDirectoryName(file);
+                            if (!parent.Contains(@"sound\")) {
+                                Console.WriteLine("Found unmarked sound folder : " + parent);
+                                CreateList(parent, AddonName);
+                                doneChecking = true;
+                            }
+                        }
+
+                    }
+                }
+                foundFolder_here = false;
+            }
+            else {
                 if (IsDirectoryEmpty(managerDir + AddonName) == true) {
                     CreateList(managerDir + AddonName, AddonName);
                     Console.WriteLine("Addon is a Single File (Map Or RIG...If its anything else it works)");
-                } else {
+                }
+                else {
                     Console.WriteLine("Addon is a Normal");
                     GetSubDirectories(AddonName);
                 }
@@ -113,8 +146,9 @@ namespace SourceFilmMakerManager.Manager {
                 try {
                     Directory.CreateDirectory(@"SFM\SFMM\" + AddonName);
                     FileStream fs1 = new FileStream(@"SFM\SFMM\" + AddonName + @"\" + AddonName + ".SFMM", FileMode.OpenOrCreate, FileAccess.Write);
-                    var infoIni = new IniFile(@"SFM\SFMM\" + AddonName + @"\"+ "info.ini");
+                    var infoIni = new IniFile(@"SFM\SFMM\" + AddonName + @"\" + "info.ini");
                     infoIni.Write("Date", DateTime.Now.ToString());
+                    infoIni.Write("Category", "?");
                     infoIni.Write("Source", Source);
                     infoIni.Write("Author", Author);
                     infoIni.Write("URL", fileLink);
@@ -129,9 +163,8 @@ namespace SourceFilmMakerManager.Manager {
                                     .Select(f => f.Substring(skipDirectory));
 
                     foreach (string ListAddon in AllFiles) {
-                        if (!ListAddon.EndsWith(".bsp") && !ListAddon.EndsWith(".py")) {
+                        if (!ListAddon.EndsWith(".bsp") && !ListAddon.EndsWith(".py") && !ListAddon.EndsWith(".wav") && !ListAddon.EndsWith(".mp3") && !ListAddon.EndsWith(".ogg")) {
                             writer.WriteLine(ListAddon);
-                            Console.WriteLine(ListAddon);
                         }
                     }
                     var thisPath = managerDir + AddonName;
@@ -151,6 +184,14 @@ namespace SourceFilmMakerManager.Manager {
                         if (ListAddon.EndsWith(".bsp")) {
                             writer.WriteLine(@"maps\" + Path.GetFileName(ListAddon));
                             Console.WriteLine(@"maps\" + Path.GetFileName(ListAddon));
+                        }
+                        if (ListAddon.EndsWith(".bsp")) {
+                            writer.WriteLine(@"maps\" + Path.GetFileName(ListAddon));
+                            Console.WriteLine(@"maps\" + Path.GetFileName(ListAddon));
+                        }
+                        if (ListAddon.EndsWith(".wav") | ListAddon.EndsWith(".mp3") | ListAddon.EndsWith(".ogg")) {
+                            writer.WriteLine(@"sound\" + AddonName + @"\" + Path.GetFileName(ListAddon));
+                            Console.WriteLine(@"sound\" +AddonName + @"\" + Path.GetFileName(ListAddon));
                         }
                     }
                     writer.Close();
@@ -180,7 +221,7 @@ namespace SourceFilmMakerManager.Manager {
                     string[] files = System.IO.Directory.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories);
 
                     Parallel.ForEach(files, newPath => {
-                        if (!newPath.EndsWith(".bsp") && !newPath.EndsWith(".py")) {
+                        if (!newPath.EndsWith(".bsp") && !newPath.EndsWith(".py") && !newPath.EndsWith(".wav") && !newPath.EndsWith(".mp3") && !newPath.EndsWith(".ogg")) {
                             File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true);
                         }
                     });
@@ -196,12 +237,27 @@ namespace SourceFilmMakerManager.Manager {
                         File.Copy(mapBSP, Form1.SFMPATH + @"\maps\" + Path.GetFileName(mapBSP), true);
                     }
 
+
+                    string[] extensions = { "wav", "mp3", "ogg" };
+                    string[] soundFiles = Directory.GetFiles(managerDir + AddonName, "*.*", System.IO.SearchOption.AllDirectories)
+                        .Where(f => extensions.Contains(f.Split('.').Last().ToLower())).ToArray();
+                    foreach (string soundFormat in soundFiles) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(Form1.SFMPATH + @"\sound\" + AddonName + @"\" + Path.GetFileName(soundFormat)));
+                        File.Copy(soundFormat, Form1.SFMPATH + @"\sound\" + AddonName + @"\" + Path.GetFileName(soundFormat), true);
+                    }
+
+                    //Find HTML Files
+                    string[] HTMLFiles = System.IO.Directory.GetFiles(managerDir + AddonName, "*.html", SearchOption.AllDirectories);
+                    foreach (string webHTML in HTMLFiles) {
+                        File.Copy(webHTML, @"SFM\SFMM\" + AddonName + @"\" + Path.GetFileName(webHTML), true);
+                    }
+
                     Form1.RefreshAddon = true;
 
                     Console.WriteLine("-Done Adding Addon-");
-                    Source = null;
-                    Author = null;
-                    fileLink = null;
+                    Source = "Local";
+                    Author = "?";
+                    fileLink = "?";
 
                     //DirectoryInfo di = new DirectoryInfo(managerDir+ AddonName);
 
@@ -224,47 +280,74 @@ namespace SourceFilmMakerManager.Manager {
         //=====================//
         public static void GetSubDirectories(string AddonName) {
             Console.WriteLine("Starting File Finder");
-            string root = managerDir + AddonName;
-            // Get all subdirectories
-            string[] subdirectoryEntries = Directory.GetDirectories(root);
-            // Loop through them to see if they have any other subdirectories
-            foreach (string subdirectory in subdirectoryEntries)
-                if (Directory.Exists(subdirectory)) {
-                    LoadSubDirs(subdirectory, AddonName);
-                }
+            try {
+                string root = managerDir + AddonName;
+                // Get all subdirectories
+                string[] subdirectoryEntries = Directory.GetDirectories(root);
+                // Loop through them to see if they have any other subdirectories
+                foreach (string subdirectory in subdirectoryEntries)
+                    if (Directory.Exists(subdirectory)) {
+                        LoadSubDirs(subdirectory, AddonName);
+                    }
+            }
+            catch (Exception ex) {
+                Console.WriteLine("An error occured in File Finder: " + ex.Message);
+            }
         }
 
         public static void LoadSubDirs(string dir, string AddonName) {
             try {
-                if (Directory.Exists(dir)) {
+                if (Directory.Exists(dir) && foundFolder == false) {
+                    
                     var Folders = Directory.GetDirectories(dir);
 
                     if (dir.EndsWith("materials")) {
+                        foundFolder = true;
                         Console.WriteLine("Found " + dir);
                         DirectoryInfo extractedAddonFolder = Directory.GetParent(dir);
                         CreateList(extractedAddonFolder.ToString(), AddonName);
+                        
                     }
                     if (dir.EndsWith("Materials")) {
+                        foundFolder = true;
                         Console.WriteLine("Found " + dir);
                         DirectoryInfo extractedAddonFolder = Directory.GetParent(dir);
                         CreateList(extractedAddonFolder.ToString(), AddonName);
                     }
 
+                    if (dir.EndsWith("Models")) {
+                        foundFolder = true;
+                        Console.WriteLine("Found " + dir);
+                        DirectoryInfo extractedAddonFolder = Directory.GetParent(dir);
+                        CreateList(extractedAddonFolder.ToString(), AddonName);
+                    }
+                    if (dir.EndsWith("models")) {
+                        foundFolder = true;
+                        Console.WriteLine("Found " + dir);
+                        DirectoryInfo extractedAddonFolder = Directory.GetParent(dir);
+                        CreateList(extractedAddonFolder.ToString(), AddonName);
+                    }
+                    
+
                     //Sound
                     if (dir.EndsWith("sound")) {
+                        foundFolder = true;
                         Console.WriteLine("Found " + dir);
                         DirectoryInfo extractedAddonFolder = Directory.GetParent(dir);
                         CreateList(extractedAddonFolder.ToString(), AddonName);
                     }
                     if (dir.EndsWith("Sound")) {
+                        foundFolder = true;
                         Console.WriteLine("Found " + dir);
                         DirectoryInfo extractedAddonFolder = Directory.GetParent(dir);
                         CreateList(extractedAddonFolder.ToString(), AddonName);
                     }
 
-                    string[] subdirectoryEntries = Folders;
-                    foreach (string subdirectory in subdirectoryEntries) {
-                        LoadSubDirs(subdirectory, AddonName);
+                    if (foundFolder == false) {
+                        string[] subdirectoryEntries = Folders;
+                        foreach (string subdirectory in subdirectoryEntries) {
+                            LoadSubDirs(subdirectory, AddonName);
+                        }
                     }
                 }
             }

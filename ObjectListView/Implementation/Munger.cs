@@ -2,7 +2,7 @@
  * Munger - An Interface pattern on getting and setting values from object through Reflection
  *
  * Author: Phillip Piper
- * Date: 28/11/2008 17:15 
+ * Date: 28/11/2008 17:15
  *
  * Change log:
  * v2.5.1
@@ -44,8 +44,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// An instance of Munger gets a value from or puts a value into a target object. The property
     /// to be peeked (or poked) is determined from a string. The peeking or poking is done using reflection.
@@ -54,31 +54,29 @@ namespace BrightIdeasSoftware
     /// Name of the aspect to be peeked can be a field, property or parameterless method. The name of an
     /// aspect to poke can be a field, writable property or single parameter method.
     /// <para>
-    /// Aspect names can be dotted to chain a series of references. 
+    /// Aspect names can be dotted to chain a series of references.
     /// </para>
     /// <example>Order.Customer.HomeAddress.State</example>
     /// </remarks>
-    public class Munger
-    {
+    public class Munger {
+
         #region Life and death
 
         /// <summary>
         /// Create a do nothing Munger
         /// </summary>
-        public Munger()
-        {
+        public Munger() {
         }
 
         /// <summary>
         /// Create a Munger that works on the given aspect name
         /// </summary>
         /// <param name="aspectName">The name of the </param>
-        public Munger(String aspectName)
-        {
+        public Munger(String aspectName) {
             this.AspectName = aspectName;
         }
 
-        #endregion
+        #endregion Life and death
 
         #region Static utility methods
 
@@ -101,10 +99,10 @@ namespace BrightIdeasSoftware
                 // of the property. Let's take the ostrich approach and just ignore it :-)
 
                 // Normally, we would never just silently ignore an exception.
-                // However, in this case, this is a utility method that explicitly 
+                // However, in this case, this is a utility method that explicitly
                 // contracts to catch and ignore errors. If this is not acceptible,
                 // the programmer should not use this method.
-            } 
+            }
 
             return false;
         }
@@ -115,23 +113,24 @@ namespace BrightIdeasSoftware
         /// <remarks>
         /// <para>
         /// By default, if a Munger is asked to fetch a field/property/method
-        /// that does not exist from a model, it returns an error message, since that 
+        /// that does not exist from a model, it returns an error message, since that
         /// condition is normally a programming error. There are some use cases where
         /// this is not an error, and the munger should simply keep quiet.
         /// </para>
         /// <para>By default this is true during release builds.</para>
         /// </remarks>
         public static bool IgnoreMissingAspects {
-            get { return ignoreMissingAspects;  }
-            set { ignoreMissingAspects = value;  }
+            get { return ignoreMissingAspects; }
+            set { ignoreMissingAspects = value; }
         }
+
         private static bool ignoreMissingAspects
 #if !DEBUG
             = true
 #endif
             ;
 
-        #endregion
+        #endregion Static utility methods
 
         #region Public properties
 
@@ -149,20 +148,19 @@ namespace BrightIdeasSoftware
         /// </remarks>
         /// <example>"DateOfBirth"</example>
         /// <example>"Owner.HomeAddress.Postcode"</example>
-        public string AspectName
-        {
+        public string AspectName {
             get { return aspectName; }
-            set { 
+            set {
                 aspectName = value;
 
                 // Clear any cache
                 aspectParts = null;
             }
         }
+
         private string aspectName;
 
-        #endregion
-
+        #endregion Public properties
 
         #region Public interface
 
@@ -178,10 +176,11 @@ namespace BrightIdeasSoftware
 
             try {
                 return this.EvaluateParts(target, this.Parts);
-            } catch (MungerException ex) {
-                if (Munger.IgnoreMissingAspects) 
+            }
+            catch (MungerException ex) {
+                if (Munger.IgnoreMissingAspects)
                     return null;
-                
+
                 return String.Format("'{0}' is not a parameter-less method, property or field of type '{1}'",
                                          ex.Munger.AspectName, ex.Target.GetType());
             }
@@ -219,8 +218,7 @@ namespace BrightIdeasSoftware
         /// <param name="target">The object that will be poked</param>
         /// <param name="value">The value that will be poked into the target</param>
         /// <returns>bool indicating whether the put worked</returns>
-        public bool PutValue(Object target, Object value)
-        {
+        public bool PutValue(Object target, Object value) {
             if (this.Parts.Count == 0)
                 return false;
 
@@ -231,7 +229,8 @@ namespace BrightIdeasSoftware
                 parts.RemoveAt(parts.Count - 1);
                 try {
                     target = this.EvaluateParts(target, parts);
-                } catch (MungerException ex) {
+                }
+                catch (MungerException ex) {
                     this.ReportPutValueException(ex);
                     return false;
                 }
@@ -240,7 +239,8 @@ namespace BrightIdeasSoftware
             if (target != null) {
                 try {
                     return lastPart.PutValue(target, value);
-                } catch (MungerException ex) {
+                }
+                catch (MungerException ex) {
                     this.ReportPutValueException(ex);
                 }
             }
@@ -248,7 +248,7 @@ namespace BrightIdeasSoftware
             return false;
         }
 
-        #endregion
+        #endregion Public interface
 
         #region Implementation
 
@@ -262,6 +262,7 @@ namespace BrightIdeasSoftware
                 return aspectParts;
             }
         }
+
         private IList<SimpleMunger> aspectParts;
 
         /// <summary>
@@ -302,7 +303,7 @@ namespace BrightIdeasSoftware
             System.Diagnostics.Debug.WriteLine(String.Format("- Inner exception: {0}", ex.InnerException));
         }
 
-        #endregion
+        #endregion Implementation
     }
 
     /// <summary>
@@ -311,20 +312,19 @@ namespace BrightIdeasSoftware
     /// <remarks>
     /// Munger uses a chain of these resolve a dotted aspect name.
     /// </remarks>
-    public class SimpleMunger
-    {
+    public class SimpleMunger {
+
         #region Life and death
 
         /// <summary>
         /// Create a SimpleMunger
         /// </summary>
         /// <param name="aspectName"></param>
-        public SimpleMunger(String aspectName)
-        {
+        public SimpleMunger(String aspectName) {
             this.aspectName = aspectName;
         }
 
-        #endregion
+        #endregion Life and death
 
         #region Public properties
 
@@ -333,7 +333,7 @@ namespace BrightIdeasSoftware
         /// </summary>
         /// <remarks>
         /// <para>
-        /// This name can be a field, property or method. 
+        /// This name can be a field, property or method.
         /// When using a method to get a value, the method must be parameter-less.
         /// When using a method to set a value, the method must accept 1 parameter.
         /// </para>
@@ -344,9 +344,10 @@ namespace BrightIdeasSoftware
         public string AspectName {
             get { return aspectName; }
         }
+
         private readonly string aspectName;
 
-        #endregion
+        #endregion Public properties
 
         #region Public interface
 
@@ -371,11 +372,12 @@ namespace BrightIdeasSoftware
                 if (this.resolvedFieldInfo != null)
                     return this.resolvedFieldInfo.GetValue(target);
 
-                // If that didn't work, try to use the indexer property. 
+                // If that didn't work, try to use the indexer property.
                 // This covers things like dictionaries and DataRows.
                 if (this.indexerPropertyInfo != null)
                     return this.indexerPropertyInfo.GetValue(target, new object[] { this.AspectName });
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 // Lots of things can do wrong in these invocations
                 throw new MungerException(this, target, ex);
             }
@@ -412,13 +414,14 @@ namespace BrightIdeasSoftware
                     return true;
                 }
 
-                // If that didn't work, try to use the indexer property. 
+                // If that didn't work, try to use the indexer property.
                 // This covers things like dictionaries and DataRows.
                 if (this.indexerPropertyInfo != null) {
                     this.indexerPropertyInfo.SetValue(target, value, new object[] { this.AspectName });
                     return true;
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 // Lots of things can do wrong in these invocations
                 throw new MungerException(this, target, ex);
             }
@@ -426,12 +429,11 @@ namespace BrightIdeasSoftware
             return false;
         }
 
-        #endregion
+        #endregion Public interface
 
         #region Implementation
 
         private void ResolveName(object target, string name, int numberMethodParameters) {
-
             if (cachedTargetType == target.GetType() && cachedName == name && cachedNumberParameters == numberMethodParameters)
                 return;
 
@@ -451,15 +453,15 @@ namespace BrightIdeasSoftware
                     resolvedPropertyInfo = pinfo;
                     return;
                 }
-                
+
                 // See if we can find an string indexer property while we are here.
                 // We also need to allow for old style <object> keyed collections.
                 if (indexerPropertyInfo == null && pinfo.Name == "Item") {
                     ParameterInfo[] par = pinfo.GetGetMethod().GetParameters();
                     if (par.Length > 0) {
-                         Type parameterType = par[0].ParameterType;
-                         if (parameterType == typeof(string) || parameterType == typeof(object))
-                              indexerPropertyInfo = pinfo;
+                        Type parameterType = par[0].ParameterType;
+                        if (parameterType == typeof(string) || parameterType == typeof(object))
+                            indexerPropertyInfo = pinfo;
                     }
                 }
             }
@@ -487,15 +489,15 @@ namespace BrightIdeasSoftware
         private PropertyInfo resolvedPropertyInfo;
         private MethodInfo resolvedMethodInfo;
         private PropertyInfo indexerPropertyInfo;
-        
-        #endregion
+
+        #endregion Implementation
     }
 
     /// <summary>
     /// These exceptions are raised when a munger finds something it cannot process
     /// </summary>
-    public class MungerException : ApplicationException
-    {
+    public class MungerException : ApplicationException {
+
         /// <summary>
         /// Create a MungerException
         /// </summary>
@@ -514,6 +516,7 @@ namespace BrightIdeasSoftware
         public SimpleMunger Munger {
             get { return munger; }
         }
+
         private readonly SimpleMunger munger;
 
         /// <summary>
@@ -522,14 +525,15 @@ namespace BrightIdeasSoftware
         public object Target {
             get { return target; }
         }
+
         private readonly object target;
     }
 
     /*
      * We don't currently need this
      * 2010-08-06
-     * 
-     
+     *
+
     internal class SimpleBinder : Binder
     {
         public override FieldInfo BindToField(BindingFlags bindingAttr, FieldInfo[] match, object value, System.Globalization.CultureInfo culture) {
@@ -564,5 +568,4 @@ namespace BrightIdeasSoftware
         }
     }
      */
-
 }

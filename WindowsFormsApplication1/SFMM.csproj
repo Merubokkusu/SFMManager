@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SourceFilmMakerManager</RootNamespace>
     <AssemblyName>SFMManager</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -29,6 +29,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,7 +57,7 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>6.0.ico</ApplicationIcon>
+    <ApplicationIcon>7.0.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -94,8 +96,8 @@
       <HintPath>..\packages\HtmlAgilityPack.1.6.13\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="SharpCompress, Version=0.19.2.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpCompress.0.19.2\lib\net45\SharpCompress.dll</HintPath>
+    <Reference Include="SevenZipExtractor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SevenZipExtractor.1.0.11\lib\net45\SevenZipExtractor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -132,6 +134,11 @@
     <Compile Include="OtherCodes\IniFile.cs" />
     <Compile Include="OtherCodes\SingleInstance.cs" />
     <Compile Include="OtherCodes\updater.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,12 +150,6 @@
     </Compile>
     <Compile Include="Splash_scn.Designer.cs">
       <DependentUpon>Splash_scn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Tools.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Tools.Designer.cs">
-      <DependentUpon>Tools.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -169,22 +170,14 @@
     <EmbeddedResource Include="Splash_scn.resx">
       <DependentUpon>Splash_scn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools.resx">
-      <DependentUpon>Tools.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
@@ -216,31 +209,19 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\closeButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\-.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\X.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="5.0.ico" />
-    <Content Include="6.0.ico" />
-    <None Include="Resources\6.0Banner.png" />
+    <None Include="Resources\tag.png" />
+    <None Include="Resources\star.png" />
+    <None Include="Resources\worldwide.png" />
+    <None Include="Resources\home.png" />
+    <None Include="Resources\diskette.png" />
+    <None Include="Resources\help.png" />
+    <None Include="Resources\question-mark.png" />
+    <None Include="Resources\cancel.png" />
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\settings.png" />
     <None Include="Resources\7za.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\oie_59daH4fS1L37.gif" />
-    <None Include="Resources\3.gif" />
-    <None Include="Resources\Icon_Hammer.png" />
-    <None Include="Resources\Icon_HLMV.png" />
-    <None Include="Resources\Icon_SFM.png" />
-    <None Include="Resources\reduction_gear-128.png" />
-    <None Include="Resources\Logo_TEXT1.png" />
-    <Content Include="4.0.ico" />
-    <None Include="Resources\Logo_TEXT.png" />
-    <None Include="Resources\patreon.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="ShockwaveFlashObjects">
@@ -259,6 +240,9 @@
       <Name>ObjectListView2012</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="7.0.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
@@ -268,6 +252,13 @@
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\SevenZipExtractor.1.0.11\build\SevenZipExtractor.targets" Condition="Exists('..\packages\SevenZipExtractor.1.0.11\build\SevenZipExtractor.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\SevenZipExtractor.1.0.11\build\SevenZipExtractor.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SevenZipExtractor.1.0.11\build\SevenZipExtractor.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

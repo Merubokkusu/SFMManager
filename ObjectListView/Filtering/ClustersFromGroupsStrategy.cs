@@ -6,7 +6,7 @@
  *
  * Change log:
  * 2011-04-01  JPP  - First version
- * 
+ *
  * Copyright (C) 2011-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -62,7 +62,7 @@ namespace BrightIdeasSoftware {
         /// <returns></returns>
         public override string GetClusterDisplayLabel(ICluster cluster) {
             string s = this.Column.ConvertGroupKeyToTitle(cluster.ClusterKey);
-            if (String.IsNullOrEmpty(s)) 
+            if (String.IsNullOrEmpty(s))
                 s = EMPTY_LABEL;
             return this.ApplyDisplayFormat(cluster, s);
         }

@@ -1,0 +1,10 @@
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\bin\Release\ObjectListView.XML
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\bin\Release\ObjectListView.dll
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\bin\Release\ObjectListView.pdb
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Release\ObjectListView2012.csprojResolveAssemblyReference.cache
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Release\BrightIdeasSoftware.Properties.Resources.resources
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Release\BrightIdeasSoftware.ColumnSelectionForm.resources
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Release\ObjectListView2012.csproj.GenerateResource.Cache
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Release\ObjectListView2012.csproj.CoreCompileInputs.cache
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Release\ObjectListView.dll
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\ObjectListView\obj\Release\ObjectListView.pdb

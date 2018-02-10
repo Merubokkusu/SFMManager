@@ -4,17 +4,17 @@
   <description asmv2:publisher="SFMManager" asmv2:product="SFMManager" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.6.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="SFMManager.exe.manifest" size="7883">
+    <dependentAssembly dependencyType="install" codebase="SFMManager.exe.manifest" size="7080">
       <assemblyIdentity name="SFMManager.exe" version="6.2.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1R9IOW/7uToUGP78WSj/fS5rh+tM2v2fFzDC/XYychM=</dsig:DigestValue>
+        <dsig:DigestValue>4QmoAFHa2fIri12eMQHKnqrpHB6O/KZNoLAYZOQJ9tQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -40,14 +40,14 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// A decoration is an overlay that draws itself in relation to a given row or cell.
     /// Decorations scroll when the listview scrolls.
     /// </summary>
-    public interface IDecoration : IOverlay
-    {
+    public interface IDecoration : IOverlay {
+
         /// <summary>
         /// Gets or sets the row that is to be decorated
         /// </summary>
@@ -62,8 +62,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// An AbstractDecoration is a safe do-nothing implementation of the IDecoration interface
     /// </summary>
-    public class AbstractDecoration : IDecoration
-    {
+    public class AbstractDecoration : IDecoration {
+
         #region IDecoration Members
 
         /// <summary>
@@ -73,6 +73,7 @@ namespace BrightIdeasSoftware
             get { return listItem; }
             set { listItem = value; }
         }
+
         private OLVListItem listItem;
 
         /// <summary>
@@ -82,9 +83,10 @@ namespace BrightIdeasSoftware
             get { return subItem; }
             set { subItem = value; }
         }
+
         private OLVListSubItem subItem;
 
-        #endregion
+        #endregion IDecoration Members
 
         #region Public properties
 
@@ -112,7 +114,7 @@ namespace BrightIdeasSoftware
             }
         }
 
-        #endregion
+        #endregion Public properties
 
         #region IOverlay Members
 
@@ -125,7 +127,7 @@ namespace BrightIdeasSoftware
         public virtual void Draw(ObjectListView olv, Graphics g, Rectangle r) {
         }
 
-        #endregion
+        #endregion IOverlay Members
     }
 
     /// <summary>
@@ -134,8 +136,8 @@ namespace BrightIdeasSoftware
     /// column in the listview will be used.
     /// The selected column is normally the sort column, but does not have to be.
     /// </summary>
-    public class TintedColumnDecoration : AbstractDecoration
-    {
+    public class TintedColumnDecoration : AbstractDecoration {
+
         #region Constructors
 
         /// <summary>
@@ -154,7 +156,7 @@ namespace BrightIdeasSoftware
             this.ColumnToTint = column;
         }
 
-        #endregion
+        #endregion Constructors
 
         #region Properties
 
@@ -165,6 +167,7 @@ namespace BrightIdeasSoftware
             get { return this.columnToTint; }
             set { this.columnToTint = value; }
         }
+
         private OLVColumn columnToTint;
 
         /// <summary>
@@ -185,10 +188,11 @@ namespace BrightIdeasSoftware
                 this.tintBrush = new SolidBrush(this.tint);
             }
         }
+
         private Color tint;
         private SolidBrush tintBrush;
 
-        #endregion
+        #endregion Properties
 
         #region IOverlay Members
 
@@ -205,7 +209,6 @@ namespace BrightIdeasSoftware
         /// <param name="g"></param>
         /// <param name="r"></param>
         public override void Draw(ObjectListView olv, Graphics g, Rectangle r) {
-
             if (olv.View != System.Windows.Forms.View.Details)
                 return;
 
@@ -232,15 +235,15 @@ namespace BrightIdeasSoftware
             g.FillRectangle(this.tintBrush, columnBounds);
         }
 
-        #endregion
+        #endregion IOverlay Members
     }
 
     /// <summary>
     /// This decoration draws an optionally filled border around a rectangle.
     /// Subclasses must override CalculateBounds().
     /// </summary>
-    public class BorderDecoration : AbstractDecoration
-    {
+    public class BorderDecoration : AbstractDecoration {
+
         #region Constructors
 
         /// <summary>
@@ -268,7 +271,7 @@ namespace BrightIdeasSoftware
             this.FillBrush = fill;
         }
 
-        #endregion
+        #endregion Constructors
 
         #region Properties
 
@@ -279,6 +282,7 @@ namespace BrightIdeasSoftware
             get { return this.borderPen; }
             set { this.borderPen = value; }
         }
+
         private Pen borderPen;
 
         /// <summary>
@@ -289,6 +293,7 @@ namespace BrightIdeasSoftware
             get { return this.boundsPadding; }
             set { this.boundsPadding = value; }
         }
+
         private Size boundsPadding = new Size(-1, 2);
 
         /// <summary>
@@ -299,6 +304,7 @@ namespace BrightIdeasSoftware
             get { return this.cornerRounding; }
             set { this.cornerRounding = value; }
         }
+
         private float cornerRounding = 16.0f;
 
         /// <summary>
@@ -309,6 +315,7 @@ namespace BrightIdeasSoftware
             get { return this.fillBrush; }
             set { this.fillBrush = value; }
         }
+
         private Brush fillBrush = new SolidBrush(Color.FromArgb(64, Color.Blue));
 
         /// <summary>
@@ -319,6 +326,7 @@ namespace BrightIdeasSoftware
             get { return this.fillGradientFrom; }
             set { this.fillGradientFrom = value; }
         }
+
         private Color? fillGradientFrom;
 
         /// <summary>
@@ -329,6 +337,7 @@ namespace BrightIdeasSoftware
             get { return this.fillGradientTo; }
             set { this.fillGradientTo = value; }
         }
+
         private Color? fillGradientTo;
 
         /// <summary>
@@ -338,14 +347,15 @@ namespace BrightIdeasSoftware
             get { return this.fillGradientMode; }
             set { this.fillGradientMode = value; }
         }
+
         private LinearGradientMode fillGradientMode = LinearGradientMode.Vertical;
 
-        #endregion
+        #endregion Properties
 
         #region IOverlay Members
 
         /// <summary>
-        /// Draw a filled border 
+        /// Draw a filled border
         /// </summary>
         /// <param name="olv"></param>
         /// <param name="g"></param>
@@ -355,8 +365,8 @@ namespace BrightIdeasSoftware
             if (!bounds.IsEmpty)
                 this.DrawFilledBorder(g, bounds);
         }
-        
-        #endregion
+
+        #endregion IOverlay Members
 
         #region Subclass responsibility
 
@@ -368,7 +378,7 @@ namespace BrightIdeasSoftware
             return Rectangle.Empty;
         }
 
-        #endregion
+        #endregion Subclass responsibility
 
         #region Implementation utlities
 
@@ -402,7 +412,8 @@ namespace BrightIdeasSoftware
 
             if (diameter <= 0.0f) {
                 path.AddRectangle(rect);
-            } else {
+            }
+            else {
                 RectangleF arc = new RectangleF(rect.X, rect.Y, diameter, diameter);
                 path.AddArc(arc, 180, 90);
                 arc.X = rect.Right - diameter;
@@ -417,14 +428,14 @@ namespace BrightIdeasSoftware
             return path;
         }
 
-        #endregion
+        #endregion Implementation utlities
     }
 
     /// <summary>
     /// Instances of this class draw a border around the decorated row
     /// </summary>
-    public class RowBorderDecoration : BorderDecoration
-    {
+    public class RowBorderDecoration : BorderDecoration {
+
         /// <summary>
         /// Gets or sets the index of the left most column to be used for the border
         /// </summary>
@@ -432,6 +443,7 @@ namespace BrightIdeasSoftware
             get { return leftColumn; }
             set { leftColumn = value; }
         }
+
         private int leftColumn = -1;
 
         /// <summary>
@@ -441,6 +453,7 @@ namespace BrightIdeasSoftware
             get { return rightColumn; }
             set { rightColumn = value; }
         }
+
         private int rightColumn = -1;
 
         /// <summary>
@@ -474,8 +487,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// Instances of this class draw a border around the decorated subitem.
     /// </summary>
-    public class CellBorderDecoration : BorderDecoration
-    {
+    public class CellBorderDecoration : BorderDecoration {
+
         /// <summary>
         /// Calculate the boundaries of the border
         /// </summary>
@@ -489,8 +502,8 @@ namespace BrightIdeasSoftware
     /// This decoration puts a border around the cell being edited and
     /// optionally "lightboxes" the cell (makes the rest of the control dark).
     /// </summary>
-    public class EditingCellBorderDecoration : BorderDecoration
-    {
+    public class EditingCellBorderDecoration : BorderDecoration {
+
         #region Life and death
 
         /// <summary>
@@ -501,19 +514,19 @@ namespace BrightIdeasSoftware
             this.BorderPen = new Pen(Color.DarkBlue, 2);
             this.CornerRounding = 8;
             this.BoundsPadding = new Size(10, 8);
-
         }
 
         /// <summary>
         /// Create a EditingCellBorderDecoration
         /// </summary>
         /// <param name="useLightBox">Should the decoration use a lighbox display style?</param>
-        public EditingCellBorderDecoration(bool useLightBox) : this()
-        {
+        public EditingCellBorderDecoration(bool useLightBox) : this() {
             this.UseLightbox = useLightbox;
         }
 
-        #endregion 
+        #endregion Life and death
+
+
 
         #region Configuration properties
 
@@ -535,9 +548,10 @@ namespace BrightIdeasSoftware
                 }
             }
         }
+
         private bool useLightbox;
 
-        #endregion
+        #endregion Configuration properties
 
         #region Implementation
 
@@ -548,7 +562,7 @@ namespace BrightIdeasSoftware
         /// <param name="g"></param>
         /// <param name="r"></param>
         public override void Draw(ObjectListView olv, Graphics g, Rectangle r) {
-            if (!olv.IsCellEditing) 
+            if (!olv.IsCellEditing)
                 return;
 
             Rectangle bounds = olv.CellEditor.Bounds;
@@ -566,7 +580,8 @@ namespace BrightIdeasSoftware
                         g.FillRectangle(this.FillBrush, r);
                         g.Clip = originalClip;
                     }
-                } else {
+                }
+                else {
                     g.FillPath(this.FillBrush, path);
                 }
             }
@@ -574,7 +589,7 @@ namespace BrightIdeasSoftware
                 g.DrawPath(this.BorderPen, path);
         }
 
-        #endregion
+        #endregion Implementation
     }
 
     /// <summary>
@@ -583,8 +598,8 @@ namespace BrightIdeasSoftware
     /// The darker and more opaque the fill color, the more obvious the
     /// decorated row becomes.
     /// </summary>
-    public class LightBoxDecoration : BorderDecoration
-    {
+    public class LightBoxDecoration : BorderDecoration {
+
         /// <summary>
         /// Create a LightBoxDecoration
         /// </summary>
@@ -595,7 +610,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// Draw a tint over everything in the ObjectListView except the 
+        /// Draw a tint over everything in the ObjectListView except the
         /// row under the mouse.
         /// </summary>
         /// <param name="olv"></param>
@@ -626,8 +641,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// Instances of this class put an Image over the row/cell that it is decorating
     /// </summary>
-    public class ImageDecoration : ImageAdornment, IDecoration
-    {
+    public class ImageDecoration : ImageAdornment, IDecoration {
+
         #region Constructors
 
         /// <summary>
@@ -681,7 +696,7 @@ namespace BrightIdeasSoftware
             this.Alignment = alignment;
         }
 
-        #endregion
+        #endregion Constructors
 
         #region IDecoration Members
 
@@ -692,6 +707,7 @@ namespace BrightIdeasSoftware
             get { return listItem; }
             set { listItem = value; }
         }
+
         private OLVListItem listItem;
 
         /// <summary>
@@ -701,9 +717,10 @@ namespace BrightIdeasSoftware
             get { return subItem; }
             set { subItem = value; }
         }
+
         private OLVListSubItem subItem;
 
-        #endregion
+        #endregion IDecoration Members
 
         #region Commands
 
@@ -717,14 +734,14 @@ namespace BrightIdeasSoftware
             this.DrawImage(g, this.CalculateItemBounds(this.ListItem, this.SubItem));
         }
 
-        #endregion
+        #endregion Commands
     }
 
     /// <summary>
     /// Instances of this class draw some text over the row/cell that they are decorating
     /// </summary>
-    public class TextDecoration : TextAdornment, IDecoration
-    {
+    public class TextDecoration : TextAdornment, IDecoration {
+
         #region Constructors
 
         /// <summary>
@@ -742,7 +759,7 @@ namespace BrightIdeasSoftware
             : this() {
             this.Text = text;
         }
-        
+
         /// <summary>
         /// Create a TextDecoration
         /// </summary>
@@ -778,7 +795,7 @@ namespace BrightIdeasSoftware
             this.Alignment = alignment;
         }
 
-        #endregion
+        #endregion Constructors
 
         #region IDecoration Members
 
@@ -789,6 +806,7 @@ namespace BrightIdeasSoftware
             get { return listItem; }
             set { listItem = value; }
         }
+
         private OLVListItem listItem;
 
         /// <summary>
@@ -798,10 +816,10 @@ namespace BrightIdeasSoftware
             get { return subItem; }
             set { subItem = value; }
         }
+
         private OLVListSubItem subItem;
 
-
-        #endregion
+        #endregion IDecoration Members
 
         #region Commands
 
@@ -815,6 +833,6 @@ namespace BrightIdeasSoftware
             this.DrawText(g, this.CalculateItemBounds(this.ListItem, this.SubItem));
         }
 
-        #endregion
+        #endregion Commands
     }
 }

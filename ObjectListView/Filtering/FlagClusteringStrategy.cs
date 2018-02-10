@@ -1,5 +1,5 @@
 /*
- * FlagClusteringStrategy - Implements a clustering strategy for a field which is a single integer 
+ * FlagClusteringStrategy - Implements a clustering strategy for a field which is a single integer
  *                          containing an XOR'ed collection of bit flags
  *
  * Author: Phillip Piper
@@ -7,7 +7,7 @@
  *
  * Change log:
  * 2012-03-23  JPP  - First version
- * 
+ *
  * Copyright (C) 2012 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -37,8 +37,8 @@ namespace BrightIdeasSoftware {
     /// Instances of this class cluster model objects on the basis of a
     /// property that holds an xor-ed collection of bit flags.
     /// </summary>
-    public class FlagClusteringStrategy : ClusteringStrategy
-    {
+    public class FlagClusteringStrategy : ClusteringStrategy {
+
         #region Life and death
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace BrightIdeasSoftware {
             this.SetValues(values, labels);
         }
 
-        #endregion
+        #endregion Life and death
 
         #region Implementation
 
@@ -82,6 +82,7 @@ namespace BrightIdeasSoftware {
             get { return this.values; }
             private set { this.values = value; }
         }
+
         private long[] values;
 
         /// <summary>
@@ -91,6 +92,7 @@ namespace BrightIdeasSoftware {
             get { return this.labels; }
             private set { this.labels = value; }
         }
+
         private string[] labels;
 
         private void SetValues(long[] flags, string[] flagLabels) {
@@ -102,7 +104,7 @@ namespace BrightIdeasSoftware {
             this.Labels = flagLabels;
         }
 
-        #endregion
+        #endregion Implementation
 
         #region Implementation of IClusteringStrategy
 
@@ -138,7 +140,7 @@ namespace BrightIdeasSoftware {
         /// <returns></returns>
         public override string GetClusterDisplayLabel(ICluster cluster) {
             long clusterKeyAsUlong = Convert.ToInt64(cluster.ClusterKey);
-            for (int i = 0; i < this.Values.Length; i++ ) {
+            for (int i = 0; i < this.Values.Length; i++) {
                 if (clusterKeyAsUlong == this.Values[i])
                     return this.ApplyDisplayFormat(cluster, this.Labels[i]);
             }
@@ -155,6 +157,6 @@ namespace BrightIdeasSoftware {
             return new FlagBitSetFilter(this.GetClusterKey, valuesChosenForFiltering);
         }
 
-        #endregion
+        #endregion Implementation of IClusteringStrategy
     }
 }

@@ -6,7 +6,7 @@
  *
  * Change log:
  * 2011-03-31  JPP  - Split into its own file
- * 
+ *
  * Copyright (C) 2011-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,9 +26,9 @@
  */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using System.Collections;
 
 namespace BrightIdeasSoftware {
 
@@ -45,7 +45,7 @@ namespace BrightIdeasSoftware {
 
         new public TValue this[TKey key] {
             get {
-                if (key != null) 
+                if (key != null)
                     return base[key];
 
                 if (this.hasNullKey)
@@ -57,7 +57,8 @@ namespace BrightIdeasSoftware {
                 if (key == null) {
                     this.hasNullKey = true;
                     this.nullValue = value;
-                } else
+                }
+                else
                     base[key] = value;
             }
         }

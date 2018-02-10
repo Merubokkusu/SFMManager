@@ -14,7 +14,7 @@
  * 2008-01-16   JPP  - Added EditorRegistry
  * v2.0.1
  * 2008-10-20   JPP  - Separated from ObjectListView.cs
- * 
+ *
  * Copyright (C) 2006-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -41,15 +41,15 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// These items allow combo boxes to remember a value and its description.
     /// </summary>
-    public class ComboBoxItem
-    {
+    public class ComboBoxItem {
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <param name="description"></param>
@@ -57,14 +57,16 @@ namespace BrightIdeasSoftware
             this.key = key;
             this.description = description;
         }
+
         private readonly String description;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Object Key {
             get { return key; }
         }
+
         private readonly Object key;
 
         /// <summary>
@@ -77,13 +79,13 @@ namespace BrightIdeasSoftware
         public override string ToString() {
             return this.description;
         }
-    } 
+    }
 
     //-----------------------------------------------------------------------
     // Cell editors
     // These classes are simple cell editors that make it easier to get and set
     // the value that the control is showing.
-    // In many cases, you can intercept the CellEditStarting event to 
+    // In many cases, you can intercept the CellEditStarting event to
     // change the characteristics of the editor. For example, changing
     // the acceptable range for a numeric editor or changing the strings
     // that respresent true and false values for a boolean editor.
@@ -92,8 +94,8 @@ namespace BrightIdeasSoftware
     /// This editor shows and auto completes values from the given listview column.
     /// </summary>
     [ToolboxItem(false)]
-    public class AutoCompleteCellEditor : ComboBox
-    {
+    public class AutoCompleteCellEditor : ComboBox {
+
         /// <summary>
         /// Create an AutoCompleteCellEditor
         /// </summary>
@@ -121,10 +123,10 @@ namespace BrightIdeasSoftware
     /// This combo box is specialised to allow editing of an enum.
     /// </summary>
     [ToolboxItem(false)]
-    public class EnumCellEditor : ComboBox
-    {
+    public class EnumCellEditor : ComboBox {
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="type"></param>
         public EnumCellEditor(Type type) {
@@ -143,10 +145,10 @@ namespace BrightIdeasSoftware
     /// This editor simply shows and edits integer values.
     /// </summary>
     [ToolboxItem(false)]
-    public class IntUpDown : NumericUpDown
-    {
+    public class IntUpDown : NumericUpDown {
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IntUpDown() {
             this.DecimalPlaces = 0;
@@ -170,8 +172,8 @@ namespace BrightIdeasSoftware
     /// CLS-compliant type. If you want to use, just copy the code to this class
     /// into your project and use it from there.</remarks>
     [ToolboxItem(false)]
-    internal class UintUpDown : NumericUpDown
-    {
+    internal class UintUpDown : NumericUpDown {
+
         public UintUpDown() {
             this.DecimalPlaces = 0;
             this.Minimum = 0;
@@ -188,10 +190,10 @@ namespace BrightIdeasSoftware
     /// This editor simply shows and edits boolean values.
     /// </summary>
     [ToolboxItem(false)]
-    public class BooleanCellEditor : ComboBox
-    {
+    public class BooleanCellEditor : ComboBox {
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BooleanCellEditor() {
             this.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -209,8 +211,8 @@ namespace BrightIdeasSoftware
     /// This editor simply shows and edits boolean values using a checkbox
     /// </summary>
     [ToolboxItem(false)]
-    public class BooleanCellEditor2 : CheckBox
-    {
+    public class BooleanCellEditor2 : CheckBox {
+
         /// <summary>
         /// Gets or sets the value shown by this editor
         /// </summary>
@@ -219,12 +221,12 @@ namespace BrightIdeasSoftware
                 switch (this.CheckState) {
                     case CheckState.Checked: return true;
                     case CheckState.Indeterminate: return null;
-                    case CheckState.Unchecked: 
+                    case CheckState.Unchecked:
                     default: return false;
                 }
             }
             set {
-                if (value.HasValue) 
+                if (value.HasValue)
                     this.CheckState = value.Value ? CheckState.Checked : CheckState.Unchecked;
                 else
                     this.CheckState = CheckState.Indeterminate;
@@ -239,7 +241,7 @@ namespace BrightIdeasSoftware
                 switch (this.CheckAlign) {
                     case ContentAlignment.MiddleRight: return HorizontalAlignment.Right;
                     case ContentAlignment.MiddleCenter: return HorizontalAlignment.Center;
-                    case ContentAlignment.MiddleLeft: 
+                    case ContentAlignment.MiddleLeft:
                     default: return HorizontalAlignment.Left;
                 }
             }
@@ -248,9 +250,11 @@ namespace BrightIdeasSoftware
                     case HorizontalAlignment.Left:
                         this.CheckAlign = ContentAlignment.MiddleLeft;
                         break;
+
                     case HorizontalAlignment.Center:
                         this.CheckAlign = ContentAlignment.MiddleCenter;
                         break;
+
                     case HorizontalAlignment.Right:
                         this.CheckAlign = ContentAlignment.MiddleRight;
                         break;
@@ -266,10 +270,10 @@ namespace BrightIdeasSoftware
     /// to change the characteristics of the editor. For example, by increasing
     /// the number of decimal places.</remarks>
     [ToolboxItem(false)]
-    public class FloatCellEditor : NumericUpDown
-    {
+    public class FloatCellEditor : NumericUpDown {
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public FloatCellEditor() {
             this.DecimalPlaces = 2;

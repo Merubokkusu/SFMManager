@@ -6,7 +6,7 @@
  *
  * Change log:
  * 2011-03-04  JPP  - First version
- * 
+ *
  * Copyright (C) 2011-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,9 +27,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace BrightIdeasSoftware {
 
@@ -184,6 +184,6 @@ namespace BrightIdeasSoftware {
             }
         }
 
-        #endregion
+        #endregion Events
     }
 }

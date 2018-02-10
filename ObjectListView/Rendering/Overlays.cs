@@ -44,14 +44,14 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// The interface for an object which can draw itself over the top of
     /// an ObjectListView.
     /// </summary>
-    public interface IOverlay
-    {
+    public interface IOverlay {
+
         /// <summary>
         /// Draw this overlay
         /// </summary>
@@ -64,10 +64,10 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// An interface for an overlay that supports variable levels of transparency
     /// </summary>
-    public interface ITransparentOverlay : IOverlay
-    {
+    public interface ITransparentOverlay : IOverlay {
+
         /// <summary>
-        /// Gets or sets the transparency of the overlay. 
+        /// Gets or sets the transparency of the overlay.
         /// 0 is completely transparent, 255 is completely opaque.
         /// </summary>
         int Transparency { get; set; }
@@ -76,8 +76,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// A null implementation of the IOverlay interface
     /// </summary>
-    public class AbstractOverlay : ITransparentOverlay
-    {
+    public class AbstractOverlay : ITransparentOverlay {
+
         #region IOverlay Members
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace BrightIdeasSoftware
         public virtual void Draw(ObjectListView olv, Graphics g, Rectangle r) {
         }
 
-        #endregion
+        #endregion IOverlay Members
 
         #region ITransparentOverlay Members
 
@@ -104,17 +104,18 @@ namespace BrightIdeasSoftware
             get { return this.transparency; }
             set { this.transparency = Math.Min(255, Math.Max(0, value)); }
         }
+
         private int transparency = 128;
 
-        #endregion
+        #endregion ITransparentOverlay Members
     }
-    
+
     /// <summary>
     /// An overlay that will draw an image over the top of the ObjectListView
     /// </summary>
     [TypeConverter("BrightIdeasSoftware.Design.OverlayConverter")]
-    public class ImageOverlay : ImageAdornment, ITransparentOverlay
-    {
+    public class ImageOverlay : ImageAdornment, ITransparentOverlay {
+
         /// <summary>
         /// Create an ImageOverlay
         /// </summary>
@@ -135,6 +136,7 @@ namespace BrightIdeasSoftware
             get { return this.insetX; }
             set { this.insetX = Math.Max(0, value); }
         }
+
         private int insetX = 20;
 
         /// <summary>
@@ -148,9 +150,10 @@ namespace BrightIdeasSoftware
             get { return this.insetY; }
             set { this.insetY = Math.Max(0, value); }
         }
+
         private int insetY = 20;
 
-        #endregion
+        #endregion Public properties
 
         #region Commands
 
@@ -168,15 +171,15 @@ namespace BrightIdeasSoftware
             this.DrawImage(g, insetRect, this.Image, 255);
         }
 
-        #endregion
+        #endregion Commands
     }
 
     /// <summary>
     /// An overlay that will draw text over the top of the ObjectListView
     /// </summary>
     [TypeConverter("BrightIdeasSoftware.Design.OverlayConverter")]
-    public class TextOverlay : TextAdornment, ITransparentOverlay
-    {
+    public class TextOverlay : TextAdornment, ITransparentOverlay {
+
         /// <summary>
         /// Create a TextOverlay
         /// </summary>
@@ -197,6 +200,7 @@ namespace BrightIdeasSoftware
             get { return this.insetX; }
             set { this.insetX = Math.Max(0, value); }
         }
+
         private int insetX = 20;
 
         /// <summary>
@@ -210,6 +214,7 @@ namespace BrightIdeasSoftware
             get { return this.insetY; }
             set { this.insetY = Math.Max(0, value); }
         }
+
         private int insetY = 20;
 
         /// <summary>
@@ -228,7 +233,7 @@ namespace BrightIdeasSoftware
             }
         }
 
-        #endregion
+        #endregion Public properties
 
         #region Commands
 
@@ -248,14 +253,14 @@ namespace BrightIdeasSoftware
             this.DrawText(g, insetRect, this.Text, 255);
         }
 
-        #endregion
+        #endregion Commands
     }
 
     /// <summary>
     /// A Billboard overlay is a TextOverlay positioned at an absolute point
     /// </summary>
-    public class BillboardOverlay : TextOverlay
-    {
+    public class BillboardOverlay : TextOverlay {
+
         /// <summary>
         /// Create a BillboardOverlay
         /// </summary>
@@ -274,6 +279,7 @@ namespace BrightIdeasSoftware
             get { return this.location; }
             set { this.location = value; }
         }
+
         private Point location;
 
         /// <summary>

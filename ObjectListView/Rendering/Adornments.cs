@@ -15,7 +15,7 @@
  * To do:
  * - Use IPointLocator rather than Corners
  * - Add RotationCenter property ratherr than always using middle center
- * 
+ *
  * Copyright (C) 2009-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,13 +40,13 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// An adorment is the common base for overlays and decorations.
     /// </summary>
-    public class GraphicAdornment
-    {
+    public class GraphicAdornment {
+
         #region Public properties
 
         /// <summary>
@@ -58,6 +58,7 @@ namespace BrightIdeasSoftware
             get { return this.adornmentCorner; }
             set { this.adornmentCorner = value; }
         }
+
         private System.Drawing.ContentAlignment adornmentCorner = System.Drawing.ContentAlignment.MiddleCenter;
 
         /// <summary>
@@ -70,12 +71,13 @@ namespace BrightIdeasSoftware
          NotifyParentProperty(true)]
         public System.Drawing.ContentAlignment Alignment {
             get { return this.alignment; }
-            set { 
+            set {
                 this.alignment = value;
                 this.ReferenceCorner = value;
                 this.AdornmentCorner = value;
             }
         }
+
         private System.Drawing.ContentAlignment alignment = System.Drawing.ContentAlignment.BottomRight;
 
         /// <summary>
@@ -88,6 +90,7 @@ namespace BrightIdeasSoftware
             get { return this.offset; }
             set { this.offset = value; }
         }
+
         private Size offset = new Size();
 
         /// <summary>
@@ -99,6 +102,7 @@ namespace BrightIdeasSoftware
             get { return this.referenceCorner; }
             set { this.referenceCorner = value; }
         }
+
         private System.Drawing.ContentAlignment referenceCorner = System.Drawing.ContentAlignment.MiddleCenter;
 
         /// <summary>
@@ -113,10 +117,11 @@ namespace BrightIdeasSoftware
             get { return this.rotation; }
             set { this.rotation = value; }
         }
+
         private int rotation;
 
         /// <summary>
-        /// Gets or sets the transparency of the overlay. 
+        /// Gets or sets the transparency of the overlay.
         /// 0 is completely transparent, 255 is completely opaque.
         /// </summary>
         [Category("ObjectListView"),
@@ -126,9 +131,10 @@ namespace BrightIdeasSoftware
             get { return this.transparency; }
             set { this.transparency = Math.Min(255, Math.Max(0, value)); }
         }
+
         private int transparency = 128;
 
-        #endregion
+        #endregion Public properties
 
         #region Calculations
 
@@ -147,20 +153,28 @@ namespace BrightIdeasSoftware
             switch (corner) {
                 case System.Drawing.ContentAlignment.TopLeft:
                     return pt;
+
                 case System.Drawing.ContentAlignment.TopCenter:
                     return new Point(pt.X - (size.Width / 2), pt.Y);
+
                 case System.Drawing.ContentAlignment.TopRight:
                     return new Point(pt.X - size.Width, pt.Y);
+
                 case System.Drawing.ContentAlignment.MiddleLeft:
                     return new Point(pt.X, pt.Y - (size.Height / 2));
+
                 case System.Drawing.ContentAlignment.MiddleCenter:
                     return new Point(pt.X - (size.Width / 2), pt.Y - (size.Height / 2));
+
                 case System.Drawing.ContentAlignment.MiddleRight:
                     return new Point(pt.X - size.Width, pt.Y - (size.Height / 2));
+
                 case System.Drawing.ContentAlignment.BottomLeft:
                     return new Point(pt.X, pt.Y - size.Height);
+
                 case System.Drawing.ContentAlignment.BottomCenter:
                     return new Point(pt.X - (size.Width / 2), pt.Y - size.Height);
+
                 case System.Drawing.ContentAlignment.BottomRight:
                     return new Point(pt.X - size.Width, pt.Y - size.Height);
             }
@@ -217,24 +231,32 @@ namespace BrightIdeasSoftware
             switch (corner) {
                 case System.Drawing.ContentAlignment.TopLeft:
                     return new Point(r.Left, r.Top);
+
                 case System.Drawing.ContentAlignment.TopCenter:
                     return new Point(r.X + (r.Width / 2), r.Top);
+
                 case System.Drawing.ContentAlignment.TopRight:
                     return new Point(r.Right, r.Top);
+
                 case System.Drawing.ContentAlignment.MiddleLeft:
                     return new Point(r.Left, r.Top + (r.Height / 2));
+
                 case System.Drawing.ContentAlignment.MiddleCenter:
-                    return new Point(r.X + (r.Width / 2), r.Top + (r.Height  / 2));
+                    return new Point(r.X + (r.Width / 2), r.Top + (r.Height / 2));
+
                 case System.Drawing.ContentAlignment.MiddleRight:
                     return new Point(r.Right, r.Top + (r.Height / 2));
+
                 case System.Drawing.ContentAlignment.BottomLeft:
                     return new Point(r.Left, r.Bottom);
+
                 case System.Drawing.ContentAlignment.BottomCenter:
                     return new Point(r.X + (r.Width / 2), r.Bottom);
+
                 case System.Drawing.ContentAlignment.BottomRight:
                     return new Point(r.Right, r.Bottom);
             }
-            
+
             // Should never reach here
             return r.Location;
         }
@@ -251,11 +273,11 @@ namespace BrightIdeasSoftware
 
             if (subItem == null)
                 return item.Bounds;
-            
+
             return item.GetSubItemBounds(item.SubItems.IndexOf(subItem));
         }
 
-        #endregion
+        #endregion Calculations
 
         #region Commands
 
@@ -284,14 +306,14 @@ namespace BrightIdeasSoftware
                 g.ResetTransform();
         }
 
-        #endregion
+        #endregion Commands
     }
 
     /// <summary>
     /// An overlay that will draw an image over the top of the ObjectListView
     /// </summary>
-    public class ImageAdornment : GraphicAdornment
-    {
+    public class ImageAdornment : GraphicAdornment {
+
         #region Public properties
 
         /// <summary>
@@ -305,6 +327,7 @@ namespace BrightIdeasSoftware
             get { return this.image; }
             set { this.image = value; }
         }
+
         private Image image;
 
         /// <summary>
@@ -317,9 +340,10 @@ namespace BrightIdeasSoftware
             get { return this.shrinkToWidth; }
             set { this.shrinkToWidth = value; }
         }
+
         private bool shrinkToWidth;
 
-        #endregion
+        #endregion Public properties
 
         #region Commands
 
@@ -332,7 +356,7 @@ namespace BrightIdeasSoftware
             if (this.ShrinkToWidth)
                 this.DrawScaledImage(g, r, this.Image, this.Transparency);
             else
-                this.DrawImage(g, r, this.Image, this.Transparency); 
+                this.DrawImage(g, r, this.Image, this.Transparency);
         }
 
         /// <summary>
@@ -422,14 +446,14 @@ namespace BrightIdeasSoftware
                imageAttributes);
         }
 
-        #endregion
+        #endregion Commands
     }
 
     /// <summary>
     /// An adornment that will draw text
     /// </summary>
-    public class TextAdornment : GraphicAdornment
-    {
+    public class TextAdornment : GraphicAdornment {
+
         #region Public properties
 
         /// <summary>
@@ -443,6 +467,7 @@ namespace BrightIdeasSoftware
             get { return this.backColor; }
             set { this.backColor = value; }
         }
+
         private Color backColor = Color.Empty;
 
         /// <summary>
@@ -466,6 +491,7 @@ namespace BrightIdeasSoftware
             get { return this.borderColor; }
             set { this.borderColor = value; }
         }
+
         private Color borderColor = Color.Empty;
 
         /// <summary>
@@ -488,6 +514,7 @@ namespace BrightIdeasSoftware
             get { return this.borderWidth; }
             set { this.borderWidth = value; }
         }
+
         private float borderWidth;
 
         /// <summary>
@@ -502,6 +529,7 @@ namespace BrightIdeasSoftware
             get { return this.cornerRounding; }
             set { this.cornerRounding = value; }
         }
+
         private float cornerRounding = 16.0f;
 
         /// <summary>
@@ -515,6 +543,7 @@ namespace BrightIdeasSoftware
             get { return this.font; }
             set { this.font = value; }
         }
+
         private Font font;
 
         /// <summary>
@@ -558,6 +587,7 @@ namespace BrightIdeasSoftware
             get { return this.maximumTextWidth; }
             set { this.maximumTextWidth = value; }
         }
+
         private int maximumTextWidth;
 
         /// <summary>
@@ -575,10 +605,11 @@ namespace BrightIdeasSoftware
                     if (!this.Wrap)
                         this.stringFormat.FormatFlags = StringFormatFlags.NoWrap;
                 }
-                return this.stringFormat; 
+                return this.stringFormat;
             }
             set { this.stringFormat = value; }
         }
+
         private StringFormat stringFormat;
 
         /// <summary>
@@ -593,6 +624,7 @@ namespace BrightIdeasSoftware
             get { return this.text; }
             set { this.text = value; }
         }
+
         private string text;
 
         /// <summary>
@@ -616,6 +648,7 @@ namespace BrightIdeasSoftware
             get { return this.textColor; }
             set { this.textColor = value; }
         }
+
         private Color textColor = Color.DarkBlue;
 
         /// <summary>
@@ -628,9 +661,10 @@ namespace BrightIdeasSoftware
             get { return this.wrap; }
             set { this.wrap = value; }
         }
+
         private bool wrap = true;
 
-        #endregion
+        #endregion Public properties
 
         #region Implementation
 
@@ -729,14 +763,15 @@ namespace BrightIdeasSoftware
                 arc.X = rect.Left;
                 path.AddArc(arc, 90, 90);
                 path.CloseFigure();
-            } else {
+            }
+            else {
                 path.AddRectangle(rect);
             }
 
             return path;
         }
 
-        #endregion
+        #endregion Implementation
 
         private int workingTransparency;
     }

@@ -3,14 +3,14 @@ using System.Collections;
 using System.ComponentModel;
 using System.Diagnostics;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// A TreeDataSourceAdapter knows how to build a tree structure from a binding list.
     /// </summary>
     /// <remarks>To build a tree</remarks>
-    public class TreeDataSourceAdapter : DataSourceAdapter
-    {
+    public class TreeDataSourceAdapter : DataSourceAdapter {
+
         #region Life and death
 
         /// <summary>
@@ -20,11 +20,11 @@ namespace BrightIdeasSoftware
         public TreeDataSourceAdapter(DataTreeListView tlv)
             : base(tlv) {
             this.treeListView = tlv;
-            this.treeListView.CanExpandGetter = delegate(object model) { return this.CalculateHasChildren(model); };
-            this.treeListView.ChildrenGetter = delegate(object model) { return this.CalculateChildren(model); };
+            this.treeListView.CanExpandGetter = delegate (object model) { return this.CalculateHasChildren(model); };
+            this.treeListView.ChildrenGetter = delegate (object model) { return this.CalculateChildren(model); };
         }
 
-        #endregion
+        #endregion Life and death
 
         #region Properties
 
@@ -33,7 +33,7 @@ namespace BrightIdeasSoftware
         /// </summary>
         /// <remarks>
         /// <para>
-        /// The value contained by this column must be unique across all rows 
+        /// The value contained by this column must be unique across all rows
         /// in the data source. Odd and unpredictable things will happen if two
         /// rows have the same id.
         /// </para>
@@ -49,6 +49,7 @@ namespace BrightIdeasSoftware
                 this.InitializeDataSource();
             }
         }
+
         private string keyAspectName;
 
         /// <summary>
@@ -76,6 +77,7 @@ namespace BrightIdeasSoftware
                 this.InitializeDataSource();
             }
         }
+
         private string parentKeyAspectName;
 
         /// <summary>
@@ -102,6 +104,7 @@ namespace BrightIdeasSoftware
                 this.InitializeDataSource();
             }
         }
+
         private object rootKeyValue;
 
         /// <summary>
@@ -114,27 +117,28 @@ namespace BrightIdeasSoftware
             get { return showKeyColumns; }
             set { showKeyColumns = value; }
         }
+
         private bool showKeyColumns = true;
 
-
-        #endregion
+        #endregion Properties
 
         #region Implementation properties
 
         /// <summary>
-        /// Gets the DataTreeListView that is being managed 
+        /// Gets the DataTreeListView that is being managed
         /// </summary>
         protected DataTreeListView TreeListView {
             get { return treeListView; }
         }
+
         private readonly DataTreeListView treeListView;
 
-        #endregion
+        #endregion Implementation properties
 
         #region Implementation
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void InitializeDataSource() {
             base.InitializeDataSource();
@@ -142,14 +146,14 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override void SetListContents() {
             this.TreeListView.Roots = this.CalculateRoots();
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="property"></param>
         /// <returns></returns>
@@ -162,16 +166,16 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="e"></param>
         protected override void HandleListChangedItemChanged(System.ComponentModel.ListChangedEventArgs e) {
             // If the id or the parent id of a row changes, we just rebuild everything.
-            // We can't do anything more specific. We don't know what the previous values, so we can't 
+            // We can't do anything more specific. We don't know what the previous values, so we can't
             // tell the previous parent to refresh itself. If the id itself has changed, things that used
             // to be children will no longer be children. Just rebuild everything.
             // It seems PropertyDescriptor is only filled in .NET 4 :(
-            if (e.PropertyDescriptor != null && 
+            if (e.PropertyDescriptor != null &&
                 (e.PropertyDescriptor.Name == this.KeyAspectName ||
                  e.PropertyDescriptor.Name == this.ParentKeyAspectName))
                 this.InitializeDataSource();
@@ -180,7 +184,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         protected override void ChangePosition(int index) {
@@ -235,7 +239,7 @@ namespace BrightIdeasSoftware
 
         private object CalculateParent(object model) {
             object parentValue = this.GetParentValue(model);
-            if (parentValue == null) 
+            if (parentValue == null)
                 return null;
 
             foreach (object x in this.CurrencyManager.List) {
@@ -254,7 +258,7 @@ namespace BrightIdeasSoftware
             return this.parentKeyMunger == null ? null : this.parentKeyMunger.GetValue(model);
         }
 
-        #endregion
+        #endregion Implementation
 
         private Munger keyMunger;
         private Munger parentKeyMunger;

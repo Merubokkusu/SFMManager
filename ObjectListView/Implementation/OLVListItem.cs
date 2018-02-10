@@ -12,7 +12,7 @@
  * 2014-05-06  JPP  - Added OLVListItem.Enabled flag
  * vOld
  * 2011-03-31  JPP  - Split into its own file
- * 
+ *
  * Copyright (C) 2011-2015 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,9 +34,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace BrightIdeasSoftware {
 
@@ -46,6 +46,7 @@ namespace BrightIdeasSoftware {
     /// also know the image they should draw against themselves
     /// </summary>
     public class OLVListItem : ListViewItem {
+
         #region Constructors
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace BrightIdeasSoftware {
             this.imageSelector = image;
         }
 
-        #endregion.
+        #endregion Constructors
 
         #region Properties
 
@@ -91,6 +92,7 @@ namespace BrightIdeasSoftware {
             get { return this.cellPadding; }
             set { this.cellPadding = value; }
         }
+
         private Rectangle? cellPadding;
 
         /// <summary>
@@ -101,6 +103,7 @@ namespace BrightIdeasSoftware {
             get { return this.cellVerticalAlignment; }
             set { this.cellVerticalAlignment = value; }
         }
+
         private StringAlignment? cellVerticalAlignment;
 
         /// <summary>
@@ -136,10 +139,13 @@ namespace BrightIdeasSoftware {
                 switch (this.StateImageIndex) {
                     case 0:
                         return System.Windows.Forms.CheckState.Unchecked;
+
                     case 1:
                         return System.Windows.Forms.CheckState.Checked;
+
                     case 2:
                         return System.Windows.Forms.CheckState.Indeterminate;
+
                     default:
                         return System.Windows.Forms.CheckState.Unchecked;
                 }
@@ -149,9 +155,11 @@ namespace BrightIdeasSoftware {
                     case System.Windows.Forms.CheckState.Unchecked:
                         this.StateImageIndex = 0;
                         break;
+
                     case System.Windows.Forms.CheckState.Checked:
                         this.StateImageIndex = 1;
                         break;
+
                     case System.Windows.Forms.CheckState.Indeterminate:
                         this.StateImageIndex = 2;
                         break;
@@ -196,16 +204,17 @@ namespace BrightIdeasSoftware {
                 return this.decorations;
             }
         }
+
         private IList<IDecoration> decorations;
 
         /// <summary>
         /// Gets whether or not this row can be selected and activated
         /// </summary>
-        public bool Enabled
-        {
+        public bool Enabled {
             get { return this.enabled; }
             internal set { this.enabled = value; }
         }
+
         private bool enabled;
 
         /// <summary>
@@ -238,6 +247,7 @@ namespace BrightIdeasSoftware {
                     this.ImageIndex = -1;
             }
         }
+
         private Object imageSelector;
 
         /// <summary>
@@ -247,10 +257,11 @@ namespace BrightIdeasSoftware {
             get { return rowObject; }
             set { rowObject = value; }
         }
+
         private object rowObject;
 
         /// <summary>
-        /// Gets or sets the color that will be used for this row's background when it is selected and 
+        /// Gets or sets the color that will be used for this row's background when it is selected and
         /// the control is focused.
         /// </summary>
         /// <remarks>
@@ -263,10 +274,11 @@ namespace BrightIdeasSoftware {
             get { return this.selectedBackColor; }
             set { this.selectedBackColor = value; }
         }
+
         private Color? selectedBackColor;
 
         /// <summary>
-        /// Gets or sets the color that will be used for this row's foreground when it is selected and 
+        /// Gets or sets the color that will be used for this row's foreground when it is selected and
         /// the control is focused.
         /// </summary>
         /// <remarks>
@@ -275,14 +287,14 @@ namespace BrightIdeasSoftware {
         /// If this is not set, the normal selection ForeColor will be used.
         /// </para>
         /// </remarks>
-        public Color? SelectedForeColor
-        {
+        public Color? SelectedForeColor {
             get { return this.selectedForeColor; }
             set { this.selectedForeColor = value; }
         }
+
         private Color? selectedForeColor;
 
-        #endregion
+        #endregion Properties
 
         #region Accessing
 
@@ -294,10 +306,9 @@ namespace BrightIdeasSoftware {
         public virtual OLVListSubItem GetSubItem(int index) {
             if (index >= 0 && index < this.SubItems.Count)
                 return (OLVListSubItem)this.SubItems[index];
-            
+
             return null;
         }
-
 
         /// <summary>
         /// Return bounds of the given subitem
@@ -316,6 +327,6 @@ namespace BrightIdeasSoftware {
             return subItem == null ? new Rectangle() : subItem.Bounds;
         }
 
-        #endregion
+        #endregion Accessing
     }
 }

@@ -18,7 +18,8 @@ using System.Windows.Forms;
 namespace WindowsFormsApplication1 {
 
     public partial class Form1 : Form {
-        public static float CurrentVer = 6.2f;
+        public static float CurrentVer = 7.00f;
+        public static string VERSIONID = "Hana";
         public static string SFMPATH = ConfigurationManager.AppSettings["SFM_PATH"];
         public static bool SplashOver = false;
 
@@ -43,8 +44,12 @@ namespace WindowsFormsApplication1 {
             t.Start();
             Thread.Sleep(3000);
 
+            
+            this.WindowState = FormWindowState.Minimized;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
             InitializeComponent();
-            BringToFront();
+            this.Text = "SFMManager" + " - " + VERSIONID + " " + "(" + CurrentVer.ToString("f") + ")";
 
             // Enable drag and drop for this form
             // (this can also be applied to any controls)
@@ -58,11 +63,14 @@ namespace WindowsFormsApplication1 {
             cm = new ContextMenu();
             var CM_Rename = new MenuItem("Rename");
             var CM_Delete = new MenuItem("Delete");
+            var CM_Categorize = new MenuItem("Categorize");
             CM_Rename.Click += OnRenameClicked;
-            CM_Delete.Click += button1_Click;
+            CM_Delete.Click += DeleteButton_Click;
+            CM_Categorize.Click += categoryButton_Click;
 
             var collection = new Menu.MenuItemCollection(cm);
             collection.Add(CM_Rename);
+            collection.Add(CM_Categorize);
             collection.Add(CM_Delete);
             //Menus
 
@@ -78,10 +86,7 @@ namespace WindowsFormsApplication1 {
 
             //modMan.FindFileLoc();
             
-            
         }
-
-       
 
         protected override CreateParams CreateParams {
             get {
@@ -104,45 +109,35 @@ namespace WindowsFormsApplication1 {
 
         // Sort on this column.
 
-        private void listView1_ColumnClick_1(object sender, ColumnClickEventArgs e) {
-            var sorter = listView1.ListViewItemSorter as ItemComparer;
-            if (sorter == null) {
-                sorter = new ItemComparer(e.Column);
-                sorter.Order = SortOrder.Ascending;
-                listView1.ListViewItemSorter = sorter;
-            }
-            // if clicked column is already the column that is being sorted
-            if (e.Column == sorter.Column) {
-                // Reverse the current sort direction
-                if (sorter.Order == SortOrder.Ascending)
-                    sorter.Order = SortOrder.Descending;
-                else
-                    sorter.Order = SortOrder.Ascending;
-            } else {
-                // Set the column number that is to be sorted; default to ascending.
-                sorter.Column = e.Column;
-                sorter.Order = SortOrder.Ascending;
-            }
-            listView1.Sort();
-        }
-
-        private void listView1_MouseDown(object sender, MouseEventArgs e) {
+        private void addonListView_MouseDown(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Right) {
-                var item = listView1.GetItemAt(e.Location.X, e.Location.Y);
+                var item = addonListView.GetItemAt(e.Location.X, e.Location.Y);
                 if (item != null) {
                     // listView1.SelectedIndices[0] = item.Index;
-                    cm.Show(listView1, e.Location);
+                    cm.Show(addonListView, e.Location);
                 }
             }
         }
 
+        private void listView1_MouseDown(object sender, MouseEventArgs e) {
+        }
+
         public void OnRenameClicked(object sender, EventArgs e) {
             const string f = @"SFM\SFMM\";
-            var FileSelect = listView1.SelectedItems[0].Text + ".SFMM";
+            var FileSelect = "";
+            var OFile = addonListView.SelectedItems[0].Text;
+
+            if (Directory.Exists(f + OFile + @"\")) {
+                FileSelect = OFile + @"\" + OFile + ".SFMM";
+            }
+            else {
+                FileSelect = addonListView.SelectedItems[0].Text + ".SFMM";
+            }
+
             var SFMMFILE = f + FileSelect;
             string a;
             a = Interaction.InputBox("Type what you would like to name this file.", "Rename",
-                listView1.SelectedItems[0].Text);
+                addonListView.SelectedItems[0].Text);
 
             var specialCharacters = @"/:*?<>|" + "\"";
             var specialCharactersArray = specialCharacters.ToCharArray();
@@ -151,18 +146,24 @@ namespace WindowsFormsApplication1 {
             if (index == -1) {
                 if (a.Length > 0) {
                     if (!File.Exists(f + a + ".SFMM")) {
-                        Console.WriteLine("Renamed " + listView1.SelectedItems[0].Text + " To " + a);
-                        File.Move(SFMMFILE, f + a + ".SFMM");
-                        listView1.Items.Clear();
+                        Console.WriteLine("Renamed " + OFile + " To " + a);
+                        Directory.CreateDirectory(f + a + @"\");
+                        if (File.Exists(f + OFile + @"\" + "info.ini")) { File.Move(f + OFile + @"\" + "info.ini", f + a + @"\" + "info.ini"); }
+                        if (File.Exists(f + OFile + @"\" + "info.html")) { File.Move(f + OFile + @"\" + "info.html", f + a + @"\" + "info.html"); }
+                        File.Move(SFMMFILE, f + a + @"\" + a + ".SFMM");
+                        Directory.Delete(f + OFile);
+                        addonListView.ClearObjects();
                         AddonList();
                         ListToString();
                         // ok
-                    } else {
+                    }
+                    else {
                         Console.WriteLine("File Named " + a + " Already Exists, Couldnt Rename.");
                         MessageBox.Show("File Named " + a + " Already Exists, Couldnt Rename.");
                     }
                 }
-            } else {
+            }
+            else {
                 MessageBox.Show(@"A filename cannot contain any of the following characters: \ / : * ?  < > |" + " \"");
             }
         }
@@ -178,10 +179,8 @@ namespace WindowsFormsApplication1 {
             Console.SetError(streamwriter);
             Console.WriteLine(time.ToString(format));
         }
-        
-        private void button1_Click(object sender, EventArgs e) {
-            
 
+        private void DeleteButton_Click(object sender, EventArgs e) {
             foreach (OLVListItem addonItem in addonListView.SelectedItems) {
                 if (addonListView.Items.Count > 0) {
                     var result2 = MessageBox.Show("Delete Addon? " + addonItem.Text, "Are You Sure?", MessageBoxButtons.YesNo);
@@ -192,14 +191,14 @@ namespace WindowsFormsApplication1 {
                         const string f = @"SFM\SFMM\";
                         var FileSelect = "";
 
-                        if (Directory.Exists(f+ addonItem.Text + @"\")){
+                        if (Directory.Exists(f + addonItem.Text + @"\")) {
                             FileSelect = addonItem.Text + @"\" + addonItem.Text + ".SFMM";
+                            File.Delete(f + addonItem.Text + @"\" + "info.ini");
+                            File.Delete(f + addonItem.Text + @"\" + "info.html");
                         }
                         else {
                             FileSelect = addonItem.Text + ".SFMM";
                         }
-
-                        
 
                         var SFMMFILE = f + FileSelect;
 
@@ -223,19 +222,21 @@ namespace WindowsFormsApplication1 {
                                     if (ConfirmDeleteRig == DialogResult.Yes) {
                                         File.Delete(SFMPATH + @"\" + s);
                                     }
-                                } else {
+                                }
+                                else {
                                     Console.WriteLine("Removing " + s);
                                     File.Delete(SFMPATH + @"\" + s);
                                 }
-                            } else {
+                            }
+                            else {
                                 Console.WriteLine("COULDNT FIND " + s + " YOU MUST HAVE MOVED THE FILE.");
                             }
                         }
-                        File.Delete(@"SFM\SFMM\"+ addonItem.Text + @"\" + addonItem.Text + ".SFMM");
+                        File.Delete(@"SFM\SFMM\" + addonItem.Text + @"\" + addonItem.Text + ".SFMM");
                         Directory.Delete(@"SFM\SFMM\" + addonItem.Text);
                         processDirectory(SFMPATH + @"\models");
                         processDirectory(SFMPATH + @"\materials");
-                        listView1.Items.Clear();
+                        addonListView.ClearObjects();
                         AddonList();
                         ListToString();
                         AddingStart = false;
@@ -256,6 +257,7 @@ namespace WindowsFormsApplication1 {
         }
 
         public void AddonList() {
+            addonListView.ClearObjects();
             var targetDirectory = @"SFM\SFMM\";
 
             // Process the list of files found in the directory.
@@ -265,34 +267,29 @@ namespace WindowsFormsApplication1 {
                     .Select(p => p.Substring(0))
                     .ToArray();
 
-          //  List<AddToList> masterList = new List<AddToList>();
+            //  List<AddToList> masterList = new List<AddToList>();
             foreach (var fileName in fileEntries) {
-
                 //masterList.Add(new AddToList("Potato"));
 
                 // var listItem = new ListViewItem(fileName);
-                if(File.Exists(targetDirectory + fileName + @"\" + "info.ini")) { 
-                var infoIni = new IniFile(targetDirectory + fileName + @"\" + "info.ini");
-                var Date = infoIni.Read("Date");
-                var Source = infoIni.Read("Source");
-                var Author = infoIni.Read("Author");
-                var URL = infoIni.Read("URL");
+                if (File.Exists(targetDirectory + fileName + @"\" + "info.ini")) {
+                    var infoIni = new IniFile(targetDirectory + fileName + @"\" + "info.ini");
+                    var Date = infoIni.Read("Date");
+                    var Category = infoIni.Read("Category");
+                    var Source = infoIni.Read("Source");
+                    var Author = infoIni.Read("Author");
+                    var URL = infoIni.Read("URL");
 
-                // listItem.SubItems.Add(fileName.ToString());
-               // listItem.SubItems.Add(info.CreationTime.ToString());
-                //listView1.Items.Add(listItem);*/
-                AddToList newObject = new AddToList(fileName.ToString(), "Model", Date, Source, Author, URL);
-                addonListView.AddObject(newObject);
-                }
-                else {
-                    var info = new FileInfo(targetDirectory + fileName + @".SFMM");
-                    AddToList newObject = new AddToList(fileName.ToString(), "Model", info.CreationTime.ToString(), "?", "?", "?");
+                    // listItem.SubItems.Add(fileName.ToString());
+                    // listItem.SubItems.Add(info.CreationTime.ToString());
+                    //listView1.Items.Add(listItem);*/
+
+                    AddToList newObject = new AddToList(fileName.ToString(), Category, DateTime.Parse(Date), Source, Author, URL);
                     addonListView.AddObject(newObject);
                 }
             }
-            
+            olvColumn3.DataType = typeof(DateTime);
             //addonListView.SetObjects(AddToList.GET());
-
         }
 
         private void loading() {
@@ -321,13 +318,6 @@ namespace WindowsFormsApplication1 {
                 e.Effect = DragDropEffects.None; // Unknown data, ignore it
         }
 
-        private void listView1_DragDrop(object sender, DragEventArgs u) {
-            var FileList = (string[])u.Data.GetData(DataFormats.FileDrop, false);
-            foreach (string FileAddon in FileList) {
-                modMan.Extract(FileAddon);
-            }
-        }
-
         //ListDragEnd
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -337,20 +327,6 @@ namespace WindowsFormsApplication1 {
             Console.WriteLine("");
             Console.WriteLine(@"Crashed?, Open an issue to https://github.com/Merubokkusu/SFMManager/issues");
             Console.WriteLine("");
-        }
-
-        private void button3_Click(object sender, EventArgs u) {
-            var myDialog = new OpenFileDialog();
-            myDialog.Filter = "Compressed Files(*.ZIP;*.RAR;*.7ZIP;*.7Z)|*.ZIP;*.RAR;*.7ZIP;*.7Z|All files (*.*)|*.*";
-            myDialog.CheckFileExists = true;
-            myDialog.Multiselect = true;
-            //  myDialog.ShowDialog();
-
-            if (myDialog.ShowDialog() == DialogResult.OK) {
-                foreach (string AddonFile in myDialog.FileNames) {
-                    modMan.Extract(AddonFile);
-                }
-            }
         }
 
         //End
@@ -363,47 +339,11 @@ namespace WindowsFormsApplication1 {
             }
         }
 
-        private void button4_Click(object sender, EventArgs e) {
-            var BinPath = Directory.GetParent(SFMPATH) + @"\bin";
-            using (var ToolsForm = new Tools()) {
-                ToolsForm.StartPosition = FormStartPosition.CenterParent;
-                ToolsForm.ShowDialog(this);
-            }
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e) {
-            using (var f2 = new Settings()) {
-                f2.StartPosition = FormStartPosition.CenterParent;
-                f2.ShowDialog(this);
-            }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e) {
-            addonListView.ModelFilter = TextMatchFilter.Contains(addonListView, textBox1.Text);
-
-            /*
-            var ci = new CultureInfo("en-US");
-            if (string.IsNullOrEmpty(textBox1.Text.Trim()) == false) {
-                addonListView.Items.Clear();
-                foreach (var str in list) {
-                    if (str.StartsWith(textBox1.Text, true, ci)) {
-                        addonListView.Items.Add(str);
-                    }
-                }
-            } else if (textBox1.Text.Trim() == "") {
-                addonListView.Items.Clear();
-
-                AddonList();
-                addonListView.Sort();
-            }*/
-        }
-
         private void timer1_Tick(object sender, EventArgs e) {
             if (RefreshAddon) {
                 //listView1.Items.Clear();
-                addonListView.Items.Clear();
+                addonListView.ClearObjects();
                 AddonList();
-                ListToString();
                 RefreshAddon = false;
             }
             if (Download_Start) {
@@ -424,13 +364,139 @@ namespace WindowsFormsApplication1 {
             }
         }
 
-        private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e) {
-            //cancel the current event
-            e.Cancel = true;
-
-            //this opens the URL in the user's default browser
-            Process.Start(e.Url.ToString());
+        private void searchBarBox_TextChanged(object sender, EventArgs e) {
+            addonListView.ModelFilter = TextMatchFilter.Contains(addonListView, searchBarBox.Text);
         }
 
+        private void settingsButton_Click(object sender, EventArgs e) {
+            using (var f2 = new Settings()) {
+                f2.StartPosition = FormStartPosition.CenterParent;
+                f2.ShowDialog(this);
+            }
+        }
+
+        private void addFileToolStripMenuItem_Click(object sender, EventArgs e) {
+            var myDialog = new OpenFileDialog();
+            myDialog.Filter = "Compressed Files(*.ZIP;*.RAR;*.7ZIP;*.7Z)|*.ZIP;*.RAR;*.7ZIP;*.7Z|All files (*.*)|*.*";
+            myDialog.CheckFileExists = true;
+            myDialog.Multiselect = true;
+            //  myDialog.ShowDialog();
+
+            if (myDialog.ShowDialog() == DialogResult.OK) {
+                foreach (string AddonFile in myDialog.FileNames) {
+                    modMan.Extract(AddonFile);
+                }
+            }
+        }
+
+        private void addFromURLToolStripMenuItem_Click(object sender, EventArgs e) {
+            var a = Interaction.InputBox("Enter SFMLab URL", "Enter URL");
+            downloader.Download(a);
+        }
+
+        private void addonListView_SelectedIndexChanged(object sender, EventArgs e) {
+            if (addonListView.SelectedItems.Count == 0)
+                return;
+            DeleteButton.Enabled = true;
+            categoryButton.Enabled = true;
+            var s = addonListView.SelectedItems[0].Text;
+            string htmlFile = Path.Combine(@"SFM\SFMM\" + s + @"\", "info.html");
+            if (File.Exists(htmlFile)) {
+                string curDir = Directory.GetCurrentDirectory();
+                webBrowser1.Url = new Uri(String.Format(@"file:///" + curDir + @"\" + htmlFile));
+                addonContainer.Panel2Collapsed = false; }
+            else {
+                if (Directory.Exists(@"SFM\SFMM\" + s)) {
+                    if (File.Exists(@"SFM\SFMM\" + s + @"\" + "info.ini")) {
+                        var infoIni = new IniFile(@"SFM\SFMM\" + s + @"\" + "info.ini");
+                        var URL = infoIni.Read("URL");
+                        if (!URL.Equals("?")) {
+                            webBrowser1.Url = new Uri(URL, System.UriKind.Absolute);
+                            addonContainer.Panel2Collapsed = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void addonListView_Click(object sender, EventArgs e) {
+            if (addonListView.SelectedItems.Count == 0) {
+                addonContainer.Panel2Collapsed = true;
+                DeleteButton.Enabled = false;
+                categoryButton.Enabled = false;
+            }
+        }
+
+        private void sFMToolStripMenuItem_Click(object sender, EventArgs e) {
+            var BinPath = Directory.GetParent(SFMPATH);
+            if (File.Exists(BinPath + "/sfm.exe")) {
+                Process.Start(BinPath + "/sfm.exe");
+            }
+        }
+
+        private void toolButton_ButtonClick(object sender, EventArgs e) {
+            var BinPath = Directory.GetParent(SFMPATH);
+            if (File.Exists(BinPath + "/sfm.exe")) {
+                Process.Start(BinPath + "/sfm.exe");
+            }
+        }
+
+        private void hammerToolStripMenuItem_Click(object sender, EventArgs e) {
+            var BinPath = Directory.GetParent(SFMPATH) + @"\bin\";
+            if (File.Exists(BinPath + "hammer.exe")) {
+                Process.Start(BinPath + "hammer.exe");
+            }
+        }
+
+        private void hLMVToolStripMenuItem_Click(object sender, EventArgs e) {
+            var BinPath = Directory.GetParent(SFMPATH) + @"\bin\";
+            if (File.Exists(BinPath + "hlmv.exe")) {
+                Process.Start(BinPath + "hlmv.exe");
+            }
+        }
+
+        private void helpButton_Click(object sender, EventArgs e) {
+            Process.Start("https://github.com/Merubokkusu/SFMManager/issues");
+        }
+
+        private void categoryButton_Click(object sender, EventArgs e) {
+            if (File.Exists(@"SFM\SFMM\" + addonListView.SelectedItems[0].Text + @"\" + "info.ini")) {
+                string cat;
+                var infoIni = new IniFile(@"SFM\SFMM\" + addonListView.SelectedItems[0].Text + @"\" + "info.ini");
+                var s = infoIni.Read("Category");
+                cat = Interaction.InputBox("Type what you would like to categorize this addon as.", "Categorize",
+                    s);
+                if (cat != "") {
+                    infoIni.Write("Category", cat);
+                    AddonList();
+                }
+                
+            }
+        }
+
+        private void addAddonButton_ButtonClick(object sender, EventArgs e) {
+                var myDialog = new OpenFileDialog();
+                myDialog.Filter = "Compressed Files(*.ZIP;*.RAR;*.7ZIP;*.7Z)|*.ZIP;*.RAR;*.7ZIP;*.7Z|All files (*.*)|*.*";
+                myDialog.CheckFileExists = true;
+                myDialog.Multiselect = true;
+                //  myDialog.ShowDialog();
+
+                if (myDialog.ShowDialog() == DialogResult.OK) {
+                    foreach (string AddonFile in myDialog.FileNames) {
+                        modMan.Extract(AddonFile);
+                    }
+                }
+            
+        }
+        private void addonListView_DragDrop(object sender, DragEventArgs u) {
+            var FileList = (string[])u.Data.GetData(DataFormats.FileDrop, false);
+            foreach (string FileAddon in FileList) {
+                modMan.Extract(FileAddon);
+            }
+        }
+
+        private void addonListView_DragEnter(object sender, DragEventArgs e) {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
     } //Form End
 }

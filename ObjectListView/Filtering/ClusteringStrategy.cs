@@ -6,7 +6,7 @@
  *
  * Change log:
  * 2011-03-03  JPP  - First version
- * 
+ *
  * Copyright (C) 2011-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -61,10 +61,11 @@ namespace BrightIdeasSoftware {
             get { return defaultDisplayLabelFormatSingular; }
             set { defaultDisplayLabelFormatSingular = value; }
         }
+
         static private string defaultDisplayLabelFormatSingular = "{0} ({1} item)";
 
         /// <summary>
-        /// Gets or sets the format that will be used by default for clusters that 
+        /// Gets or sets the format that will be used by default for clusters that
         /// contain 0 or two or more items. The format string must accept two placeholders:
         /// - {0} is the cluster key converted to a string
         /// - {1} is the number of items in the cluster
@@ -73,9 +74,10 @@ namespace BrightIdeasSoftware {
             get { return defaultDisplayLabelFormatPural; }
             set { defaultDisplayLabelFormatPural = value; }
         }
+
         static private string defaultDisplayLabelFormatPural = "{0} ({1} items)";
 
-        #endregion
+        #endregion Static properties
 
         #region Life and death
 
@@ -87,7 +89,7 @@ namespace BrightIdeasSoftware {
             this.DisplayLabelFormatPlural = DefaultDisplayLabelFormatPlural;
         }
 
-        #endregion
+        #endregion Life and death
 
         #region Public properties
 
@@ -98,6 +100,7 @@ namespace BrightIdeasSoftware {
             get { return column; }
             set { column = value; }
         }
+
         private OLVColumn column;
 
         /// <summary>
@@ -106,29 +109,31 @@ namespace BrightIdeasSoftware {
         /// - {0} is the cluster key converted to a string
         /// - {1} is the number of items in the cluster (always 1 in this case)
         /// </summary>
-        /// <remarks>If this is not set, the value from 
+        /// <remarks>If this is not set, the value from
         /// ClusteringStrategy.DefaultDisplayLabelFormatSingular will be used</remarks>
         public string DisplayLabelFormatSingular {
             get { return displayLabelFormatSingular; }
             set { displayLabelFormatSingular = value; }
         }
+
         private string displayLabelFormatSingular;
 
         /// <summary>
-        /// Gets or sets the format that will be used when the cluster 
+        /// Gets or sets the format that will be used when the cluster
         /// contains 0 or two or more items. The format string must accept two placeholders:
         /// - {0} is the cluster key converted to a string
         /// - {1} is the number of items in the cluster
         /// </summary>
-        /// <remarks>If this is not set, the value from 
+        /// <remarks>If this is not set, the value from
         /// ClusteringStrategy.DefaultDisplayLabelFormatPlural will be used</remarks>
         public string DisplayLabelFormatPlural {
             get { return displayLabelFormatPural; }
             set { displayLabelFormatPural = value; }
         }
+
         private string displayLabelFormatPural;
 
-        #endregion
+        #endregion Public properties
 
         #region ICluster implementation
 
@@ -157,7 +162,7 @@ namespace BrightIdeasSoftware {
         /// <returns></returns>
         virtual public string GetClusterDisplayLabel(ICluster cluster) {
             string s = this.Column.ValueToString(cluster.ClusterKey) ?? NULL_LABEL;
-            if (String.IsNullOrEmpty(s)) 
+            if (String.IsNullOrEmpty(s))
                 s = EMPTY_LABEL;
             return this.ApplyDisplayFormat(cluster, s);
         }
@@ -184,6 +189,6 @@ namespace BrightIdeasSoftware {
             return String.IsNullOrEmpty(format) ? s : String.Format(format, s, cluster.Count);
         }
 
-        #endregion
+        #endregion ICluster implementation
     }
 }

@@ -15,7 +15,7 @@
  * - These should be more generally available. It should be possible to do something like this:
  *       this.olv.GetItem(i).Style = new ItemStyle();
  *       this.olv.GetItem(i).GetSubItem(j).Style = new CellStyle();
- * 
+ *
  * Copyright (C) 2009-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -39,13 +39,13 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// The common interface supported by all style objects
     /// </summary>
-    public interface IItemStyle
-    {
+    public interface IItemStyle {
+
         /// <summary>
         /// Gets or set the font that will be used by this style
         /// </summary>
@@ -70,14 +70,13 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// Basic implementation of IItemStyle
     /// </summary>
-    public class SimpleItemStyle : System.ComponentModel.Component, IItemStyle
-    {
+    public class SimpleItemStyle : System.ComponentModel.Component, IItemStyle {
+
         /// <summary>
         /// Gets or sets the font that will be applied by this style
         /// </summary>
         [DefaultValue(null)]
-        public Font Font
-        {
+        public Font Font {
             get { return this.font; }
             set { this.font = value; }
         }
@@ -88,8 +87,7 @@ namespace BrightIdeasSoftware
         /// Gets or sets the style of font that will be applied by this style
         /// </summary>
         [DefaultValue(FontStyle.Regular)]
-        public FontStyle FontStyle
-        {
+        public FontStyle FontStyle {
             get { return this.fontStyle; }
             set { this.fontStyle = value; }
         }
@@ -99,9 +97,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// Gets or sets the color of the text that will be applied by this style
         /// </summary>
-        [DefaultValue(typeof (Color), "")]
-        public Color ForeColor
-        {
+        [DefaultValue(typeof(Color), "")]
+        public Color ForeColor {
             get { return this.foreColor; }
             set { this.foreColor = value; }
         }
@@ -111,9 +108,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// Gets or sets the background color that will be applied by this style
         /// </summary>
-        [DefaultValue(typeof (Color), "")]
-        public Color BackColor
-        {
+        [DefaultValue(typeof(Color), "")]
+        public Color BackColor {
             get { return this.backColor; }
             set { this.backColor = value; }
         }
@@ -121,13 +117,12 @@ namespace BrightIdeasSoftware
         private Color backColor;
     }
 
-
     /// <summary>
     /// Instances of this class specify how should "hot items" (non-selected
     /// rows under the cursor) be renderered.
     /// </summary>
-    public class HotItemStyle : SimpleItemStyle
-    {
+    public class HotItemStyle : SimpleItemStyle {
+
         /// <summary>
         /// Gets or sets the overlay that should be drawn as part of the hot item
         /// </summary>
@@ -137,6 +132,7 @@ namespace BrightIdeasSoftware
             get { return this.overlay; }
             set { this.overlay = value; }
         }
+
         private IOverlay overlay;
 
         /// <summary>
@@ -150,6 +146,7 @@ namespace BrightIdeasSoftware
             get { return this.decoration; }
             set { this.decoration = value; }
         }
+
         private IDecoration decoration;
     }
 
@@ -157,8 +154,8 @@ namespace BrightIdeasSoftware
     /// This class defines how a cell should be formatted
     /// </summary>
     [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class CellStyle : IItemStyle
-    {
+    public class CellStyle : IItemStyle {
+
         /// <summary>
         /// Gets or sets the font that will be applied by this style
         /// </summary>
@@ -166,6 +163,7 @@ namespace BrightIdeasSoftware
             get { return this.font; }
             set { this.font = value; }
         }
+
         private Font font;
 
         /// <summary>
@@ -176,6 +174,7 @@ namespace BrightIdeasSoftware
             get { return this.fontStyle; }
             set { this.fontStyle = value; }
         }
+
         private FontStyle fontStyle;
 
         /// <summary>
@@ -186,6 +185,7 @@ namespace BrightIdeasSoftware
             get { return this.foreColor; }
             set { this.foreColor = value; }
         }
+
         private Color foreColor;
 
         /// <summary>
@@ -196,14 +196,15 @@ namespace BrightIdeasSoftware
             get { return this.backColor; }
             set { this.backColor = value; }
         }
+
         private Color backColor;
     }
 
     /// <summary>
     /// Instances of this class describe how hyperlinks will appear
     /// </summary>
-    public class HyperlinkStyle : System.ComponentModel.Component
-    {
+    public class HyperlinkStyle : System.ComponentModel.Component {
+
         /// <summary>
         /// Create a HyperlinkStyle
         /// </summary>
@@ -226,6 +227,7 @@ namespace BrightIdeasSoftware
             get { return this.normalStyle; }
             set { this.normalStyle = value; }
         }
+
         private CellStyle normalStyle;
 
         /// <summary>
@@ -237,6 +239,7 @@ namespace BrightIdeasSoftware
             get { return this.overStyle; }
             set { this.overStyle = value; }
         }
+
         private CellStyle overStyle;
 
         /// <summary>
@@ -248,6 +251,7 @@ namespace BrightIdeasSoftware
             get { return this.visitedStyle; }
             set { this.visitedStyle = value; }
         }
+
         private CellStyle visitedStyle;
 
         /// <summary>
@@ -259,6 +263,7 @@ namespace BrightIdeasSoftware
             get { return this.overCursor; }
             set { this.overCursor = value; }
         }
+
         private Cursor overCursor;
     }
 
@@ -267,8 +272,8 @@ namespace BrightIdeasSoftware
     /// (normal, hot, pressed) of a header control
     /// </summary>
     [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class HeaderStateStyle
-    {
+    public class HeaderStateStyle {
+
         /// <summary>
         /// Gets or sets the font that will be applied by this style
         /// </summary>
@@ -277,6 +282,7 @@ namespace BrightIdeasSoftware
             get { return this.font; }
             set { this.font = value; }
         }
+
         private Font font;
 
         /// <summary>
@@ -287,6 +293,7 @@ namespace BrightIdeasSoftware
             get { return this.foreColor; }
             set { this.foreColor = value; }
         }
+
         private Color foreColor;
 
         /// <summary>
@@ -297,6 +304,7 @@ namespace BrightIdeasSoftware
             get { return this.backColor; }
             set { this.backColor = value; }
         }
+
         private Color backColor;
 
         /// <summary>
@@ -307,6 +315,7 @@ namespace BrightIdeasSoftware
             get { return this.frameColor; }
             set { this.frameColor = value; }
         }
+
         private Color frameColor;
 
         /// <summary>
@@ -317,14 +326,15 @@ namespace BrightIdeasSoftware
             get { return this.frameWidth; }
             set { this.frameWidth = value; }
         }
+
         private float frameWidth;
     }
 
     /// <summary>
     /// This class defines how a header should be formatted in its various states.
     /// </summary>
-    public class HeaderFormatStyle : System.ComponentModel.Component
-    {
+    public class HeaderFormatStyle : System.ComponentModel.Component {
+
         /// <summary>
         /// Create a new HeaderFormatStyle
         /// </summary>
@@ -343,6 +353,7 @@ namespace BrightIdeasSoftware
             get { return this.hotStyle; }
             set { this.hotStyle = value; }
         }
+
         private HeaderStateStyle hotStyle;
 
         /// <summary>
@@ -354,6 +365,7 @@ namespace BrightIdeasSoftware
             get { return this.normalStyle; }
             set { this.normalStyle = value; }
         }
+
         private HeaderStateStyle normalStyle;
 
         /// <summary>
@@ -365,6 +377,7 @@ namespace BrightIdeasSoftware
             get { return this.pressedStyle; }
             set { this.pressedStyle = value; }
         }
+
         private HeaderStateStyle pressedStyle;
 
         /// <summary>

@@ -2,7 +2,7 @@
  * Filters - Filtering on ObjectListViews
  *
  * Author: Phillip Piper
- * Date: 03/03/2010 17:00 
+ * Date: 03/03/2010 17:00
  *
  * Change log:
  * 2011-03-01  JPP  Added CompositeAllFilter, CompositeAnyFilter and OneOfFilter
@@ -35,16 +35,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
 using System.Drawing;
+using System.Reflection;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// Interface for model-by-model filtering
     /// </summary>
-    public interface IModelFilter
-    {
+    public interface IModelFilter {
+
         /// <summary>
         /// Should the given model be included when this filter is installed
         /// </summary>
@@ -56,8 +56,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// Interface for whole list filtering
     /// </summary>
-    public interface IListFilter
-    {
+    public interface IListFilter {
+
         /// <summary>
         /// Return a subset of the given list of model objects as the new
         /// contents of the ObjectListView
@@ -70,8 +70,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// Base class for model-by-model filters
     /// </summary>
-    public class AbstractModelFilter : IModelFilter
-    {
+    public class AbstractModelFilter : IModelFilter {
+
         /// <summary>
         /// Should the given model be included when this filter is installed
         /// </summary>
@@ -85,8 +85,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// This filter calls a given Predicate to decide if a model object should be included
     /// </summary>
-    public class ModelFilter : IModelFilter
-    {
+    public class ModelFilter : IModelFilter {
+
         /// <summary>
         /// Create a filter based on the given predicate
         /// </summary>
@@ -102,6 +102,7 @@ namespace BrightIdeasSoftware
             get { return predicate; }
             set { predicate = value; }
         }
+
         private Predicate<object> predicate;
 
         /// <summary>
@@ -144,6 +145,7 @@ namespace BrightIdeasSoftware
             get { return filters; }
             set { filters = value; }
         }
+
         private IList<IModelFilter> filters = new List<IModelFilter>();
 
         /// <summary>
@@ -276,6 +278,7 @@ namespace BrightIdeasSoftware
             get { return valueGetter; }
             set { valueGetter = value; }
         }
+
         private AspectGetterDelegate valueGetter;
 
         /// <summary>
@@ -286,6 +289,7 @@ namespace BrightIdeasSoftware
             get { return possibleValues; }
             set { possibleValues = value; }
         }
+
         private IList possibleValues;
 
         /// <summary>
@@ -324,7 +328,7 @@ namespace BrightIdeasSoftware
     /// a list of bit flags. The property should be an xor-ed collection
     /// of bits flags.
     /// </summary>
-    /// <remarks>Both the property compared and the list of possible values 
+    /// <remarks>Both the property compared and the list of possible values
     /// must be convertible to ulongs.</remarks>
     public class FlagBitSetFilter : OneOfFilter {
 
@@ -383,8 +387,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// Base class for whole list filters
     /// </summary>
-    public class AbstractListFilter : IListFilter
-    {
+    public class AbstractListFilter : IListFilter {
+
         /// <summary>
         /// Return a subset of the given list of model objects as the new
         /// contents of the ObjectListView
@@ -399,8 +403,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// Instance of this class implement delegate based whole list filtering
     /// </summary>
-    public class ListFilter : AbstractListFilter
-    {
+    public class ListFilter : AbstractListFilter {
+
         /// <summary>
         /// A delegate that filters on a whole list
         /// </summary>
@@ -423,6 +427,7 @@ namespace BrightIdeasSoftware
             get { return function; }
             set { function = value; }
         }
+
         private ListFilterDelegate function;
 
         /// <summary>
@@ -441,8 +446,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// Filter the list so only the last N entries are displayed
     /// </summary>
-    public class TailFilter : AbstractListFilter
-    {
+    public class TailFilter : AbstractListFilter {
+
         /// <summary>
         /// Create a no-op tail filter
         /// </summary>
@@ -458,13 +463,14 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// Gets or sets the number of model objects that will be 
+        /// Gets or sets the number of model objects that will be
         /// returned from the tail of the list
         /// </summary>
         public int Count {
             get { return count; }
             set { count = value; }
         }
+
         private int count;
 
         /// <summary>

@@ -2,29 +2,31 @@
  * TreeRenderer - Draw the major column in a TreeListView
  *
  * Author: Phillip Piper
- * Date: 27/06/2015 
+ * Date: 27/06/2015
  *
  * Change log:
  * 2016-07-17  JPP  - Added TreeRenderer.UseTriangles and IsShowGlyphs
  * 2015-06-27  JPP  - Split out from TreeListView.cs
- * 
+ *
  */
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using System.Drawing.Drawing2D;
 
 namespace BrightIdeasSoftware {
 
     public partial class TreeListView {
+
         /// <summary>
         /// This class handles drawing the tree structure of the primary column.
         /// </summary>
         public class TreeRenderer : HighlightTextRenderer {
+
             /// <summary>
             /// Create a TreeRenderer
             /// </summary>
@@ -39,31 +41,31 @@ namespace BrightIdeasSoftware {
             /// Should the renderer draw glyphs at the expansion points?
             /// </summary>
             /// <remarks>The expansion points will still function to expand/collapse even if this is false.</remarks>
-            public bool IsShowGlyphs
-            {
+            public bool IsShowGlyphs {
                 get { return isShowGlyphs; }
                 set { isShowGlyphs = value; }
             }
+
             private bool isShowGlyphs = true;
 
             /// <summary>
             /// Should the renderer draw lines connecting siblings?
             /// </summary>
-            public bool IsShowLines
-            {
+            public bool IsShowLines {
                 get { return isShowLines; }
                 set { isShowLines = value; }
             }
+
             private bool isShowLines = true;
 
             /// <summary>
             /// Return the pen that will be used to draw the lines between branches
             /// </summary>
-            public Pen LinePen
-            {
+            public Pen LinePen {
                 get { return linePen; }
                 set { linePen = value; }
             }
+
             private Pen linePen;
 
             /// <summary>
@@ -72,14 +74,14 @@ namespace BrightIdeasSoftware {
             /// <remarks>
             /// This looks best with ShowLines = false
             /// </remarks>
-            public bool UseTriangles
-            {
+            public bool UseTriangles {
                 get { return useTriangles; }
                 set { useTriangles = value; }
             }
+
             private bool useTriangles = false;
 
-            #endregion
+            #endregion Configuration properties
 
             /// <summary>
             /// Return the branch that the renderer is currently drawing.
@@ -121,12 +123,12 @@ namespace BrightIdeasSoftware {
                 expandGlyphRectangle.Width = PIXELS_PER_LEVEL;
                 expandGlyphRectangle.Height = PIXELS_PER_LEVEL;
                 expandGlyphRectangle.Y = this.AlignVertically(paddedRectangle, expandGlyphRectangle);
-                int expandGlyphRectangleMidVertical = expandGlyphRectangle.Y + (expandGlyphRectangle.Height/2);
+                int expandGlyphRectangleMidVertical = expandGlyphRectangle.Y + (expandGlyphRectangle.Height / 2);
 
                 if (this.IsShowLines)
                     this.DrawLines(g, r, this.LinePen, br, expandGlyphRectangleMidVertical);
 
-                if (br.CanExpand && this.IsShowGlyphs) 
+                if (br.CanExpand && this.IsShowGlyphs)
                     this.DrawExpansionGlyph(g, expandGlyphRectangle, br.IsExpanded);
 
                 int indent = br.Level * PIXELS_PER_LEVEL;
@@ -145,7 +147,8 @@ namespace BrightIdeasSoftware {
             protected virtual void DrawExpansionGlyph(Graphics g, Rectangle r, bool isExpanded) {
                 if (this.UseStyles) {
                     this.DrawExpansionGlyphStyled(g, r, isExpanded);
-                } else {
+                }
+                else {
                     this.DrawExpansionGlyphManual(g, r, isExpanded);
                 }
             }
@@ -251,7 +254,8 @@ namespace BrightIdeasSoftware {
                 if (br.IsFirstBranch) {
                     if (!br.IsLastChild && !br.IsOnlyBranch)
                         g.DrawLine(p, midX, glyphMidVertical, midX, r2.Bottom);
-                } else {
+                }
+                else {
                     if (br.IsLastChild)
                         g.DrawLine(p, midX, top, midX, glyphMidVertical);
                     else
@@ -287,7 +291,8 @@ namespace BrightIdeasSoftware {
                 // Ignore events in the indent zone
                 if (x < r.Left) {
                     hti.HitTestLocation = HitTestLocation.Nothing;
-                } else {
+                }
+                else {
                     this.StandardHitTest(g, hti, r, x, y);
                 }
             }

@@ -11,12 +11,12 @@
  *                  - OLV attributes can now only be set on properties
  * v2.4
  * 2010-04-14  JPP  - Allow Name property to be set
- * 
+ *
  * v2.3
  * 2009-08-15  JPP  - Initial version
  *
  * To do:
- * 
+ *
  * Copyright (C) 2009-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -39,8 +39,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// This attribute is used to mark a property of a model
     /// class that should be noticed by Generator class.
@@ -49,8 +49,8 @@ namespace BrightIdeasSoftware
     /// All the attributes of this class match their equivilent properties on OLVColumn.
     /// </remarks>
     [AttributeUsage(AttributeTargets.Property)]
-    public class OLVColumnAttribute : Attribute
-    {
+    public class OLVColumnAttribute : Attribute {
+
         #region Constructor
 
         // There are several property where we actually want nullable value (bool?, int?),
@@ -71,21 +71,22 @@ namespace BrightIdeasSoftware
             this.Title = title;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Public properties
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string AspectToStringFormat {
             get { return aspectToStringFormat; }
             set { aspectToStringFormat = value; }
         }
+
         private string aspectToStringFormat;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool CheckBoxes {
             get { return checkBoxes; }
@@ -94,29 +95,32 @@ namespace BrightIdeasSoftware
                 this.IsCheckBoxesSet = true;
             }
         }
+
         private bool checkBoxes;
         internal bool IsCheckBoxesSet = false;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int DisplayIndex {
             get { return displayIndex; }
             set { displayIndex = value; }
         }
+
         private int displayIndex = -1;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool FillsFreeSpace {
             get { return fillsFreeSpace; }
             set { fillsFreeSpace = value; }
         }
+
         private bool fillsFreeSpace;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int FreeSpaceProportion {
             get { return freeSpaceProportion; }
@@ -125,66 +129,73 @@ namespace BrightIdeasSoftware
                 IsFreeSpaceProportionSet = true;
             }
         }
+
         private int freeSpaceProportion;
         internal bool IsFreeSpaceProportionSet = false;
 
         /// <summary>
         /// An array of IComparables that mark the cutoff points for values when
-        /// grouping on this column. 
+        /// grouping on this column.
         /// </summary>
         public object[] GroupCutoffs {
             get { return groupCutoffs; }
             set { groupCutoffs = value; }
         }
+
         private object[] groupCutoffs;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string[] GroupDescriptions {
             get { return groupDescriptions; }
             set { groupDescriptions = value; }
         }
+
         private string[] groupDescriptions;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string GroupWithItemCountFormat {
             get { return groupWithItemCountFormat; }
             set { groupWithItemCountFormat = value; }
         }
+
         private string groupWithItemCountFormat;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string GroupWithItemCountSingularFormat {
             get { return groupWithItemCountSingularFormat; }
             set { groupWithItemCountSingularFormat = value; }
         }
+
         private string groupWithItemCountSingularFormat;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Hyperlink {
             get { return hyperlink; }
             set { hyperlink = value; }
         }
+
         private bool hyperlink;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string ImageAspectName {
             get { return imageAspectName; }
             set { imageAspectName = value; }
         }
+
         private string imageAspectName;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool IsEditable {
             get { return isEditable; }
@@ -193,56 +204,62 @@ namespace BrightIdeasSoftware
                 this.IsEditableSet = true;
             }
         }
+
         private bool isEditable = true;
         internal bool IsEditableSet = false;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool IsVisible {
             get { return isVisible; }
             set { isVisible = value; }
         }
+
         private bool isVisible = true;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool IsTileViewColumn {
             get { return isTileViewColumn; }
             set { isTileViewColumn = value; }
         }
+
         private bool isTileViewColumn;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int MaximumWidth {
             get { return maximumWidth; }
             set { maximumWidth = value; }
         }
+
         private int maximumWidth = -1;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int MinimumWidth {
             get { return minimumWidth; }
             set { minimumWidth = value; }
         }
+
         private int minimumWidth = -1;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public String Name {
             get { return name; }
             set { name = value; }
         }
+
         private String name;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public HorizontalAlignment TextAlign {
             get { return this.textAlign; }
@@ -251,85 +268,88 @@ namespace BrightIdeasSoftware
                 IsTextAlignSet = true;
             }
         }
+
         private HorizontalAlignment textAlign = HorizontalAlignment.Left;
         internal bool IsTextAlignSet = false;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public String Tag {
             get { return tag; }
             set { tag = value; }
         }
+
         private String tag;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public String Title {
             get { return title; }
             set { title = value; }
         }
+
         private String title;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public String ToolTipText {
             get { return toolTipText; }
             set { toolTipText = value; }
         }
+
         private String toolTipText;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TriStateCheckBoxes {
             get { return triStateCheckBoxes; }
-            set { 
+            set {
                 triStateCheckBoxes = value;
                 this.IsTriStateCheckBoxesSet = true;
             }
         }
+
         private bool triStateCheckBoxes;
         internal bool IsTriStateCheckBoxesSet = false;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool UseInitialLetterForGroup {
             get { return useInitialLetterForGroup; }
             set { useInitialLetterForGroup = value; }
         }
+
         private bool useInitialLetterForGroup;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Width {
             get { return width; }
             set { width = value; }
         }
+
         private int width = 150;
 
-        #endregion
+        #endregion Public properties
     }
 
     /// <summary>
     /// Properties marked with [OLVChildren] will be used as the children source in a TreeListView.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class OLVChildrenAttribute : Attribute
-    {
-        
+    public class OLVChildrenAttribute : Attribute {
     }
 
     /// <summary>
     /// Properties marked with [OLVIgnore] will not have columns generated for them.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class OLVIgnoreAttribute : Attribute
-    {
-
+    public class OLVIgnoreAttribute : Attribute {
     }
 }

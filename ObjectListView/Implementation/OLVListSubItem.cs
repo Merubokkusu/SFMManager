@@ -6,7 +6,7 @@
  *
  * Change log:
  * 2011-03-31  JPP  - Split into its own file
- * 
+ *
  * Copyright (C) 2011-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,10 +27,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.ComponentModel;
 
 namespace BrightIdeasSoftware {
 
@@ -39,6 +39,7 @@ namespace BrightIdeasSoftware {
     /// </summary>
     [Browsable(false)]
     public class OLVListSubItem : ListViewItem.ListViewSubItem {
+
         #region Constructors
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace BrightIdeasSoftware {
             this.ImageSelector = image;
         }
 
-        #endregion
+        #endregion Constructors
 
         #region Properties
 
@@ -68,6 +69,7 @@ namespace BrightIdeasSoftware {
             get { return this.cellPadding; }
             set { this.cellPadding = value; }
         }
+
         private Rectangle? cellPadding;
 
         /// <summary>
@@ -78,16 +80,17 @@ namespace BrightIdeasSoftware {
             get { return this.cellVerticalAlignment; }
             set { this.cellVerticalAlignment = value; }
         }
+
         private StringAlignment? cellVerticalAlignment;
 
         /// <summary>
         /// Gets or sets the model value is being displayed by this subitem.
         /// </summary>
-        public object ModelValue
-        {
+        public object ModelValue {
             get { return modelValue; }
             private set { modelValue = value; }
         }
+
         private object modelValue;
 
         /// <summary>
@@ -124,6 +127,7 @@ namespace BrightIdeasSoftware {
                 return this.decorations;
             }
         }
+
         private IList<IDecoration> decorations;
 
         /// <summary>
@@ -135,29 +139,30 @@ namespace BrightIdeasSoftware {
             get { return imageSelector; }
             set { imageSelector = value; }
         }
+
         private Object imageSelector;
 
         /// <summary>
         /// Gets or sets the url that should be invoked when this subitem is clicked
         /// </summary>
-        public string Url
-        {
+        public string Url {
             get { return this.url; }
             set { this.url = value; }
         }
+
         private string url;
 
         /// <summary>
         /// Gets or sets whether this cell is selected
         /// </summary>
-        public bool Selected
-        {
+        public bool Selected {
             get { return this.selected; }
             set { this.selected = value; }
         }
+
         private bool selected;
 
-        #endregion
+        #endregion Properties
 
         #region Implementation Properties
 
@@ -167,7 +172,6 @@ namespace BrightIdeasSoftware {
         /// </summary>
         internal ImageRenderer.AnimationState AnimationState;
 
-        #endregion
+        #endregion Implementation Properties
     }
-
 }

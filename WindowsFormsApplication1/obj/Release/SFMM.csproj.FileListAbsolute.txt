@@ -48,7 +48,6 @@ C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsAppli
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Release\SFMManager.exe
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Release\SFMManager.pdb
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Release\HtmlAgilityPack.dll
-C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Release\SharpCompress.dll
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Release\HtmlAgilityPack.pdb
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Release\HtmlAgilityPack.xml
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Release\SFMM.csprojResolveAssemblyReference.cache
@@ -57,7 +56,6 @@ C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsAppli
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Release\SourceFilmMakerManager.loading_bar.resources
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Settings.resources
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Release\SourceFilmMakerManager.Splash_scn.resources
-C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Tools.resources
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Form1.resources
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Release\SourceFilmMakerManager.Properties.Resources.resources
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Release\SFMM.csproj.GenerateResource.Cache
@@ -70,3 +68,6 @@ C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsAppli
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Release\ObjectListView.dll
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Release\ObjectListView.xml
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Release\ObjectListView.pdb
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Release\x64\7z.dll
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Release\x86\7z.dll
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Release\SevenZipExtractor.dll

@@ -6,7 +6,7 @@
  *
  * Change log:
  * 2011-03-31  JPP  - Split into its own file
- * 
+ *
  * Copyright (C) 2011-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -36,6 +36,7 @@ namespace BrightIdeasSoftware {
     /// An indication of where a hit was within ObjectListView cell
     /// </summary>
     public enum HitTestLocation {
+
         /// <summary>
         /// Nowhere
         /// </summary>
@@ -107,82 +108,99 @@ namespace BrightIdeasSoftware {
     /// </summary>
     [Flags]
     public enum HitTestLocationEx {
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_NOWHERE = 0x00000001,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_ONITEMICON = 0x00000002,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_ONITEMLABEL = 0x00000004,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_ONITEMSTATEICON = 0x00000008,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_ONITEM = (LVHT_ONITEMICON | LVHT_ONITEMLABEL | LVHT_ONITEMSTATEICON),
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_ABOVE = 0x00000008,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_BELOW = 0x00000010,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_TORIGHT = 0x00000020,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_TOLEFT = 0x00000040,
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_EX_GROUP_HEADER = 0x10000000,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_EX_GROUP_FOOTER = 0x20000000,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_EX_GROUP_COLLAPSE = 0x40000000,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_EX_GROUP_BACKGROUND = -2147483648, // 0x80000000
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_EX_GROUP_STATEICON = 0x01000000,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_EX_GROUP_SUBSETLINK = 0x02000000,
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_EX_GROUP = (LVHT_EX_GROUP_BACKGROUND | LVHT_EX_GROUP_COLLAPSE | LVHT_EX_GROUP_FOOTER | LVHT_EX_GROUP_HEADER | LVHT_EX_GROUP_STATEICON | LVHT_EX_GROUP_SUBSETLINK),
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_EX_GROUP_MINUS_FOOTER_AND_BKGRD = (LVHT_EX_GROUP_COLLAPSE | LVHT_EX_GROUP_HEADER | LVHT_EX_GROUP_STATEICON | LVHT_EX_GROUP_SUBSETLINK),
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_EX_ONCONTENTS = 0x04000000, // On item AND not on the background
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LVHT_EX_FOOTER = 0x08000000,
     }
@@ -198,8 +216,7 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Create a OlvListViewHitTestInfo
         /// </summary>
-        public OlvListViewHitTestInfo(OLVListItem olvListItem, OLVListSubItem subItem, int flags, OLVGroup group, int iColumn)
-        {
+        public OlvListViewHitTestInfo(OLVListItem olvListItem, OLVListSubItem subItem, int flags, OLVGroup group, int iColumn) {
             this.item = olvListItem;
             this.subItem = subItem;
             this.location = ConvertNativeFlagsToDotNetLocation(olvListItem, flags);
@@ -212,12 +229,15 @@ namespace BrightIdeasSoftware {
                 case ListViewHitTestLocations.StateImage:
                     this.HitTestLocation = HitTestLocation.CheckBox;
                     break;
+
                 case ListViewHitTestLocations.Image:
                     this.HitTestLocation = HitTestLocation.Image;
                     break;
+
                 case ListViewHitTestLocations.Label:
                     this.HitTestLocation = HitTestLocation.Text;
                     break;
+
                 default:
                     if ((this.HitTestLocationEx & HitTestLocationEx.LVHT_EX_GROUP_COLLAPSE) == HitTestLocationEx.LVHT_EX_GROUP_COLLAPSE)
                         this.HitTestLocation = HitTestLocation.GroupExpander;
@@ -239,8 +259,7 @@ namespace BrightIdeasSoftware {
             this.HitTestLocation = isOverCheckBox ? HitTestLocation.HeaderCheckBox : (iDivider < 0 ? HitTestLocation.Header : HitTestLocation.HeaderDivider);
         }
 
-        private static ListViewHitTestLocations ConvertNativeFlagsToDotNetLocation(OLVListItem hitItem, int flags)
-        {
+        private static ListViewHitTestLocations ConvertNativeFlagsToDotNetLocation(OLVListItem hitItem, int flags) {
             // Untangle base .NET behaviour.
 
             // In Windows SDK, the value 8 can have two meanings here: LVHT_ONITEMSTATEICON or LVHT_ABOVE.
@@ -279,7 +298,7 @@ namespace BrightIdeasSoftware {
         /// </summary>
         public Object UserData;
 
-        #endregion
+        #endregion Public fields
 
         #region Public read-only properties
 
@@ -290,6 +309,7 @@ namespace BrightIdeasSoftware {
             get { return item; }
             internal set { item = value; }
         }
+
         private OLVListItem item;
 
         /// <summary>
@@ -299,6 +319,7 @@ namespace BrightIdeasSoftware {
             get { return subItem; }
             internal set { subItem = value; }
         }
+
         private OLVListSubItem subItem;
 
         /// <summary>
@@ -308,6 +329,7 @@ namespace BrightIdeasSoftware {
             get { return location; }
             internal set { location = value; }
         }
+
         private ListViewHitTestLocations location;
 
         /// <summary>
@@ -317,6 +339,7 @@ namespace BrightIdeasSoftware {
             get { return listView; }
             internal set { listView = value; }
         }
+
         private ObjectListView listView;
 
         /// <summary>
@@ -342,6 +365,7 @@ namespace BrightIdeasSoftware {
             get { return columnIndex; }
             internal set { columnIndex = value; }
         }
+
         private int columnIndex;
 
         /// <summary>
@@ -351,6 +375,7 @@ namespace BrightIdeasSoftware {
             get { return headerDividerIndex; }
             internal set { headerDividerIndex = value; }
         }
+
         private int headerDividerIndex = -1;
 
         /// <summary>
@@ -363,7 +388,7 @@ namespace BrightIdeasSoftware {
             }
         }
 
-        #endregion
+        #endregion Public read-only properties
 
         /// <summary>
         /// Returns a string that represents the current object.
@@ -372,14 +397,12 @@ namespace BrightIdeasSoftware {
         /// A string that represents the current object.
         /// </returns>
         /// <filterpriority>2</filterpriority>
-        public override string ToString()
-        {
-            return string.Format("HitTestLocation: {0}, HitTestLocationEx: {1}, Item: {2}, SubItem: {3}, Location: {4}, Group: {5}, ColumnIndex: {6}", 
+        public override string ToString() {
+            return string.Format("HitTestLocation: {0}, HitTestLocationEx: {1}, Item: {2}, SubItem: {3}, Location: {4}, Group: {5}, ColumnIndex: {6}",
                 this.HitTestLocation, this.HitTestLocationEx, this.item, this.subItem, this.location, this.Group, this.ColumnIndex);
         }
 
-        internal class HeaderHitTestInfo
-        {
+        internal class HeaderHitTestInfo {
             public int ColumnIndex;
             public bool IsOverCheckBox;
             public int OverDividerIndex;

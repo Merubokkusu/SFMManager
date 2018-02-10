@@ -12,7 +12,7 @@
  *                   - Added CSV to formats exported to Clipboard
  * v2.4
  * 2011-03-29   JPP  - Initial version
- * 
+ *
  * Copyright (C) 2011-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -36,12 +36,13 @@ using System.Collections;
 using System.Windows.Forms;
 
 namespace BrightIdeasSoftware {
-    
+
     /// <summary>
     /// A data transfer object that knows how to transform a list of model
     /// objects into a text and HTML representation.
     /// </summary>
     public class OLVDataObject : DataObject {
+
         #region Life and death
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace BrightIdeasSoftware {
         }
 
         /// <summary>
-        /// Create a data object which operates on the given model objects 
+        /// Create a data object which operates on the given model objects
         /// in the given ObjectListView
         /// </summary>
         /// <param name="olv">The source of the data object</param>
@@ -66,7 +67,7 @@ namespace BrightIdeasSoftware {
             this.CreateTextFormats();
         }
 
-        #endregion
+        #endregion Life and death
 
         #region Properties
 
@@ -78,6 +79,7 @@ namespace BrightIdeasSoftware {
         public bool IncludeHiddenColumns {
             get { return includeHiddenColumns; }
         }
+
         private readonly bool includeHiddenColumns;
 
         /// <summary>
@@ -87,6 +89,7 @@ namespace BrightIdeasSoftware {
         public bool IncludeColumnHeaders {
             get { return includeColumnHeaders; }
         }
+
         private readonly bool includeColumnHeaders;
 
         /// <summary>
@@ -95,6 +98,7 @@ namespace BrightIdeasSoftware {
         public ObjectListView ListView {
             get { return objectListView; }
         }
+
         private readonly ObjectListView objectListView;
 
         /// <summary>
@@ -103,16 +107,16 @@ namespace BrightIdeasSoftware {
         public IList ModelObjects {
             get { return modelObjects; }
         }
+
         private readonly IList modelObjects;
 
-        #endregion
+        #endregion Properties
 
         /// <summary>
         /// Put a text and HTML representation of our model objects
         /// into the data object.
         /// </summary>
         public void CreateTextFormats() {
-
             OLVExporter exporter = this.CreateExporter();
 
             // Put both the text and html versions onto the clipboard.

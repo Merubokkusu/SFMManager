@@ -30,6 +30,12 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.updateButton = new System.Windows.Forms.Button();
+            this.id_numberLabel = new System.Windows.Forms.Label();
+            this.idLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -42,9 +48,6 @@
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.idLabel = new System.Windows.Forms.Label();
-            this.id_numberLabel = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -64,7 +67,10 @@
             // 
             // tabPage7
             // 
-            this.tabPage7.Controls.Add(this.button9);
+            this.tabPage7.Controls.Add(this.label3);
+            this.tabPage7.Controls.Add(this.label2);
+            this.tabPage7.Controls.Add(this.label1);
+            this.tabPage7.Controls.Add(this.updateButton);
             this.tabPage7.Controls.Add(this.id_numberLabel);
             this.tabPage7.Controls.Add(this.idLabel);
             this.tabPage7.Controls.Add(this.label9);
@@ -77,10 +83,75 @@
             this.tabPage7.Text = "General";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 296);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "BasicGirl 2016-2017";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 283);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 13);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Merubokkusu 2018+";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.label1.Location = new System.Drawing.Point(3, 309);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(194, 13);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Icons designed by Freepik from Flaticon";
+            // 
+            // updateButton
+            // 
+            this.updateButton.BackColor = System.Drawing.Color.Silver;
+            this.updateButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.updateButton.FlatAppearance.BorderSize = 0;
+            this.updateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.updateButton.Font = new System.Drawing.Font("Code Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(77)));
+            this.updateButton.ForeColor = System.Drawing.Color.Transparent;
+            this.updateButton.Location = new System.Drawing.Point(223, 239);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(120, 45);
+            this.updateButton.TabIndex = 24;
+            this.updateButton.Text = "Check For Update";
+            this.updateButton.UseVisualStyleBackColor = false;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            // 
+            // id_numberLabel
+            // 
+            this.id_numberLabel.AutoSize = true;
+            this.id_numberLabel.Font = new System.Drawing.Font("Code Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(77)));
+            this.id_numberLabel.Location = new System.Drawing.Point(4, 3);
+            this.id_numberLabel.Name = "id_numberLabel";
+            this.id_numberLabel.Size = new System.Drawing.Size(22, 16);
+            this.id_numberLabel.TabIndex = 23;
+            this.id_numberLabel.Text = "3.1";
+            // 
+            // idLabel
+            // 
+            this.idLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.idLabel.Font = new System.Drawing.Font("Code Bold", 25.75F, System.Drawing.FontStyle.Bold);
+            this.idLabel.Location = new System.Drawing.Point(3, 0);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(347, 140);
+            this.idLabel.TabIndex = 22;
+            this.idLabel.Text = "SFManager\r\nVersion : ID\r\n";
+            this.idLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(197, 285);
+            this.label9.Location = new System.Drawing.Point(197, 289);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(146, 13);
             this.label9.TabIndex = 21;
@@ -214,42 +285,6 @@
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
-            // idLabel
-            // 
-            this.idLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.idLabel.Font = new System.Drawing.Font("Code Bold", 25.75F, System.Drawing.FontStyle.Bold);
-            this.idLabel.Location = new System.Drawing.Point(3, 0);
-            this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(347, 140);
-            this.idLabel.TabIndex = 22;
-            this.idLabel.Text = "SFManager\r\nVersion : ID\r\n";
-            this.idLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // id_numberLabel
-            // 
-            this.id_numberLabel.AutoSize = true;
-            this.id_numberLabel.Font = new System.Drawing.Font("Code Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(77)));
-            this.id_numberLabel.Location = new System.Drawing.Point(4, 3);
-            this.id_numberLabel.Name = "id_numberLabel";
-            this.id_numberLabel.Size = new System.Drawing.Size(22, 16);
-            this.id_numberLabel.TabIndex = 23;
-            this.id_numberLabel.Text = "3.1";
-            // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.Color.Silver;
-            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Code Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(77)));
-            this.button9.ForeColor = System.Drawing.Color.Transparent;
-            this.button9.Location = new System.Drawing.Point(7, 277);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(120, 45);
-            this.button9.TabIndex = 24;
-            this.button9.Text = "Check For Update";
-            this.button9.UseVisualStyleBackColor = false;
-            // 
             // Settings
             // 
             this.AllowDrop = true;
@@ -291,9 +326,12 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button updateButton;
         private System.Windows.Forms.Label id_numberLabel;
         private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

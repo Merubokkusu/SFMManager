@@ -7,7 +7,7 @@
  * Change log:
  * 2011-03-31  JPP  - Use OLVColumn.DataType if the value to be edited is null
  * 2011-03-06  JPP  - Separated from CellEditors.cs
- * 
+ *
  * Copyright (C) 2011-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,9 +28,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-using System.Reflection;
 
 namespace BrightIdeasSoftware {
 
@@ -47,13 +47,14 @@ namespace BrightIdeasSoftware {
 
     /// <summary>
     /// An editor registry gives a way to decide what cell editor should be used to edit
-    /// the value of a cell. Programmers can register non-standard types and the control that 
-    /// should be used to edit instances of that type. 
+    /// the value of a cell. Programmers can register non-standard types and the control that
+    /// should be used to edit instances of that type.
     /// </summary>
     /// <remarks>
     /// <para>All ObjectListViews share the same editor registry.</para>
     /// </remarks>
     public class EditorRegistry {
+
         #region Initializing
 
         /// <summary>
@@ -73,19 +74,19 @@ namespace BrightIdeasSoftware {
             this.Register(typeof(UInt64), typeof(UintUpDown));
             this.Register(typeof(Single), typeof(FloatCellEditor));
             this.Register(typeof(Double), typeof(FloatCellEditor));
-            this.Register(typeof(DateTime), delegate(Object model, OLVColumn column, Object value) {
+            this.Register(typeof(DateTime), delegate (Object model, OLVColumn column, Object value) {
                 DateTimePicker c = new DateTimePicker();
                 c.Format = DateTimePickerFormat.Short;
                 return c;
             });
-            this.Register(typeof(Boolean), delegate(Object model, OLVColumn column, Object value) {
+            this.Register(typeof(Boolean), delegate (Object model, OLVColumn column, Object value) {
                 CheckBox c = new BooleanCellEditor2();
                 c.ThreeState = column.TriStateCheckBoxes;
                 return c;
             });
         }
 
-        #endregion
+        #endregion Initializing
 
         #region Registering
 
@@ -98,7 +99,7 @@ namespace BrightIdeasSoftware {
         /// ObjectListView.EditorRegistry.Register(typeof(Color), typeof(MySpecialColorEditor));
         /// </example>
         public void Register(Type type, Type controlType) {
-            this.Register(type, delegate(Object model, OLVColumn column, Object value) {
+            this.Register(type, delegate (Object model, OLVColumn column, Object value) {
                 return controlType.InvokeMember("", BindingFlags.CreateInstance, null, null, null) as Control;
             });
         }
@@ -149,7 +150,7 @@ namespace BrightIdeasSoftware {
                 this.creatorMap.Remove(type);
         }
 
-        #endregion
+        #endregion Registering
 
         #region Accessing
 
@@ -200,7 +201,7 @@ namespace BrightIdeasSoftware {
             return new EnumCellEditor(type);
         }
 
-        #endregion
+        #endregion Accessing
 
         #region Private variables
 
@@ -208,6 +209,6 @@ namespace BrightIdeasSoftware {
         private EditorCreatorDelegate defaultCreator;
         private Dictionary<Type, EditorCreatorDelegate> creatorMap = new Dictionary<Type, EditorCreatorDelegate>();
 
-        #endregion
+        #endregion Private variables
     }
 }

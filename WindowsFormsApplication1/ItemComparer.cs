@@ -42,7 +42,7 @@ namespace SourceFilmMakerManager {
             //alphabetic comparison
             result = String.Compare(itemA.SubItems[Column].Text, itemB.SubItems[Column].Text);
 
-        done:
+            done:
             // if sort order is descending.
             if (Order == SortOrder.Descending)
                 // Invert the value returned by Compare.

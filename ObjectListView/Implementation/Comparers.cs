@@ -2,7 +2,7 @@
  * Comparers - Various Comparer classes used within ObjectListView
  *
  * Author: Phillip Piper
- * Date: 25/11/2008 17:15 
+ * Date: 25/11/2008 17:15
  *
  * Change log:
  * v2.8.1
@@ -38,8 +38,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// ColumnComparer is the workhorse for all comparison between two values of a particular column.
     /// If the column has a specific comparer, use that to compare the values. Otherwise, do
@@ -50,17 +50,17 @@ namespace BrightIdeasSoftware
     /// <para>This is used by normal (non-virtual) ObjectListViews. Virtual lists use
     /// ModelObjectComparer</para>
     /// </remarks>
-    public class ColumnComparer : IComparer, IComparer<OLVListItem>
-    {
+    public class ColumnComparer : IComparer, IComparer<OLVListItem> {
+
         /// <summary>
         /// Gets or sets the method that will be used to compare two strings.
         /// The default is to compare on the current culture, case-insensitive
         /// </summary>
-        public static StringCompareDelegate StringComparer
-        {
+        public static StringCompareDelegate StringComparer {
             get { return stringComparer; }
             set { stringComparer = value; }
         }
+
         private static StringCompareDelegate stringComparer;
 
         /// <summary>
@@ -69,8 +69,7 @@ namespace BrightIdeasSoftware
         /// </summary>
         /// <param name="col">The column whose values will be compared</param>
         /// <param name="order">The ordering for column values</param>
-        public ColumnComparer(OLVColumn col, SortOrder order)
-        {
+        public ColumnComparer(OLVColumn col, SortOrder order) {
             this.column = col;
             this.sortOrder = order;
         }
@@ -85,8 +84,7 @@ namespace BrightIdeasSoftware
         /// <param name="col2">The column whose values will be compared for secondary sorting</param>
         /// <param name="order2">The ordering for secondary column values</param>
         public ColumnComparer(OLVColumn col, SortOrder order, OLVColumn col2, SortOrder order2)
-            : this(col, order)
-        {
+            : this(col, order) {
             // There is no point in secondary sorting on the same column
             if (col != col2)
                 this.secondComparer = new ColumnComparer(col2, order2);
@@ -98,8 +96,7 @@ namespace BrightIdeasSoftware
         /// <param name="x">row1</param>
         /// <param name="y">row2</param>
         /// <returns>An ordering indication: -1, 0, 1</returns>
-        public int Compare(object x, object y)
-        {
+        public int Compare(object x, object y) {
             return this.Compare((OLVListItem)x, (OLVListItem)y);
         }
 
@@ -109,8 +106,7 @@ namespace BrightIdeasSoftware
         /// <param name="x">row1</param>
         /// <param name="y">row2</param>
         /// <returns>An ordering indication: -1, 0, 1</returns>
-        public int Compare(OLVListItem x, OLVListItem y)
-        {
+        public int Compare(OLVListItem x, OLVListItem y) {
             if (this.sortOrder == SortOrder.None)
                 return 0;
 
@@ -126,7 +122,8 @@ namespace BrightIdeasSoftware
                     result = 0;
                 else
                     result = (xIsNull ? -1 : 1);
-            } else {
+            }
+            else {
                 result = this.CompareValues(x1, y1);
             }
 
@@ -146,19 +143,17 @@ namespace BrightIdeasSoftware
         /// <param name="x">The aspect extracted from the first row</param>
         /// <param name="y">The aspect extracted from the second row</param>
         /// <returns>An ordering indication: -1, 0, 1</returns>
-        public int CompareValues(object x, object y)
-        {
+        public int CompareValues(object x, object y) {
             // Force case insensitive compares on strings
             String xAsString = x as String;
             if (xAsString != null)
                 return CompareStrings(xAsString, y as String);
-            
+
             IComparable comparable = x as IComparable;
             return comparable != null ? comparable.CompareTo(y) : 0;
         }
 
-        private static int CompareStrings(string x, string y)
-        {
+        private static int CompareStrings(string x, string y) {
             if (StringComparer == null)
                 return String.Compare(x, y, StringComparison.CurrentCultureIgnoreCase);
             else
@@ -170,13 +165,12 @@ namespace BrightIdeasSoftware
         private ColumnComparer secondComparer;
     }
 
-
     /// <summary>
     /// This comparer sort list view groups. OLVGroups have a "SortValue" property,
     /// which is used if present. Otherwise, the titles of the groups will be compared.
     /// </summary>
-    public class OLVGroupComparer : IComparer<OLVGroup>
-    {
+    public class OLVGroupComparer : IComparer<OLVGroup> {
+
         /// <summary>
         /// Create a group comparer
         /// </summary>
@@ -217,17 +211,17 @@ namespace BrightIdeasSoftware
     /// <para>This is used by virtual ObjectListViews. Non-virtual lists use
     /// ColumnComparer</para>
     /// </remarks>
-    public class ModelObjectComparer : IComparer, IComparer<object>
-    {
+    public class ModelObjectComparer : IComparer, IComparer<object> {
+
         /// <summary>
         /// Gets or sets the method that will be used to compare two strings.
         /// The default is to compare on the current culture, case-insensitive
         /// </summary>
-        public static StringCompareDelegate StringComparer
-        {
+        public static StringCompareDelegate StringComparer {
             get { return stringComparer; }
             set { stringComparer = value; }
         }
+
         private static StringCompareDelegate stringComparer;
 
         /// <summary>
@@ -235,8 +229,7 @@ namespace BrightIdeasSoftware
         /// </summary>
         /// <param name="col"></param>
         /// <param name="order"></param>
-        public ModelObjectComparer(OLVColumn col, SortOrder order)
-        {
+        public ModelObjectComparer(OLVColumn col, SortOrder order) {
             this.column = col;
             this.sortOrder = order;
         }
@@ -249,8 +242,7 @@ namespace BrightIdeasSoftware
         /// <param name="col2"></param>
         /// <param name="order2"></param>
         public ModelObjectComparer(OLVColumn col, SortOrder order, OLVColumn col2, SortOrder order2)
-            : this(col, order)
-        {
+            : this(col, order) {
             // There is no point in secondary sorting on the same column
             if (col != col2 && col2 != null && order2 != SortOrder.None)
                 this.secondComparer = new ModelObjectComparer(col2, order2);
@@ -262,8 +254,7 @@ namespace BrightIdeasSoftware
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public int Compare(object x, object y)
-        {
+        public int Compare(object x, object y) {
             int result = 0;
             object x1 = this.column.GetValue(x);
             object y1 = this.column.GetValue(y);
@@ -279,7 +270,8 @@ namespace BrightIdeasSoftware
                     result = 0;
                 else
                     result = (xIsNull ? -1 : 1);
-            } else {
+            }
+            else {
                 result = this.CompareValues(x1, y1);
             }
 
@@ -299,19 +291,17 @@ namespace BrightIdeasSoftware
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public int CompareValues(object x, object y)
-        {
+        public int CompareValues(object x, object y) {
             // Force case insensitive compares on strings
             String xStr = x as String;
             if (xStr != null)
                 return CompareStrings(xStr, y as String);
-            
+
             IComparable comparable = x as IComparable;
             return comparable != null ? comparable.CompareTo(y) : 0;
         }
 
-        private static int CompareStrings(string x, string y)
-        {
+        private static int CompareStrings(string x, string y) {
             if (StringComparer == null)
                 return String.Compare(x, y, StringComparison.CurrentCultureIgnoreCase);
             else
@@ -321,10 +311,5 @@ namespace BrightIdeasSoftware
         private OLVColumn column;
         private SortOrder sortOrder;
         private ModelObjectComparer secondComparer;
-
-        #region IComparer<object> Members
-
-        #endregion
     }
-
 }

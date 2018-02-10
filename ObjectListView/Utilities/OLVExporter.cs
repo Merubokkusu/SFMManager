@@ -6,7 +6,7 @@
  *
  * Change log:
  * 2012-08-07  JPP  Initial code
- * 
+ *
  * Copyright (C) 2012 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@ using System.Globalization;
 using System.Text;
 
 namespace BrightIdeasSoftware {
+
     /// <summary>
     /// An OLVExporter converts a collection of rows from an ObjectListView
     /// into a variety of textual formats.
@@ -69,13 +70,13 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Create an empty exporter
         /// </summary>
-        public OLVExporter() {}
+        public OLVExporter() { }
 
         /// <summary>
         /// Create an exporter that will export all the rows of the given ObjectListView
         /// </summary>
         /// <param name="olv"></param>
-        public OLVExporter(ObjectListView olv) : this(olv, olv.Objects) {}
+        public OLVExporter(ObjectListView olv) : this(olv, olv.Objects) { }
 
         /// <summary>
         /// Create an exporter that will export all the given rows from the given ObjectListView
@@ -90,7 +91,7 @@ namespace BrightIdeasSoftware {
             this.ModelObjects = ObjectListView.EnumerableToArray(objectsToExport, true);
         }
 
-        #endregion
+        #endregion Life and death
 
         #region Properties
 
@@ -103,6 +104,7 @@ namespace BrightIdeasSoftware {
             get { return includeHiddenColumns; }
             set { includeHiddenColumns = value; }
         }
+
         private bool includeHiddenColumns;
 
         /// <summary>
@@ -113,6 +115,7 @@ namespace BrightIdeasSoftware {
             get { return includeColumnHeaders; }
             set { includeColumnHeaders = value; }
         }
+
         private bool includeColumnHeaders = true;
 
         /// <summary>
@@ -123,6 +126,7 @@ namespace BrightIdeasSoftware {
             get { return objectListView; }
             set { objectListView = value; }
         }
+
         private ObjectListView objectListView;
 
         /// <summary>
@@ -132,9 +136,10 @@ namespace BrightIdeasSoftware {
             get { return modelObjects; }
             set { modelObjects = value; }
         }
+
         private IList modelObjects = new ArrayList();
 
-        #endregion
+        #endregion Properties
 
         #region Commands
 
@@ -153,10 +158,9 @@ namespace BrightIdeasSoftware {
         }
 
         /// <summary>
-        /// Convert 
+        /// Convert
         /// </summary>
         public void Convert() {
-
             IList<OLVColumn> columns = this.IncludeHiddenColumns ? this.ListView.AllColumns : this.ListView.ColumnsInDisplayOrder;
 
             StringBuilder sbText = new StringBuilder();
@@ -166,7 +170,7 @@ namespace BrightIdeasSoftware {
             // Include column headers
             if (this.IncludeColumnHeaders) {
                 List<string> strings = new List<string>();
-                foreach (OLVColumn col in columns) 
+                foreach (OLVColumn col in columns)
                     strings.Add(col.Text);
 
                 WriteOneRow(sbText, strings, "", "\t", "", null);
@@ -205,9 +209,9 @@ namespace BrightIdeasSoftware {
             sb.AppendLine(endRow);
         }
 
-        private Dictionary<ExportFormat, string> results; 
+        private Dictionary<ExportFormat, string> results;
 
-        #endregion
+        #endregion Commands
 
         #region Encoding
 
@@ -250,28 +254,34 @@ namespace BrightIdeasSoftware {
                     case '<':
                         sb.Append("&lt;");
                         break;
+
                     case '>':
                         sb.Append("&gt;");
                         break;
+
                     case '"':
                         sb.Append("&quot;");
                         break;
+
                     case '&':
                         sb.Append("&amp;");
                         break;
+
                     default:
                         if (text[i] > 159) {
                             // decimal numeric entity
                             sb.Append("&#");
                             sb.Append(((int)text[i]).ToString(CultureInfo.InvariantCulture));
                             sb.Append(";");
-                        } else
+                        }
+                        else
                             sb.Append(text[i]);
                         break;
                 }
             }
             return sb.ToString();
         }
-        #endregion
+
+        #endregion Encoding
     }
 }

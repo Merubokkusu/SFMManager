@@ -28,10 +28,12 @@ namespace SourceFilmMakerManager.OtherCodes {
                             //Run
 
                             Application.Exit();
-                        } else {
+                        }
+                        else {
                             //Run
                         }
-                    } else {
+                    }
+                    else {
                         Console.WriteLine(random.VR);
                         //Run
                     }

@@ -10,21 +10,12 @@ using System.Windows.Forms;
 namespace WindowsFormsApplication1 {
 
     public partial class Settings : Form {
-
-        //====
-        private string VERSIONID = "Alice";
-        //=====
-
-
-
-        public static string RealColor = "FFFFFFFF";
         private string AUTOCHECKUPDATE = ConfigurationManager.AppSettings["Auto_Check_For_Updates"];
         private string DownloadServer = ConfigurationManager.AppSettings["Download_Server"];
-        public static string adWeb = ConfigurationManager.AppSettings["Show_Ad"];
 
         public Settings() {
             InitializeComponent();
-            idLabel.Text = "SFManager\nVersion: " + VERSIONID;
+            idLabel.Text = "SFManager\nVersion: " + Form1.VERSIONID;
             id_numberLabel.Text = Form1.CurrentVer.ToString();
             textBox1.Text = ConfigurationManager.AppSettings["SFM_PATH"];
             // Enable drag and drop for this form
@@ -99,36 +90,6 @@ namespace WindowsFormsApplication1 {
             config.Save(ConfigurationSaveMode.Minimal);
         }
 
-
-        private void button9_Click(object sender, EventArgs e) {
-            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true) {
-                WebClient wc = new WebClient();
-                try {
-                    string Ver = wc.DownloadString("http://sfmm.hol.es/version.txt");
-
-                    //
-                    //CurrentVer is set to the current version....
-                    //
-                    if (Form1.CurrentVer < float.Parse(Ver)) {
-                        DialogResult result1 = MessageBox.Show("Go To The Download Page?", "New Version Available", MessageBoxButtons.YesNo);
-                        if (result1 == DialogResult.Yes) {
-                            Console.Write("Going To SFMMANAGER.TUMBLR");
-                            System.Diagnostics.Process.Start("http://sfmmanager.tumblr.com/");
-                        }
-                    } else {
-                        MessageBox.Show("Running The Newest Version");
-                        Console.WriteLine(random.VR);
-                    }
-                }
-                catch (System.Net.WebException) {
-                    MessageBox.Show("Couldn't check for verison, Update Server Is Down.\n You can disable auto check in the config file");
-                }
-            }//End Internet Check
-            else {
-                MessageBox.Show("Couldn't check for verison, Your not connected to the internet.\n You can disable auto check in the config file");
-            }
-        }
-
         private void radioButton3_CheckedChanged(object sender, EventArgs e) {
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             config.AppSettings.Settings["Download_Server"].Value = "1";
@@ -145,6 +106,36 @@ namespace WindowsFormsApplication1 {
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             config.AppSettings.Settings["Download_Server"].Value = "3";
             config.Save(ConfigurationSaveMode.Minimal);
+        }
+
+        private void updateButton_Click(object sender, EventArgs e) {
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true) {
+                WebClient wc = new WebClient();
+                try {
+                    string Ver = wc.DownloadString("http://sfmm.merubokkusu.com/version.txt");
+
+                    //
+                    //CurrentVer is set to the current version....
+                    //
+                    if (Form1.CurrentVer < float.Parse(Ver)) {
+                        DialogResult result1 = MessageBox.Show("Go To The Download Page?", "New Version Available", MessageBoxButtons.YesNo);
+                        if (result1 == DialogResult.Yes) {
+                            Console.Write("Going To SFMMLab");
+                            System.Diagnostics.Process.Start("https://sfmlab.com/item/1297/");
+                        }
+                    }
+                    else {
+                        MessageBox.Show("Running The Newest Version");
+                        Console.WriteLine(random.VR);
+                    }
+                }
+                catch (System.Net.WebException) {
+                    MessageBox.Show("Couldn't check for verison, Update Server Is Down.\n You can disable auto check in the config file");
+                }
+            }//End Internet Check
+            else {
+                MessageBox.Show("Couldn't check for verison, Your not connected to the internet.\n You can disable auto check in the config file");
+            }
         }
     }//Form End
 }

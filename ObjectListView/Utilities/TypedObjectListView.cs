@@ -14,7 +14,7 @@
  * 2008-10-24   JPP  - Generate dynamic methods MkII. This one handles value types
  * 2008-10-21   JPP  - Generate dynamic methods
  * 2008-09-27   JPP  - Separated from ObjectListView.cs
- * 
+ *
  * Copyright (C) 2006-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -36,20 +36,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Text;
+using System.Windows.Forms;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// A TypedObjectListView is a type-safe wrapper around an ObjectListView.
     /// </summary>
     /// <remarks>
     /// <para>VCS does not support generics on controls. It can be faked to some degree, but it
     /// cannot be completely overcome. In our case in particular, there is no way to create
-    /// the custom OLVColumn's that we need to truly be generic. So this wrapper is an 
+    /// the custom OLVColumn's that we need to truly be generic. So this wrapper is an
     /// experiment in providing some type-safe access in a way that is useful and available today.</para>
     /// <para>A TypedObjectListView is not more efficient than a normal ObjectListView.
     /// Underneath, the same name of casts are performed. But it is easier to use since you
@@ -72,8 +72,8 @@ namespace BrightIdeasSoftware
     /// }
     /// </code>
     /// </example>
-    public class TypedObjectListView<T> where T : class
-    {
+    public class TypedObjectListView<T> where T : class {
+
         /// <summary>
         /// Create a typed wrapper around the given list.
         /// </summary>
@@ -115,6 +115,7 @@ namespace BrightIdeasSoftware
             get { return olv; }
             set { olv = value; }
         }
+
         private ObjectListView olv;
 
         /// <summary>
@@ -204,11 +205,12 @@ namespace BrightIdeasSoftware
                 if (value == null)
                     this.olv.CheckStateGetter = null;
                 else
-                    this.olv.CheckStateGetter = delegate(object x) {
+                    this.olv.CheckStateGetter = delegate (object x) {
                         return this.checkStateGetter((T)x);
                     };
             }
         }
+
         private TypedCheckStateGetterDelegate checkStateGetter;
 
         /// <summary>
@@ -226,7 +228,7 @@ namespace BrightIdeasSoftware
                 if (value == null)
                     this.olv.BooleanCheckStateGetter = null;
                 else
-                    this.olv.BooleanCheckStateGetter = delegate(object x) {
+                    this.olv.BooleanCheckStateGetter = delegate (object x) {
                         return value((T)x);
                     };
             }
@@ -250,11 +252,12 @@ namespace BrightIdeasSoftware
                 if (value == null)
                     this.olv.CheckStatePutter = null;
                 else
-                    this.olv.CheckStatePutter = delegate(object x, CheckState newValue) {
+                    this.olv.CheckStatePutter = delegate (object x, CheckState newValue) {
                         return this.checkStatePutter((T)x, newValue);
                     };
             }
         }
+
         private TypedCheckStatePutterDelegate checkStatePutter;
 
         /// <summary>
@@ -273,7 +276,7 @@ namespace BrightIdeasSoftware
                 if (value == null)
                     this.olv.BooleanCheckStatePutter = null;
                 else
-                    this.olv.BooleanCheckStatePutter = delegate(object x, bool newValue) {
+                    this.olv.BooleanCheckStatePutter = delegate (object x, bool newValue) {
                         return value((T)x, newValue);
                     };
             }
@@ -295,7 +298,7 @@ namespace BrightIdeasSoftware
                 if (value == null)
                     this.olv.CellToolTipGetter = null;
                 else
-                    this.olv.CellToolTipGetter = delegate(OLVColumn col, Object x) {
+                    this.olv.CellToolTipGetter = delegate (OLVColumn col, Object x) {
                         return value(col, (T)x);
                     };
             }
@@ -325,8 +328,8 @@ namespace BrightIdeasSoftware
     /// A type-safe wrapper around an OLVColumn
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class TypedColumn<T> where T : class
-    {
+    public class TypedColumn<T> where T : class {
+
         /// <summary>
         /// Creates a TypedColumn
         /// </summary>
@@ -334,38 +337,39 @@ namespace BrightIdeasSoftware
         public TypedColumn(OLVColumn column) {
             this.column = column;
         }
+
         private OLVColumn column;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="rowObject"></param>
         /// <returns></returns>
         public delegate Object TypedAspectGetterDelegate(T rowObject);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="rowObject"></param>
         /// <param name="newValue"></param>
         public delegate void TypedAspectPutterDelegate(T rowObject, Object newValue);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="rowObject"></param>
         /// <returns></returns>
         public delegate Object TypedGroupKeyGetterDelegate(T rowObject);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="rowObject"></param>
         /// <returns></returns>
         public delegate Object TypedImageGetterDelegate(T rowObject);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TypedAspectGetterDelegate AspectGetter {
             get { return this.aspectGetter; }
@@ -374,15 +378,16 @@ namespace BrightIdeasSoftware
                 if (value == null)
                     this.column.AspectGetter = null;
                 else
-                    this.column.AspectGetter = delegate(object x) {
+                    this.column.AspectGetter = delegate (object x) {
                         return x == null ? null : this.aspectGetter((T)x);
                     };
             }
         }
+
         private TypedAspectGetterDelegate aspectGetter;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TypedAspectPutterDelegate AspectPutter {
             get { return aspectPutter; }
@@ -391,15 +396,16 @@ namespace BrightIdeasSoftware
                 if (value == null)
                     this.column.AspectPutter = null;
                 else
-                    this.column.AspectPutter = delegate(object x, object newValue) {
+                    this.column.AspectPutter = delegate (object x, object newValue) {
                         this.aspectPutter((T)x, newValue);
                     };
             }
         }
+
         private TypedAspectPutterDelegate aspectPutter;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TypedImageGetterDelegate ImageGetter {
             get { return imageGetter; }
@@ -408,15 +414,16 @@ namespace BrightIdeasSoftware
                 if (value == null)
                     this.column.ImageGetter = null;
                 else
-                    this.column.ImageGetter = delegate(object x) {
+                    this.column.ImageGetter = delegate (object x) {
                         return this.imageGetter((T)x);
                     };
             }
         }
+
         private TypedImageGetterDelegate imageGetter;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TypedGroupKeyGetterDelegate GroupKeyGetter {
             get { return groupKeyGetter; }
@@ -425,11 +432,12 @@ namespace BrightIdeasSoftware
                 if (value == null)
                     this.column.GroupKeyGetter = null;
                 else
-                    this.column.GroupKeyGetter = delegate(object x) {
+                    this.column.GroupKeyGetter = delegate (object x) {
                         return this.groupKeyGetter((T)x);
                     };
             }
         }
+
         private TypedGroupKeyGetterDelegate groupKeyGetter;
 
         #region Dynamic methods
@@ -447,7 +455,7 @@ namespace BrightIdeasSoftware
         /// </code>
         /// </para>
         /// <para>
-        /// If AspectName is empty, this method will do nothing, otherwise 
+        /// If AspectName is empty, this method will do nothing, otherwise
         /// this will replace any existing AspectGetter.
         /// </para>
         /// </remarks>
@@ -461,7 +469,7 @@ namespace BrightIdeasSoftware
         /// the given dotted chain of selectors against a model object given at runtime.
         /// </summary>
         /// <param name="type">The type of model object to be passed to the generated method</param>
-        /// <param name="path">A dotted chain of selectors. Each selector can be the name of a 
+        /// <param name="path">A dotted chain of selectors. Each selector can be the name of a
         /// field, property or parameter-less method.</param>
         /// <returns>A typed delegate</returns>
         private TypedAspectGetterDelegate GenerateAspectGetter(Type type, string path) {
@@ -502,7 +510,7 @@ namespace BrightIdeasSoftware
 
             // Find the first member with the given nam that is a field, property, or parameter-less method
             List<MemberInfo> infos = new List<MemberInfo>(type.GetMember(pathPart));
-            MemberInfo info = infos.Find(delegate(MemberInfo x) {
+            MemberInfo info = infos.Find(delegate (MemberInfo x) {
                 if (x.MemberType == MemberTypes.Field || x.MemberType == MemberTypes.Property)
                     return true;
                 if (x.MemberType == MemberTypes.Method)
@@ -533,11 +541,13 @@ namespace BrightIdeasSoftware
                         il.Emit(OpCodes.Call, mi);
                     resultType = mi.ReturnType;
                     break;
+
                 case MemberTypes.Property:
                     PropertyInfo pi = (PropertyInfo)info;
                     il.Emit(OpCodes.Call, pi.GetGetMethod());
                     resultType = pi.PropertyType;
                     break;
+
                 case MemberTypes.Field:
                     FieldInfo fi = (FieldInfo)info;
                     il.Emit(OpCodes.Ldfld, fi);
@@ -556,6 +566,6 @@ namespace BrightIdeasSoftware
             return resultType;
         }
 
-        #endregion
+        #endregion Dynamic methods
     }
 }

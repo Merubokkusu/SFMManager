@@ -9,7 +9,7 @@
  * 2015-12-30  JPP  - Added CellRendererGetterDelegate
  * v2.?
  * 2011-03-31  JPP  - Split into its own file
- * 
+ *
  * Copyright (C) 2011-2015 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,8 +29,8 @@
  */
 
 using System;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace BrightIdeasSoftware {
 
@@ -126,7 +126,7 @@ namespace BrightIdeasSoftware {
     /// These delegates are used to get the tooltip for a column header
     /// </summary>
     public delegate String HeaderToolTipGetterDelegate(OLVColumn column);
-        
+
     /// <summary>
     /// These delegates are used to fetch the image selector that should be used
     /// to choose an image for this column.
@@ -164,5 +164,5 @@ namespace BrightIdeasSoftware {
     /// </summary>
     public delegate int StringCompareDelegate(string x, string y);
 
-    #endregion
+    #endregion Delegate declarations
 }

@@ -6,7 +6,7 @@
  *
  * Change log:
  * 2011-03-03  JPP  - First version
- * 
+ *
  * Copyright (C) 2011-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -47,7 +47,7 @@ namespace BrightIdeasSoftware {
             this.ClusterKey = key;
         }
 
-        #endregion
+        #endregion Life and death
 
         #region Public overrides
 
@@ -59,7 +59,7 @@ namespace BrightIdeasSoftware {
             return this.DisplayLabel ?? "[empty]";
         }
 
-        #endregion
+        #endregion Public overrides
 
         #region Implementation of ICluster
 
@@ -70,6 +70,7 @@ namespace BrightIdeasSoftware {
             get { return count; }
             set { count = value; }
         }
+
         private int count;
 
         /// <summary>
@@ -80,6 +81,7 @@ namespace BrightIdeasSoftware {
             get { return displayLabel; }
             set { displayLabel = value; }
         }
+
         private string displayLabel;
 
         /// <summary>
@@ -90,9 +92,10 @@ namespace BrightIdeasSoftware {
             get { return clusterKey; }
             set { clusterKey = value; }
         }
+
         private object clusterKey;
 
-        #endregion
+        #endregion Implementation of ICluster
 
         #region Implementation of IComparable
 
@@ -120,6 +123,6 @@ namespace BrightIdeasSoftware {
             return -1;
         }
 
-        #endregion
+        #endregion Implementation of IComparable
     }
 }

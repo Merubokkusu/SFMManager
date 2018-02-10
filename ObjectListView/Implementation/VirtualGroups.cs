@@ -31,16 +31,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// A IVirtualGroups is the interface that a virtual list must implement to support virtual groups
     /// </summary>
-    public interface IVirtualGroups
-    {
+    public interface IVirtualGroups {
+
         /// <summary>
         /// Return the list of groups that should be shown according to the given parameters
         /// </summary>
@@ -84,8 +84,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// This is a safe, do nothing implementation of a grouping strategy
     /// </summary>
-    public class AbstractVirtualGroups : IVirtualGroups
-    {
+    public class AbstractVirtualGroups : IVirtualGroups {
+
         /// <summary>
         /// Return the list of groups that should be shown according to the given parameters
         /// </summary>
@@ -135,19 +135,17 @@ namespace BrightIdeasSoftware
         }
     }
 
-
     /// <summary>
     /// Provides grouping functionality to a FastObjectListView
     /// </summary>
-    public class FastListGroupingStrategy : AbstractVirtualGroups
-    {
+    public class FastListGroupingStrategy : AbstractVirtualGroups {
+
         /// <summary>
         /// Create groups for FastListView
         /// </summary>
         /// <param name="parmameters"></param>
         /// <returns></returns>
         public override IList<OLVGroup> GetGroups(GroupingParameters parmameters) {
-
             // There is a lot of overlap between this method and ObjectListView.MakeGroups()
             // Any changes made here may need to be reflected there
 
@@ -183,7 +181,8 @@ namespace BrightIdeasSoftware
                     string format = (count == 1 ? parmameters.TitleSingularFormat : parmameters.TitleFormat);
                     try {
                         title = String.Format(format, title, count);
-                    } catch (FormatException) {
+                    }
+                    catch (FormatException) {
                         title = "Invalid group format: " + format;
                     }
                 }
@@ -191,7 +190,7 @@ namespace BrightIdeasSoftware
                 lvg.Collapsible = folv.HasCollapsibleGroups;
                 lvg.Key = key;
                 lvg.SortValue = key as IComparable;
-                lvg.Contents = map[key].ConvertAll<int>(delegate(object x) { return folv.IndexOf(x); });
+                lvg.Contents = map[key].ConvertAll<int>(delegate (object x) { return folv.IndexOf(x); });
                 lvg.VirtualItemCount = map[key].Count;
                 if (parmameters.GroupByColumn.GroupFormatter != null)
                     parmameters.GroupByColumn.GroupFormatter(lvg, parmameters);
@@ -215,10 +214,11 @@ namespace BrightIdeasSoftware
 
             return groups;
         }
+
         private List<int> indexToGroupMap;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="group"></param>
         /// <param name="indexWithinGroup"></param>
@@ -228,7 +228,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="itemIndex"></param>
         /// <returns></returns>
@@ -237,7 +237,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="group"></param>
         /// <param name="itemIndex"></param>
@@ -246,7 +246,6 @@ namespace BrightIdeasSoftware
             return group.Contents.IndexOf(itemIndex);
         }
     }
-
 
     /// <summary>
     /// This is the COM interface that a ListView must be given in order for groups in virtual lists to work.
@@ -258,8 +257,8 @@ namespace BrightIdeasSoftware
     [ComImport(),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
      Guid("44C09D56-8D3B-419D-A462-7B956B105B47")]
-    internal interface IOwnerDataCallback
-    {
+    internal interface IOwnerDataCallback {
+
         /// <summary>
         /// Not sure what this does
         /// </summary>
@@ -309,12 +308,13 @@ namespace BrightIdeasSoftware
     /// A default implementation of the IOwnerDataCallback interface
     /// </summary>
     [Guid("6FC61F50-80E8-49b4-B200-3F38D3865ABD")]
-    internal class OwnerDataCallbackImpl : IOwnerDataCallback
-    {
+    internal class OwnerDataCallbackImpl : IOwnerDataCallback {
+
         public OwnerDataCallbackImpl(VirtualObjectListView olv) {
             this.olv = olv;
         }
-        VirtualObjectListView olv;
+
+        private VirtualObjectListView olv;
 
         #region IOwnerDataCallback Members
 
@@ -350,6 +350,6 @@ namespace BrightIdeasSoftware
             this.olv.GroupingStrategy.CacheHint(from.iGroup, from.iItem, to.iGroup, to.iItem);
         }
 
-        #endregion
+        #endregion IOwnerDataCallback Members
     }
 }

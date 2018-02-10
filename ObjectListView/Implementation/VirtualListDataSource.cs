@@ -34,8 +34,8 @@ using System;
 using System.Collections;
 using System.Windows.Forms;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// A VirtualListDataSource is a complete manner to provide functionality to a virtual list.
     /// An object that implements this interface provides a VirtualObjectListView with all the
@@ -43,8 +43,8 @@ namespace BrightIdeasSoftware
     /// </summary>
     /// <remarks>Implementors must provide functioning implementations of at least GetObjectCount()
     /// and GetNthObject(), otherwise nothing will appear in the list.</remarks>
-    public interface IVirtualListDataSource
-    {
+    public interface IVirtualListDataSource {
+
         /// <summary>
         /// Return the object that should be displayed at the n'th row.
         /// </summary>
@@ -77,7 +77,7 @@ namespace BrightIdeasSoftware
         /// Find the first row that "matches" the given text in the given range.
         /// </summary>
         /// <param name="value">The text typed by the user</param>
-        /// <param name="first">Start searching from this index. This may be greater than the 'to' parameter, 
+        /// <param name="first">Start searching from this index. This may be greater than the 'to' parameter,
         /// in which case the search should descend</param>
         /// <param name="last">Do not search beyond this index. This may be less than the 'from' parameter.</param>
         /// <param name="column">The column that should be considered when looking for a match.</param>
@@ -131,8 +131,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// This extension allow virtual lists to filter their contents
     /// </summary>
-    public interface IFilterableDataSource
-    {
+    public interface IFilterableDataSource {
+
         /// <summary>
         /// All subsequent retrievals on this data source should be filtered
         /// through the given filters. null means no filtering of that kind.
@@ -145,8 +145,8 @@ namespace BrightIdeasSoftware
     /// <summary>
     /// A do-nothing implementation of the VirtualListDataSource interface.
     /// </summary>
-    public class AbstractVirtualListDataSource : IVirtualListDataSource, IFilterableDataSource
-    {
+    public class AbstractVirtualListDataSource : IVirtualListDataSource, IFilterableDataSource {
+
         /// <summary>
         /// Creates an AbstractVirtualListDataSource
         /// </summary>
@@ -161,7 +161,7 @@ namespace BrightIdeasSoftware
         protected VirtualObjectListView listView;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
@@ -170,7 +170,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual int GetObjectCount() {
@@ -178,7 +178,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -187,7 +187,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="from"></param>
         /// <param name="to"></param>
@@ -195,7 +195,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="value"></param>
         /// <param name="first"></param>
@@ -207,7 +207,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="column"></param>
         /// <param name="order"></param>
@@ -215,14 +215,14 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="modelObjects"></param>
         public virtual void AddObjects(ICollection modelObjects) {
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         /// <param name="modelObjects"></param>
@@ -230,14 +230,14 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="modelObjects"></param>
         public virtual void RemoveObjects(ICollection modelObjects) {
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="collection"></param>
         public virtual void SetObjects(IEnumerable collection) {
@@ -268,7 +268,8 @@ namespace BrightIdeasSoftware
                     if (data.StartsWith(value, StringComparison.CurrentCultureIgnoreCase))
                         return i;
                 }
-            } else {
+            }
+            else {
                 for (int i = first; i >= last; i--) {
                     string data = column.GetStringValue(source.GetNthObject(i));
                     if (data.StartsWith(value, StringComparison.CurrentCultureIgnoreCase))
@@ -282,21 +283,21 @@ namespace BrightIdeasSoftware
         #region IFilterableDataSource Members
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="modelFilter"></param>
         /// <param name="listFilter"></param>
         virtual public void ApplyFilters(IModelFilter modelFilter, IListFilter listFilter) {
         }
 
-        #endregion
+        #endregion IFilterableDataSource Members
     }
 
     /// <summary>
     /// This class mimics the behavior of VirtualObjectListView v1.x.
     /// </summary>
-    public class VirtualListVersion1DataSource : AbstractVirtualListDataSource
-    {
+    public class VirtualListVersion1DataSource : AbstractVirtualListDataSource {
+
         /// <summary>
         /// Creates a VirtualListVersion1DataSource
         /// </summary>
@@ -314,14 +315,15 @@ namespace BrightIdeasSoftware
             get { return rowGetter; }
             set { rowGetter = value; }
         }
+
         private RowGetterDelegate rowGetter;
 
-        #endregion
+        #endregion Public properties
 
         #region IVirtualListDataSource implementation
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
@@ -333,7 +335,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="value"></param>
         /// <param name="first"></param>
@@ -344,6 +346,6 @@ namespace BrightIdeasSoftware
             return DefaultSearchText(value, first, last, column, this);
         }
 
-        #endregion
+        #endregion IVirtualListDataSource implementation
     }
 }

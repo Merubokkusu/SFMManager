@@ -10,7 +10,7 @@
  *
  * TO DO:
 
- * 
+ *
  * Copyright (C) 2012 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -37,17 +37,17 @@ using System.Diagnostics;
 using System.Drawing.Design;
 using System.Windows.Forms;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// A DataTreeListView is a TreeListView that calculates its hierarchy based on
     /// information in the data source.
     /// </summary>
     /// <remarks>
     /// <para>Like a <see cref="DataListView"/>, a DataTreeListView sources all its information
-    /// from a combination of <see cref="DataSource"/> and <see cref="DataMember"/>. 
+    /// from a combination of <see cref="DataSource"/> and <see cref="DataMember"/>.
     /// <see cref="DataSource"/> can be a DataTable, DataSet,
-    /// or anything that implements <see cref="IList"/>. 
+    /// or anything that implements <see cref="IList"/>.
     /// </para>
     /// <para>
     /// To function properly, the DataTreeListView requires:
@@ -61,20 +61,19 @@ namespace BrightIdeasSoftware
     /// </para>
     /// <para>Like a TreeListView, the hierarchy must not contain cycles. Bad things will happen if the data is cyclic.</para>
     /// </remarks>
-    public partial class DataTreeListView : TreeListView
-    {
+    public partial class DataTreeListView : TreeListView {
+
         #region Public Properties
 
         /// <summary>
         /// Gets or sets whether or not columns will be automatically generated to show the
-        /// columns when the DataSource is set. 
+        /// columns when the DataSource is set.
         /// </summary>
         /// <remarks>This must be set before the DataSource is set. It has no effect afterwards.</remarks>
         [Category("Data"),
          Description("Should the control automatically generate columns from the DataSource"),
          DefaultValue(true)]
-        public bool AutoGenerateColumns
-        {
+        public bool AutoGenerateColumns {
             get { return this.Adapter.AutoGenerateColumns; }
             set { this.Adapter.AutoGenerateColumns = value; }
         }
@@ -123,7 +122,7 @@ namespace BrightIdeasSoftware
         /// </summary>
         /// <remarks>
         /// <para>
-        /// The value contained by this column must be unique across all rows 
+        /// The value contained by this column must be unique across all rows
         /// in the data source. Odd and unpredictable things will happen if two
         /// rows have the same id.
         /// </para>
@@ -173,7 +172,7 @@ namespace BrightIdeasSoftware
         /// Object.Equals(candidateRow[this.ParentKeyAspectName], this.RootKeyValue)
         /// </code>
         /// </para>
-        /// <para>The RootKeyValue can be null. Actually, it can be any value that can 
+        /// <para>The RootKeyValue can be null. Actually, it can be any value that can
         /// be compared for equality against a basic type.</para>
         /// <para>If this is set to the wrong value (i.e. to a value that no row
         /// has in the parent id column), the list will be empty.</para>
@@ -217,7 +216,7 @@ namespace BrightIdeasSoftware
             set { this.Adapter.ShowKeyColumns = value; }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Implementation properties
 
@@ -233,8 +232,9 @@ namespace BrightIdeasSoftware
             }
             set { adapter = value; }
         }
+
         private TreeDataSourceAdapter adapter;
 
-        #endregion
+        #endregion Implementation properties
     }
 }

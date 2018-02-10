@@ -44,14 +44,14 @@
  * v2.1
  * 2009-02-24   JPP  - Removed redundant OnMouseDown() since checkbox
  *                     handling is now handled in the base class
- * 2009-01-07   JPP  - Made all public and protected methods virtual 
+ * 2009-01-07   JPP  - Made all public and protected methods virtual
  * 2008-12-07   JPP  - Trigger Before/AfterSearching events
  * 2008-11-15   JPP  - Fixed some caching issues
  * 2008-11-05   JPP  - Rewrote handling of check boxes
  * 2008-10-28   JPP  - Handle SetSelectedObjects(null)
  * 2008-10-02   JPP  - MAJOR CHANGE: Use IVirtualListDataSource
  * 2008-09-27   JPP  - Separated from ObjectListView.cs
- * 
+ *
  * Copyright (C) 2006-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -77,11 +77,11 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// A virtual object list view operates in virtual mode, that is, it only gets model objects for
     /// a row when it is needed. This gives it the ability to handle very large numbers of rows with
@@ -95,17 +95,17 @@ namespace BrightIdeasSoftware
     /// In any case, you really do not want to keep state information for 10 million animations!</para>
     /// <para>
     /// Although it isn't documented, .NET virtual lists cannot have checkboxes. This class codes around this limitation,
-    /// but you must use the functions provided by ObjectListView: CheckedObjects, CheckObject(), UncheckObject() and their friends. 
+    /// but you must use the functions provided by ObjectListView: CheckedObjects, CheckObject(), UncheckObject() and their friends.
     /// If you use the normal check box properties (CheckedItems or CheckedIndicies), they will throw an exception, since the
     /// list is in virtual mode, and .NET "knows" it can't handle checkboxes in virtual mode.
     /// </para>
-    /// <para>Due to the limits of the underlying Windows control, virtual lists do not trigger ItemCheck/ItemChecked events. 
+    /// <para>Due to the limits of the underlying Windows control, virtual lists do not trigger ItemCheck/ItemChecked events.
     /// Use a CheckStatePutter instead.</para>
     /// <para>To enable grouping, you must provide an implmentation of IVirtualGroups interface, via the GroupingStrategy property.</para>
     /// <para>Similarly, to enable filtering on the list, your VirtualListDataSource must also implement the IFilterableDataSource interface.</para>
     /// </remarks>
-    public class VirtualObjectListView : ObjectListView
-    {
+    public class VirtualObjectListView : ObjectListView {
+
         /// <summary>
         /// Create a VirtualObjectListView
         /// </summary>
@@ -122,7 +122,7 @@ namespace BrightIdeasSoftware
 
             this.VirtualListDataSource = new VirtualListVersion1DataSource(this);
 
-            // Virtual lists have to manage their own check state, since the normal ListView control 
+            // Virtual lists have to manage their own check state, since the normal ListView control
             // doesn't even allow checkboxes on virtual lists
             this.PersistentCheckBoxes = true;
         }
@@ -164,7 +164,7 @@ namespace BrightIdeasSoftware
         /// <para>
         /// This class optimizes the management of CheckStates so that it will work efficiently even on
         /// large lists of item. However, those optimizations are impossible if you install a CheckStateGetter.
-        /// With a CheckStateGetter installed, the performance of this method is O(n) where n is the size 
+        /// With a CheckStateGetter installed, the performance of this method is O(n) where n is the size
         /// of the list. This could be painfully slow.</para>
         /// </remarks>
         [Browsable(false),
@@ -186,9 +186,8 @@ namespace BrightIdeasSoftware
 
                 // Collect items that are checked AND that still exist in the list.
                 ArrayList objects = new ArrayList();
-                foreach (KeyValuePair<Object, CheckState> kvp in this.CheckStateMap)
-                {
-                    if (kvp.Value == CheckState.Checked && 
+                foreach (KeyValuePair<Object, CheckState> kvp in this.CheckStateMap) {
+                    if (kvp.Value == CheckState.Checked &&
                         (!this.CheckedObjectsMustStillExistInList ||
                          this.VirtualListDataSource.GetObjectIndex(kvp.Key) >= 0))
                         objects.Add(kvp.Key);
@@ -246,6 +245,7 @@ namespace BrightIdeasSoftware
             get { return checkedObjectsMustStillExistInList; }
             set { checkedObjectsMustStillExistInList = value; }
         }
+
         private bool checkedObjectsMustStillExistInList = true;
 
         /// <summary>
@@ -272,6 +272,7 @@ namespace BrightIdeasSoftware
             get { return this.groupingStrategy; }
             set { this.groupingStrategy = value; }
         }
+
         private IVirtualGroups groupingStrategy;
 
         /// <summary>
@@ -297,7 +298,7 @@ namespace BrightIdeasSoftware
         /// you do not want to preserve the selection. Preserving selection is the slowest part of this
         /// code -- performance is O(n) where n is the number of selected rows.</para>
         /// <para>This method is not thread safe.</para>
-        /// <para>The property DOES work on virtual lists, but if you try to iterate through a list 
+        /// <para>The property DOES work on virtual lists, but if you try to iterate through a list
         /// of 10 million objects, it may take some time :)</para>
         /// </remarks>
         [Browsable(false),
@@ -311,7 +312,8 @@ namespace BrightIdeasSoftware
                     if (filterable != null && this.UseFiltering)
                         filterable.ApplyFilters(null, null);
                     return this.FilteredObjects;
-                } finally {
+                }
+                finally {
                     if (filterable != null && this.UseFiltering)
                         filterable.ApplyFilters(this.ModelFilter, this.ListFilter);
                 }
@@ -343,12 +345,12 @@ namespace BrightIdeasSoftware
             }
             set {
                 this.showGroups = value;
-                if (this.Created && !value) 
+                if (this.Created && !value)
                     this.DisableVirtualGroups();
             }
         }
-        private bool showGroups;
 
+        private bool showGroups;
 
         /// <summary>
         /// Get/set the data source that is behind this virtual list
@@ -362,20 +364,21 @@ namespace BrightIdeasSoftware
             }
             set {
                 this.virtualListDataSource = value;
-                this.CustomSorter = delegate(OLVColumn column, SortOrder sortOrder) {
+                this.CustomSorter = delegate (OLVColumn column, SortOrder sortOrder) {
                     this.ClearCachedInfo();
                     this.virtualListDataSource.Sort(column, sortOrder);
                 };
                 this.BuildList(false);
             }
         }
+
         private IVirtualListDataSource virtualListDataSource;
 
         /// <summary>
         /// Gets or sets the number of rows in this virtual list.
         /// </summary>
         /// <remarks>
-        /// There is an annoying feature/bug in the .NET ListView class. 
+        /// There is an annoying feature/bug in the .NET ListView class.
         /// When you change the VirtualListSize property, it always scrolls so
         /// that the focused item is the top item. This is annoying since it makes
         /// the virtual list seem to flicker as the control scrolls to show the focused
@@ -403,9 +406,10 @@ namespace BrightIdeasSoftware
                     NativeMethods.SetItemCount(this, value);
             }
         }
+
         static private FieldInfo virtualListSizeFieldInfo;
 
-        #endregion
+        #endregion Public Properties
 
         #region OLV accessing
 
@@ -455,7 +459,7 @@ namespace BrightIdeasSoftware
             return index >= 0 ? this.GetItem(index) : null;
         }
 
-        #endregion
+        #endregion OLV accessing
 
         #region Object manipulation
 
@@ -479,15 +483,13 @@ namespace BrightIdeasSoftware
             if (args.Canceled)
                 return;
 
-            try
-            {
+            try {
                 this.BeginUpdate();
                 this.VirtualListDataSource.AddObjects(args.ObjectsToAdd);
                 this.BuildList();
                 this.SubscribeNotifications(args.ObjectsToAdd);
             }
-            finally
-            {
+            finally {
                 this.EndUpdate();
             }
         }
@@ -523,7 +525,8 @@ namespace BrightIdeasSoftware
                 // There is no easy way to scroll back to the beginning of the list
                 int delta = 0 - NativeMethods.GetScrollPosition(this, false);
                 NativeMethods.Scroll(this, 0, delta);
-            } else {
+            }
+            else {
                 // Find the display rectangle of the last item in the previous group
                 OLVGroup previousGroup = this.OLVGroups[groupIndex - 1];
                 int lastItemInGroup = this.GroupingStrategy.GetGroupMember(previousGroup, previousGroup.VirtualItemCount - 1);
@@ -546,8 +549,7 @@ namespace BrightIdeasSoftware
         /// <para>No check is performed to see if any of the objects are already in the ListView.</para>
         /// <para>Null objects are silently ignored.</para>
         /// </remarks>
-        public override void InsertObjects(int index, ICollection modelObjects)
-        {
+        public override void InsertObjects(int index, ICollection modelObjects) {
             if (this.VirtualListDataSource == null)
                 return;
 
@@ -557,15 +559,13 @@ namespace BrightIdeasSoftware
             if (args.Canceled)
                 return;
 
-            try
-            {
+            try {
                 this.BeginUpdate();
                 this.VirtualListDataSource.InsertObjects(index, args.ObjectsToAdd);
                 this.BuildList();
                 this.SubscribeNotifications(args.ObjectsToAdd);
             }
-            finally
-            {
+            finally {
                 this.EndUpdate();
             }
         }
@@ -722,52 +722,53 @@ namespace BrightIdeasSoftware
             }
         }
 
-        #endregion
+        #endregion Object manipulation
 
         #region Check boxes
-//
-//        /// <summary>
-//        /// Check all rows
-//        /// </summary>
-//        /// <remarks>The performance of this method is O(n) where n is the number of rows in the control.</remarks>
-//        public override void CheckAll()
-//        {
-//            if (!this.CheckBoxes)
-//                return;
-//
-//            Stopwatch sw = Stopwatch.StartNew();
-//
-//            this.BeginUpdate();
-//
-//            foreach (Object x in this.Objects)
-//                this.SetObjectCheckedness(x, CheckState.Checked);
-//
-//            this.EndUpdate();
-//
-//            Debug.WriteLine(String.Format("PERF - CheckAll() on {2} objects took {0}ms / {1} ticks", sw.ElapsedMilliseconds, sw.ElapsedTicks, this.GetItemCount()));
-//
-//        }
-//
-//        /// <summary>
-//        /// Uncheck all rows
-//        /// </summary>
-//        /// <remarks>The performance of this method is O(n) where n is the number of rows in the control.</remarks>
-//        public override void UncheckAll()
-//        {
-//            if (!this.CheckBoxes)
-//                return;
-//
-//            Stopwatch sw = Stopwatch.StartNew();
-//
-//            this.BeginUpdate();
-//
-//            foreach (Object x in this.Objects)
-//                this.SetObjectCheckedness(x, CheckState.Unchecked);
-//
-//            this.EndUpdate();
-//
-//            Debug.WriteLine(String.Format("PERF - UncheckAll() on {2} objects took {0}ms / {1} ticks", sw.ElapsedMilliseconds, sw.ElapsedTicks, this.GetItemCount()));
-//        }
+
+        //
+        //        /// <summary>
+        //        /// Check all rows
+        //        /// </summary>
+        //        /// <remarks>The performance of this method is O(n) where n is the number of rows in the control.</remarks>
+        //        public override void CheckAll()
+        //        {
+        //            if (!this.CheckBoxes)
+        //                return;
+        //
+        //            Stopwatch sw = Stopwatch.StartNew();
+        //
+        //            this.BeginUpdate();
+        //
+        //            foreach (Object x in this.Objects)
+        //                this.SetObjectCheckedness(x, CheckState.Checked);
+        //
+        //            this.EndUpdate();
+        //
+        //            Debug.WriteLine(String.Format("PERF - CheckAll() on {2} objects took {0}ms / {1} ticks", sw.ElapsedMilliseconds, sw.ElapsedTicks, this.GetItemCount()));
+        //
+        //        }
+        //
+        //        /// <summary>
+        //        /// Uncheck all rows
+        //        /// </summary>
+        //        /// <remarks>The performance of this method is O(n) where n is the number of rows in the control.</remarks>
+        //        public override void UncheckAll()
+        //        {
+        //            if (!this.CheckBoxes)
+        //                return;
+        //
+        //            Stopwatch sw = Stopwatch.StartNew();
+        //
+        //            this.BeginUpdate();
+        //
+        //            foreach (Object x in this.Objects)
+        //                this.SetObjectCheckedness(x, CheckState.Unchecked);
+        //
+        //            this.EndUpdate();
+        //
+        //            Debug.WriteLine(String.Format("PERF - UncheckAll() on {2} objects took {0}ms / {1} ticks", sw.ElapsedMilliseconds, sw.ElapsedTicks, this.GetItemCount()));
+        //        }
 
         /// <summary>
         /// Get the checkedness of an object from the model. Returning null means the
@@ -775,8 +776,7 @@ namespace BrightIdeasSoftware
         /// </summary>
         /// <param name="modelObject"></param>
         /// <returns></returns>
-        protected override CheckState? GetCheckState(object modelObject)
-        {
+        protected override CheckState? GetCheckState(object modelObject) {
             if (this.CheckStateGetter != null)
                 return base.GetCheckState(modelObject);
 
@@ -786,7 +786,7 @@ namespace BrightIdeasSoftware
             return CheckState.Unchecked;
         }
 
-        #endregion
+        #endregion Check boxes
 
         #region Implementation
 
@@ -818,7 +818,6 @@ namespace BrightIdeasSoftware
         /// </summary>
         /// <param name="groups"></param>
         protected override void CreateGroups(IEnumerable<OLVGroup> groups) {
-
             // In a virtual list, we cannot touch the Groups property.
             // It was obviously not written for virtual list and often throws exceptions.
 
@@ -854,7 +853,6 @@ namespace BrightIdeasSoftware
         /// Do the plumbing to enable groups on a virtual list
         /// </summary>
         protected void EnableVirtualGroups() {
-
             // We need to implement the IOwnerDataCallback interface
             if (this.ownerDataCallbackImpl == null)
                 this.ownerDataCallbackImpl = new OwnerDataCallbackImpl(this);
@@ -869,6 +867,7 @@ namespace BrightIdeasSoftware
             x = NativeMethods.SendMessage(this.Handle, LVM_ENABLEGROUPVIEW, 1, 0);
             //System.Diagnostics.Debug.WriteLine(x);
         }
+
         private OwnerDataCallbackImpl ownerDataCallbackImpl;
 
         /// <summary>
@@ -939,7 +938,7 @@ namespace BrightIdeasSoftware
         /// <param name="itemToFind">The item that is before the item that is returned, or null</param>
         /// <returns>A OLVListItem</returns>
         public override OLVListItem GetNextItem(OLVListItem itemToFind) {
-            if (!this.ShowGroups) 
+            if (!this.ShowGroups)
                 return base.GetNextItem(itemToFind);
 
             // Sanity
@@ -958,7 +957,7 @@ namespace BrightIdeasSoftware
             // If it's not the last member, just return the next member
             if (indexWithinGroup < this.OLVGroups[groupIndex].VirtualItemCount - 1)
                 return this.GetItem(this.GroupingStrategy.GetGroupMember(this.OLVGroups[groupIndex], indexWithinGroup + 1));
-            
+
             // The item is the last member of its group. Return the first member of the next group
             // (unless there isn't a next group)
             if (groupIndex < this.OLVGroups.Count - 1)
@@ -975,7 +974,7 @@ namespace BrightIdeasSoftware
         /// <param name="itemToFind">The item that is before the item that is returned</param>
         /// <returns>A ListViewItem</returns>
         public override OLVListItem GetPreviousItem(OLVListItem itemToFind) {
-            if (!this.ShowGroups) 
+            if (!this.ShowGroups)
                 return base.GetPreviousItem(itemToFind);
 
             // Sanity
@@ -1077,8 +1076,8 @@ namespace BrightIdeasSoftware
             this.ClearCachedInfo();
 
             // There is a bug in .NET when a virtual ListView is cleared
-            // (i.e. VirtuaListSize set to 0) AND it is scrolled vertically: the scroll position 
-            // is wrong when the list is next populated. To avoid this, before 
+            // (i.e. VirtuaListSize set to 0) AND it is scrolled vertically: the scroll position
+            // is wrong when the list is next populated. To avoid this, before
             // clearing a virtual list, we make sure the list is scrolled to the top.
             // [6 weeks later] Damn this is a pain! There are cases where this can also throw exceptions!
             try {
@@ -1151,7 +1150,7 @@ namespace BrightIdeasSoftware
                 this.SetVirtualListSize(this.VirtualListDataSource.GetObjectCount());
         }
 
-        #endregion
+        #endregion Implementation
 
         #region Event handlers
 
@@ -1230,13 +1229,13 @@ namespace BrightIdeasSoftware
             return this.VirtualListDataSource.SearchText(text, first, last, column);
         }
 
-        #endregion
+        #endregion Event handlers
 
         #region Variable declaractions
 
         private OLVListItem lastRetrieveVirtualItem;
         private int lastRetrieveVirtualItemIndex = -1;
 
-        #endregion
+        #endregion Variable declaractions
     }
 }

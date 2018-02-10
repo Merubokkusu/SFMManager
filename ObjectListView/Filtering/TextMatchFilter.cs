@@ -2,7 +2,7 @@
  * TextMatchFilter - Text based filtering on ObjectListViews
  *
  * Author: Phillip Piper
- * Date: 31/05/2011 7:45am 
+ * Date: 31/05/2011 7:45am
  *
  * Change log:
  * v2.6
@@ -34,9 +34,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Drawing;
 
 namespace BrightIdeasSoftware {
 
@@ -51,7 +51,7 @@ namespace BrightIdeasSoftware {
         #region Life and death
 
         /// <summary>
-        /// Create a text filter that will include rows where any cell matches 
+        /// Create a text filter that will include rows where any cell matches
         /// any of the given regex expressions.
         /// </summary>
         /// <param name="olv"></param>
@@ -118,7 +118,7 @@ namespace BrightIdeasSoftware {
             this.StringComparison = comparison;
         }
 
-        #endregion
+        #endregion Life and death
 
         #region Public properties
 
@@ -129,6 +129,7 @@ namespace BrightIdeasSoftware {
             get { return columns; }
             set { columns = value; }
         }
+
         private OLVColumn[] columns;
 
         /// <summary>
@@ -139,10 +140,11 @@ namespace BrightIdeasSoftware {
             get { return additionalColumns; }
             set { additionalColumns = value; }
         }
+
         private OLVColumn[] additionalColumns;
 
         /// <summary>
-        /// Gets or sets the collection of strings that will be used for 
+        /// Gets or sets the collection of strings that will be used for
         /// contains matching. Setting this replaces all previous texts
         /// of any kind.
         /// </summary>
@@ -180,10 +182,11 @@ namespace BrightIdeasSoftware {
             get { return listView; }
             set { listView = value; }
         }
+
         private ObjectListView listView;
 
         /// <summary>
-        /// Gets or sets the collection of strings that will be used for 
+        /// Gets or sets the collection of strings that will be used for
         /// prefix matching. Setting this replaces all previous texts
         /// of any kind.
         /// </summary>
@@ -216,17 +219,21 @@ namespace BrightIdeasSoftware {
                         case StringComparison.CurrentCulture:
                             regexOptions = RegexOptions.None;
                             break;
+
                         case StringComparison.CurrentCultureIgnoreCase:
                             regexOptions = RegexOptions.IgnoreCase;
                             break;
+
                         case StringComparison.Ordinal:
                         case StringComparison.InvariantCulture:
                             regexOptions = RegexOptions.CultureInvariant;
                             break;
+
                         case StringComparison.OrdinalIgnoreCase:
                         case StringComparison.InvariantCultureIgnoreCase:
                             regexOptions = RegexOptions.CultureInvariant | RegexOptions.IgnoreCase;
                             break;
+
                         default:
                             regexOptions = RegexOptions.None;
                             break;
@@ -238,10 +245,11 @@ namespace BrightIdeasSoftware {
                 regexOptions = value;
             }
         }
+
         private RegexOptions? regexOptions;
 
         /// <summary>
-        /// Gets or sets the collection of strings that will be used for 
+        /// Gets or sets the collection of strings that will be used for
         /// regex pattern matching. Setting this replaces all previous texts
         /// of any kind.
         /// </summary>
@@ -266,9 +274,10 @@ namespace BrightIdeasSoftware {
             get { return this.stringComparison; }
             set { this.stringComparison = value; }
         }
+
         private StringComparison stringComparison = StringComparison.InvariantCultureIgnoreCase;
 
-        #endregion
+        #endregion Public properties
 
         #region Implementation
 
@@ -280,7 +289,8 @@ namespace BrightIdeasSoftware {
             if (this.Columns == null) {
                 foreach (OLVColumn column in this.ListView.Columns)
                     yield return column;
-            } else {
+            }
+            else {
                 foreach (OLVColumn column in this.Columns)
                     yield return column;
             }
@@ -290,7 +300,7 @@ namespace BrightIdeasSoftware {
             }
         }
 
-        #endregion
+        #endregion Implementation
 
         #region Public interface
 
@@ -333,7 +343,7 @@ namespace BrightIdeasSoftware {
             List<CharacterRange> ranges = new List<CharacterRange>();
 
             foreach (TextMatchingStrategy filter in this.MatchingStrategies) {
-                 if (!String.IsNullOrEmpty(filter.Text))
+                if (!String.IsNullOrEmpty(filter.Text))
                     ranges.AddRange(filter.FindAllMatchedRanges(cellText));
             }
 
@@ -358,13 +368,13 @@ namespace BrightIdeasSoftware {
             return false;
         }
 
-        #endregion
+        #endregion Public interface
 
         #region Implementation members
 
         private List<TextMatchingStrategy> MatchingStrategies = new List<TextMatchingStrategy>();
 
-        #endregion
+        #endregion Implementation members
 
         #region Components
 
@@ -387,6 +397,7 @@ namespace BrightIdeasSoftware {
                 get { return textFilter; }
                 set { textFilter = value; }
             }
+
             private TextMatchFilter textFilter;
 
             /// <summary>
@@ -396,6 +407,7 @@ namespace BrightIdeasSoftware {
                 get { return this.text; }
                 set { this.text = value; }
             }
+
             private string text;
 
             /// <summary>
@@ -522,7 +534,6 @@ namespace BrightIdeasSoftware {
 
                 return ranges;
             }
-
         }
 
         /// <summary>
@@ -572,6 +583,7 @@ namespace BrightIdeasSoftware {
                     this.regex = value;
                 }
             }
+
             private Regex regex;
 
             /// <summary>
@@ -582,6 +594,7 @@ namespace BrightIdeasSoftware {
                     return this.Regex == TextRegexMatchingStrategy.InvalidRegexMarker;
                 }
             }
+
             static private Regex InvalidRegexMarker = new Regex(".*");
 
             /// <summary>
@@ -624,6 +637,6 @@ namespace BrightIdeasSoftware {
             }
         }
 
-        #endregion
+        #endregion Components
     }
 }

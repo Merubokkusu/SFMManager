@@ -24,22 +24,30 @@ namespace SourceFilmMakerManager {
 
         private void Splash_Load(object sender, System.EventArgs e) {
         }
+
         private void Migrate() {
             if (Directory.Exists(@"SFM\PuCE\")) {
                 Console.WriteLine(@"Found SFM\PuCE, Migrating");
                 DirectoryInfo d = new DirectoryInfo("SFM\\PuCE\\");
                 FileInfo[] infos = d.GetFiles();
                 foreach (FileInfo f in infos) {
-                   
                     if (f.Name.EndsWith(".PuCE")) {
                         var fileName = f.Name.Replace(".PuCE", "");
-                        Console.WriteLine(f.FullName);
-                        Directory.Move(f.FullName, "SFM\\SFMM\\" + fileName + ".SFMM");
+                        Console.WriteLine("Migrating "+ fileName);
+                        Directory.CreateDirectory(@"SFM\SFMM\" + fileName);
+                        Directory.Move(f.FullName, @"SFM\SFMM\" + fileName + @"\" + fileName + ".SFMM");
+                        var infoIni = new IniFile(@"SFM\SFMM\" + fileName + @"\" + "info.ini");
+                        infoIni.Write("Date", f.LastWriteTime.ToString());
+                        infoIni.Write("Category", "?");
+                        infoIni.Write("Source", "?");
+                        infoIni.Write("Author", "?");
+                        infoIni.Write("URL", "?");
                     }
                 }
-                //Directory.Delete(@"SFM\PuCE\");
+                Directory.Delete(@"SFM\PuCE");
             }
         }
+
         public void FolderCreate() {
             var dirPuCE = @"SFM\SFMM\";  // folder location
             var dirManager = @"SFM\Manager\";  // folder location
@@ -47,7 +55,8 @@ namespace SourceFilmMakerManager {
 
             if (!Directory.Exists(dirPuCE)) { // if it doesn't exist, create
                 Directory.CreateDirectory(dirPuCE);
-            } else {
+            }
+            else {
                 Console.WriteLine(random.LG);
             }
             if (!Directory.Exists(dirManager)) { // if it doesn't exist, create
@@ -62,7 +71,7 @@ namespace SourceFilmMakerManager {
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true) {
                 WebClient wc = new WebClient();
                 try {
-                    string Ver = wc.DownloadString("http://sfmm.hol.es/version.txt");
+                    string Ver = wc.DownloadString("http://sfmm.merubokkusu.com/version.txt");
 
                     //
                     //CurrentVer is set to the current version....
@@ -70,17 +79,19 @@ namespace SourceFilmMakerManager {
                     if (CurrentVer < float.Parse(Ver)) {
                         DialogResult result1 = MessageBox.Show("Go To The Download Page?", "New Version Available", MessageBoxButtons.YesNo);
                         if (result1 == DialogResult.Yes) {
-                            Console.Write("Going To SFMMANAGER.TUMBLR");
-                            System.Diagnostics.Process.Start("http://sfmmanager.tumblr.com/");
-                            //Run
-                            WindowsFormsApplication1.Form1.SplashOver = true;
-                            this.Close();
-                        } else {
+                            Console.Write("Going To SFMMLab");
+                            System.Diagnostics.Process.Start("https://sfmlab.com/item/1297/");
                             //Run
                             WindowsFormsApplication1.Form1.SplashOver = true;
                             this.Close();
                         }
-                    } else {
+                        else {
+                            //Run
+                            WindowsFormsApplication1.Form1.SplashOver = true;
+                            this.Close();
+                        }
+                    }
+                    else {
                         Console.WriteLine(random.VR);
                         //Run
                         System.Threading.Thread.Sleep(2500);

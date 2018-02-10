@@ -45,8 +45,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
-namespace BrightIdeasSoftware.Design
-{
+namespace BrightIdeasSoftware.Design {
 
     /// <summary>
     /// Designer for <see cref="ObjectListView"/> and its subclasses.
@@ -61,8 +60,7 @@ namespace BrightIdeasSoftware.Design
     /// So, this class uses reflection to create a ListViewDesigner and then forwards messages to that designer.
     /// </para>
     /// </remarks>
-    public class ObjectListViewDesigner : ControlDesigner
-    {
+    public class ObjectListViewDesigner : ControlDesigner {
 
         #region Initialize & Dispose
 
@@ -96,7 +94,8 @@ namespace BrightIdeasSoftware.Design
             IServiceContainer site = (IServiceContainer)component.Site;
             if (site != null && GetService(typeof(DesignerCommandSet)) == null) {
                 site.AddService(typeof(DesignerCommandSet), new CDDesignerCommandSet(this));
-            } else {
+            }
+            else {
                 Debug.Fail("site != null && GetService(typeof (DesignerCommandSet)) == null");
             }
 
@@ -158,7 +157,7 @@ namespace BrightIdeasSoftware.Design
             }
         }
 
-        #endregion
+        #endregion Initialize & Dispose
 
         #region IDesignerFilter overrides
 
@@ -169,7 +168,7 @@ namespace BrightIdeasSoftware.Design
         protected override void PreFilterProperties(IDictionary properties) {
             // Debug.WriteLine("ObjectListViewDesigner.PreFilterProperties");
 
-            // Always call the base PreFilterProperties implementation 
+            // Always call the base PreFilterProperties implementation
             // before you modify the properties collection.
             base.PreFilterProperties(properties);
 
@@ -184,8 +183,8 @@ namespace BrightIdeasSoftware.Design
             // So we shadow the unwanted properties, and give the replacement properties
             // non-browsable attributes so that they are hidden from the user
 
-            List<string> unwantedProperties = new List<string>(new string[] { 
-                "BackgroundImage", "BackgroundImageTiled", "HotTracking", "HoverSelection", 
+            List<string> unwantedProperties = new List<string>(new string[] {
+                "BackgroundImage", "BackgroundImageTiled", "HotTracking", "HoverSelection",
                 "LabelEdit", "VirtualListSize", "VirtualMode" });
 
             // Also hid Tooltip properties, since giving a tooltip to the control through the IDE
@@ -200,7 +199,7 @@ namespace BrightIdeasSoftware.Design
             // since TreeListViews can't show groups
             if (this.Control is TreeListView) {
                 unwantedProperties.AddRange(new string[] {
-                    "GroupImageList", "GroupWithItemCountFormat", "GroupWithItemCountSingularFormat", "HasCollapsibleGroups", 
+                    "GroupImageList", "GroupWithItemCountFormat", "GroupWithItemCountSingularFormat", "HasCollapsibleGroups",
                     "SpaceBetweenGroups", "ShowGroups", "SortGroupItemsByPrimaryColumn", "ShowItemCountOnGroups"
                 });
             }
@@ -246,7 +245,7 @@ namespace BrightIdeasSoftware.Design
                     "AfterCreatingGroups",
                     "BeforeCreatingGroups",
                     "GroupTaskClicked",
-                    "GroupExpandingCollapsing", 
+                    "GroupExpandingCollapsing",
                     "GroupStateChanged"
                 });
             }
@@ -280,7 +279,7 @@ namespace BrightIdeasSoftware.Design
             base.PostFilterEvents(events);
         }
 
-        #endregion
+        #endregion IDesignerFilter overrides
 
         #region Overrides
 
@@ -338,13 +337,14 @@ namespace BrightIdeasSoftware.Design
                     // The listview designer is interested in HDN_ENDTRACK notifications
                     this.listViewDesignWndProc.Invoke(listViewDesigner, new object[] { m });
                     break;
+
                 default:
                     base.WndProc(ref m);
                     break;
             }
         }
 
-        #endregion
+        #endregion Overrides
 
         #region Implementation variables
 
@@ -353,7 +353,7 @@ namespace BrightIdeasSoftware.Design
         private MethodInfo listViewDesignGetHitTest;
         private MethodInfo listViewDesignWndProc;
 
-        #endregion
+        #endregion Implementation variables
 
         #region Custom action list
 
@@ -369,8 +369,8 @@ namespace BrightIdeasSoftware.Design
         /// only have to modify the returned collection of actions, but we have to implement
         /// the properties and commands that the returned actions use. </para>
         /// </remarks>
-        private class ListViewActionListAdapter : DesignerActionList
-        {
+        private class ListViewActionListAdapter : DesignerActionList {
+
             public ListViewActionListAdapter(ObjectListViewDesigner designer, DesignerActionList wrappedList)
                 : base(wrappedList.Component) {
                 this.designer = designer;
@@ -385,7 +385,7 @@ namespace BrightIdeasSoftware.Design
             }
 
             private void EditValue(ComponentDesigner componentDesigner, IComponent iComponent, string propertyName) {
-                // One more complication. The ListViewActionList classes uses an internal class, EditorServiceContext, to 
+                // One more complication. The ListViewActionList classes uses an internal class, EditorServiceContext, to
                 // edit the items/columns/groups collections. So, we use reflection to bypass the data hiding.
                 Type tEditorServiceContext = Type.GetType("System.Windows.Forms.Design.EditorServiceContext, System.Design");
                 tEditorServiceContext.InvokeMember("EditValue", BindingFlags.InvokeMethod | BindingFlags.Static, null, null, new object[] { componentDesigner, iComponent, propertyName });
@@ -425,16 +425,15 @@ namespace BrightIdeasSoftware.Design
                 set { SetValue(base.Component, "View", value); }
             }
 
-            ObjectListViewDesigner designer;
-            DesignerActionList wrappedList;
+            private ObjectListViewDesigner designer;
+            private DesignerActionList wrappedList;
         }
 
-        #endregion
+        #endregion Custom action list
 
         #region DesignerCommandSet
 
-        private class CDDesignerCommandSet : DesignerCommandSet
-        {
+        private class CDDesignerCommandSet : DesignerCommandSet {
 
             public CDDesignerCommandSet(ComponentDesigner componentDesigner) {
                 this.componentDesigner = componentDesigner;
@@ -456,15 +455,15 @@ namespace BrightIdeasSoftware.Design
             private readonly ComponentDesigner componentDesigner;
         }
 
-        #endregion
+        #endregion DesignerCommandSet
     }
 
     /// <summary>
     /// This class works in conjunction with the OLVColumns property to allow OLVColumns
     /// to be added to the ObjectListView.
     /// </summary>
-    public class OLVColumnCollectionEditor : System.ComponentModel.Design.CollectionEditor
-    {
+    public class OLVColumnCollectionEditor : System.ComponentModel.Design.CollectionEditor {
+
         /// <summary>
         /// Create a OLVColumnCollectionEditor
         /// </summary>
@@ -526,8 +525,8 @@ namespace BrightIdeasSoftware.Design
     /// <summary>
     /// Control how the overlay is presented in the IDE
     /// </summary>
-    internal class OverlayConverter : ExpandableObjectConverter
-    {
+    internal class OverlayConverter : ExpandableObjectConverter {
+
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType) {
             return destinationType == typeof(string) || base.CanConvertTo(context, destinationType);
         }

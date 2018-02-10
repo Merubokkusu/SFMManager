@@ -6,7 +6,7 @@
  *
  * Change log:
  * 2011-03-04  JPP  - First version
- * 
+ *
  * Copyright (C) 2011-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -36,6 +36,7 @@ namespace BrightIdeasSoftware {
     /// as whole using the filtering UI provided by the ObjectListView.
     /// </summary>
     public interface ICluster : IComparable {
+
         /// <summary>
         /// Gets or sets how many items belong to this cluster
         /// </summary>

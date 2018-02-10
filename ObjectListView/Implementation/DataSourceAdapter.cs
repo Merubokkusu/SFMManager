@@ -13,9 +13,9 @@
  * 2014-10-27  JPP  - Fix issue where SelectedObject was not sync'ed with CurrencyManager.Position (SF #129)
  * v2.6
  * 2012-08-16  JPP  - Unify common column creation functionality with Generator when possible
- * 
+ *
  * 2010-09-20  JPP  - Initial version
- * 
+ *
  * Copyright (C) 2010-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -37,16 +37,16 @@
 using System;
 using System.ComponentModel;
 using System.Data;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.Windows.Forms;
 
-namespace BrightIdeasSoftware
-{
+namespace BrightIdeasSoftware {
+
     /// <summary>
     /// A helper class that translates DataSource events for an ObjectListView
     /// </summary>
-    public class DataSourceAdapter : IDisposable
-    {
+    public class DataSourceAdapter : IDisposable {
+
         #region Life and death
 
         /// <summary>
@@ -83,19 +83,20 @@ namespace BrightIdeasSoftware
             this.UnbindDataSource();
         }
 
-        #endregion
+        #endregion Life and death
 
         #region Public Properties
 
         /// <summary>
         /// Gets or sets whether or not columns will be automatically generated to show the
-        /// columns when the DataSource is set. 
+        /// columns when the DataSource is set.
         /// </summary>
         /// <remarks>This must be set before the DataSource is set. It has no effect afterwards.</remarks>
         public bool AutoGenerateColumns {
             get { return this.autoGenerateColumns; }
             set { this.autoGenerateColumns = value; }
         }
+
         private bool autoGenerateColumns = true;
 
         /// <summary>
@@ -108,6 +109,7 @@ namespace BrightIdeasSoftware
                 this.RebindDataSource(true);
             }
         }
+
         private Object dataSource;
 
         /// <summary>
@@ -123,6 +125,7 @@ namespace BrightIdeasSoftware
                 }
             }
         }
+
         private string dataMember = "";
 
         /// <summary>
@@ -132,9 +135,10 @@ namespace BrightIdeasSoftware
             get { return listView; }
             internal set { listView = value; }
         }
+
         private ObjectListView listView;
 
-        #endregion
+        #endregion Public Properties
 
         #region Implementation properties
 
@@ -145,14 +149,15 @@ namespace BrightIdeasSoftware
             get { return currencyManager; }
             set { currencyManager = value; }
         }
+
         private CurrencyManager currencyManager;
 
-        #endregion
+        #endregion Implementation properties
 
         #region Binding and unbinding
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="olv"></param>
         protected virtual void BindListView(ObjectListView olv) {
@@ -165,7 +170,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="olv"></param>
         protected virtual void UnbindListView(ObjectListView olv) {
@@ -178,7 +183,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected virtual void BindDataSource() {
             if (this.CurrencyManager == null)
@@ -190,7 +195,7 @@ namespace BrightIdeasSoftware
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected virtual void UnbindDataSource() {
             if (this.CurrencyManager == null)
@@ -201,7 +206,7 @@ namespace BrightIdeasSoftware
             this.CurrencyManager.ListChanged -= new ListChangedEventHandler(CurrencyManagerListChanged);
         }
 
-        #endregion
+        #endregion Binding and unbinding
 
         #region Initialization
 
@@ -216,7 +221,6 @@ namespace BrightIdeasSoftware
         /// Our data source has changed. Figure out how to handle the new source
         /// </summary>
         protected virtual void RebindDataSource(bool forceDataInitialization) {
-
             CurrencyManager tempCurrencyManager = null;
             if (this.ListView != null && this.ListView.BindingContext != null && this.DataSource != null) {
                 tempCurrencyManager = this.ListView.BindingContext[this.DataSource, this.DataMember] as CurrencyManager;
@@ -287,7 +291,6 @@ namespace BrightIdeasSoftware
 
             bool wereColumnsAdded = false;
             foreach (PropertyDescriptor property in properties) {
-
                 if (!this.ShouldCreateColumn(property))
                     continue;
 
@@ -311,9 +314,8 @@ namespace BrightIdeasSoftware
         /// <param name="property"></param>
         /// <returns></returns>
         protected virtual bool ShouldCreateColumn(PropertyDescriptor property) {
-
             // Is there a column that already shows this property? If so, we don't show it again
-            if (this.ListView.AllColumns.Exists(delegate(OLVColumn x) { return x.AspectName == property.Name; }))
+            if (this.ListView.AllColumns.Exists(delegate (OLVColumn x) { return x.AspectName == property.Name; }))
                 return false;
 
             // Relationships to other tables turn up as IBindibleLists. Don't make columns to show them.
@@ -332,7 +334,6 @@ namespace BrightIdeasSoftware
         /// <param name="column"></param>
         /// <param name="property"></param>
         protected virtual void ConfigureColumn(OLVColumn column, PropertyDescriptor property) {
-
             column.LastDisplayIndex = this.ListView.AllColumns.Count;
 
             // If our column is a BLOB, it could be an image, so assign a renderer to draw it.
@@ -349,16 +350,16 @@ namespace BrightIdeasSoftware
             foreach (OLVColumn x in this.ListView.AllColumns) {
                 OLVColumn column = x; // stack based variable accessible from closures
                 if (column.AspectGetter == null && !String.IsNullOrEmpty(column.AspectName)) {
-                    column.AspectGetter = delegate(object row) {
+                    column.AspectGetter = delegate (object row) {
                         // In most cases, rows will be DataRowView objects
                         DataRowView drv = row as DataRowView;
-                        if (drv == null) 
+                        if (drv == null)
                             return column.GetAspectByName(row);
                         return (drv.Row.RowState == DataRowState.Detached) ? null : drv[column.AspectName];
                     };
                 }
                 if (column.IsEditable && column.AspectPutter == null && !String.IsNullOrEmpty(column.AspectName)) {
-                    column.AspectPutter = delegate(object row, object newValue) {
+                    column.AspectPutter = delegate (object row, object newValue) {
                         // In most cases, rows will be DataRowView objects
                         DataRowView drv = row as DataRowView;
                         if (drv == null)
@@ -372,7 +373,7 @@ namespace BrightIdeasSoftware
             }
         }
 
-        #endregion
+        #endregion Initialization
 
         #region Event Handlers
 
@@ -397,7 +398,6 @@ namespace BrightIdeasSoftware
             //System.Diagnostics.Debug.WriteLine(e.ListChangedType);
             Stopwatch sw = Stopwatch.StartNew();
             switch (e.ListChangedType) {
-
                 case ListChangedType.Reset:
                     this.HandleListChangedReset(e);
                     break;
@@ -430,7 +430,6 @@ namespace BrightIdeasSoftware
             }
             sw.Stop();
             System.Diagnostics.Debug.WriteLine(String.Format("PERF - Processing {0} event on {1} rows took {2}ms", e.ListChangedType, this.ListView.GetItemCount(), sw.ElapsedMilliseconds));
-
         }
 
         /// <summary>
@@ -498,7 +497,7 @@ namespace BrightIdeasSoftware
         protected virtual void HandleListChangedItemChanged(ListChangedEventArgs e) {
             // A single item has changed, so just refresh that.
             //System.Diagnostics.Debug.WriteLine(String.Format("HandleListChangedItemChanged: {0}, {1}", e.NewIndex, e.PropertyDescriptor.Name));
-           
+
             Object changedRow = this.CurrencyManager.List[e.NewIndex];
             this.ListView.RefreshObject(changedRow);
         }
@@ -543,6 +542,7 @@ namespace BrightIdeasSoftware
                 this.isChangingIndex = false;
             }
         }
+
         private bool isChangingIndex = false;
 
         /// <summary>
@@ -559,7 +559,7 @@ namespace BrightIdeasSoftware
                 this.ListView.EnsureVisible(this.ListView.SelectedIndices[0]);
         }
 
-        #endregion
+        #endregion Event Handlers
 
         #region ObjectListView event handlers
 
@@ -574,12 +574,12 @@ namespace BrightIdeasSoftware
             if (this.isChangingIndex)
                 return;
 
-            // Sanity 
+            // Sanity
             if (this.CurrencyManager == null)
                 return;
 
             // If only one item is selected, tell the currency manager which item is selected.
-            // CurrencyManager can't handle multiple selection so there's nothing we can do 
+            // CurrencyManager can't handle multiple selection so there's nothing we can do
             // if more than one row is selected.
             if (this.ListView.SelectedIndices.Count != 1)
                 return;
@@ -590,13 +590,14 @@ namespace BrightIdeasSoftware
                 // We can't use the selectedIndex directly, since our listview may be sorted and/or filtered
                 // So we have to find the index of the selected object within the original list.
                 this.CurrencyManager.Position = this.CurrencyManager.List.IndexOf(this.ListView.SelectedObject);
-            } finally {
+            }
+            finally {
                 this.isChangingIndex = false;
             }
         }
 
         /// <summary>
-        /// Handle the frozenness of our ListView changing. 
+        /// Handle the frozenness of our ListView changing.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -605,11 +606,13 @@ namespace BrightIdeasSoftware
                 try {
                     alreadyFreezing = true;
                     this.RebindDataSource(true);
-                } finally {
+                }
+                finally {
                     alreadyFreezing = false;
                 }
             }
         }
+
         private bool alreadyFreezing = false;
 
         /// <summary>
@@ -621,6 +624,6 @@ namespace BrightIdeasSoftware
             this.RebindDataSource(false);
         }
 
-        #endregion
+        #endregion ObjectListView event handlers
     }
 }

@@ -20,12 +20,12 @@ namespace WindowsFormsApplication1 {
                     Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(form = new Form1());
                     if (args.Length > 0) {
-
                         MessageBox.Show("SFMM Isn't running, please start it then click");
                         //downloader.SFMLabURL = args[0];
                         // downloader.Download(downloader.SFMLabURL.Remove(0, 5));
                     }
-                } else
+                }
+                else
                     singleInstance.PassArgumentsToFirstInstance(Environment.GetCommandLineArgs());
             }
         }

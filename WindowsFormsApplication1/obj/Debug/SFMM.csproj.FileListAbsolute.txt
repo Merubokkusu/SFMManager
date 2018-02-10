@@ -77,7 +77,6 @@ C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsAppli
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Debug\SFMManager.pdb
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Debug\HtmlAgilityPack.dll
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Debug\ObjectListView.dll
-C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Debug\SharpCompress.dll
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Debug\ObjectListView.pdb
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Debug\ObjectListView.xml
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Debug\HtmlAgilityPack.pdb
@@ -88,7 +87,6 @@ C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsAppli
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Debug\SourceFilmMakerManager.loading_bar.resources
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Settings.resources
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Debug\SourceFilmMakerManager.Splash_scn.resources
-C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Tools.resources
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Debug\SourceFilmMakerManager.Properties.Resources.resources
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Debug\SFMM.csproj.GenerateResource.Cache
@@ -98,3 +96,6 @@ C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsAppli
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Debug\SFMManager.application
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Debug\SFMManager.exe
 C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\obj\Debug\SFMManager.pdb
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Debug\x64\7z.dll
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Debug\x86\7z.dll
+C:\Users\Liam\Documents\Visual Studio 2015\Projects\SFMManager\WindowsFormsApplication1\bin\Debug\SevenZipExtractor.dll

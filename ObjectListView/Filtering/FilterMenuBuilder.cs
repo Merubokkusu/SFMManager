@@ -13,7 +13,7 @@
  * v2.5
  * 2011-04-12  JPP  - Added some images to menu
  * 2011-03-04  JPP  - First version
- * 
+ *
  * Copyright (C) 2011-2014 Phillip Piper
  *
  * This program is free software: you can redistribute it and/or modify
@@ -33,11 +33,11 @@
  */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.Collections;
-using System.Drawing;
 
 namespace BrightIdeasSoftware {
 
@@ -90,7 +90,7 @@ namespace BrightIdeasSoftware {
         /// </summary>
         static public Bitmap FilteringImage = BrightIdeasSoftware.Properties.Resources.Filtering;
 
-        #endregion
+        #endregion Static properties
 
         #region Public properties
 
@@ -103,6 +103,7 @@ namespace BrightIdeasSoftware {
             get { return treatNullAsDataValue; }
             set { treatNullAsDataValue = value; }
         }
+
         private bool treatNullAsDataValue = true;
 
         /// <summary>
@@ -116,9 +117,10 @@ namespace BrightIdeasSoftware {
             get { return maxObjectsToConsider; }
             set { maxObjectsToConsider = value; }
         }
+
         private int maxObjectsToConsider = 10000;
 
-        #endregion
+        #endregion Public properties
 
         /// <summary>
         /// Create a Filter menu on the given tool tip for the given column in the given ObjectListView.
@@ -176,7 +178,7 @@ namespace BrightIdeasSoftware {
             // If the returned value is an IEnumerable, that means the given model can belong to more than one cluster
             IEnumerable keyEnumerable = clusterKey as IEnumerable;
             if (clusterKey is string || keyEnumerable == null)
-                keyEnumerable = new object[] {clusterKey};
+                keyEnumerable = new object[] { clusterKey };
 
             // Deal with nulls and DBNulls
             ArrayList nullCorrected = new ArrayList();
@@ -184,7 +186,8 @@ namespace BrightIdeasSoftware {
                 if (key == null || key == System.DBNull.Value) {
                     if (this.TreatNullAsDataValue)
                         nullCorrected.Add(null);
-                } else nullCorrected.Add(key);
+                }
+                else nullCorrected.Add(key);
             }
 
             // Group by key
@@ -225,20 +228,20 @@ namespace BrightIdeasSoftware {
             }
             checkedList.ItemCheck += new ItemCheckEventHandler(HandleItemCheckedWrapped);
 
-            ToolStripMenuItem clearAll = new ToolStripMenuItem(CLEAR_ALL_FILTERS_LABEL, ClearFilteringImage, delegate(object sender, EventArgs args) {
+            ToolStripMenuItem clearAll = new ToolStripMenuItem(CLEAR_ALL_FILTERS_LABEL, ClearFilteringImage, delegate (object sender, EventArgs args) {
                 this.ClearAllFilters(column);
             });
-            ToolStripMenuItem apply = new ToolStripMenuItem(APPLY_LABEL, FilteringImage, delegate(object sender, EventArgs args) {
+            ToolStripMenuItem apply = new ToolStripMenuItem(APPLY_LABEL, FilteringImage, delegate (object sender, EventArgs args) {
                 this.EnactFilter(checkedList, column);
             });
-            ToolStripMenuItem subMenu = new ToolStripMenuItem(FILTERING_LABEL, null, new ToolStripItem[] { 
+            ToolStripMenuItem subMenu = new ToolStripMenuItem(FILTERING_LABEL, null, new ToolStripItem[] {
                 clearAll, new ToolStripSeparator(), checkedList, apply });
             return subMenu;
         }
 
         /// <summary>
         /// Wrap a protected section around the real HandleItemChecked method, so that if
-        /// that method tries to change a "checkedness" of an item, we don't get a recursive 
+        /// that method tries to change a "checkedness" of an item, we don't get a recursive
         /// stack error. Effectively, this ensure that HandleItemChecked is only called
         /// in response to a user action.
         /// </summary>
@@ -256,7 +259,8 @@ namespace BrightIdeasSoftware {
                 alreadyInHandleItemChecked = false;
             }
         }
-        bool alreadyInHandleItemChecked = false;
+
+        private bool alreadyInHandleItemChecked = false;
 
         /// <summary>
         /// Handle a user-generated ItemCheck event
@@ -264,7 +268,6 @@ namespace BrightIdeasSoftware {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         virtual protected void HandleItemChecked(object sender, ItemCheckEventArgs e) {
-
             ToolStripCheckedListBox checkedList = sender as ToolStripCheckedListBox;
             if (checkedList == null) return;
             OLVColumn column = checkedList.Tag as OLVColumn;
@@ -301,7 +304,7 @@ namespace BrightIdeasSoftware {
             // If no clusters are checked, the uncheck the Select All.
             // For everything else, Select All is set to indeterminate.
 
-            // How many items are currenty checked? 
+            // How many items are currenty checked?
             int count = checkedList.CheckedItems.Count;
 
             // First complication.
@@ -334,7 +337,6 @@ namespace BrightIdeasSoftware {
         /// </summary>
         /// <param name="column">The column from which filters are to be removed</param>
         virtual protected void ClearAllFilters(OLVColumn column) {
-
             ObjectListView olv = column.ListView as ObjectListView;
             if (olv == null || olv.IsDisposed)
                 return;
@@ -348,7 +350,6 @@ namespace BrightIdeasSoftware {
         /// <param name="checkedList">A list in which the checked items should be used as filters</param>
         /// <param name="column">The column for which a filter should be generated</param>
         virtual protected void EnactFilter(ToolStripCheckedListBox checkedList, OLVColumn column) {
-            
             ObjectListView olv = column.ListView as ObjectListView;
             if (olv == null || olv.IsDisposed)
                 return;
