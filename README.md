@@ -13,7 +13,9 @@ I'll be migrating the updater to my website and updating/cleaning up the code.
 
 ## Features
 Auto rig/map sorting
+
 Web sidebar (Addon creators can bundle a info.html into their addon and it will display)
+
 URL/SFMLab Downloader
 
 
