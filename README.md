@@ -2,6 +2,8 @@
 
 ### [Download](https://github.com/Merubokkusu/SFMManager/releases/latest)
 
+### [Discord](https://discord.gg/HNmBB5)
+
 The source code from [Bas!cGirl's SFMManager](https://sfmlab.com/item/1297/)
 
 Thanks to them for giving me the source code.
