@@ -20,7 +20,7 @@ namespace WindowsFormsApplication1 {
     public partial class Form1 : Form {
         public static float CurrentVer = 7.00f;
         public static string VERSIONID = "Hana";
-        public static string SFMPATH = ConfigurationManager.AppSettings["SFM_PATH"];
+        public static string SFMPATH = new IniFile("config.ini").Read("SFMPATH");
         public static bool SplashOver = false;
 
         public static long completed = 0;
@@ -439,6 +439,9 @@ namespace WindowsFormsApplication1 {
             if (File.Exists(BinPath + "/sfm.exe")) {
                 Process.Start(BinPath + "/sfm.exe");
             }
+            else {
+                Console.WriteLine("Cant find Path " + BinPath + "sfm.exe");
+            }
         }
 
         private void hammerToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -446,12 +449,18 @@ namespace WindowsFormsApplication1 {
             if (File.Exists(BinPath + "hammer.exe")) {
                 Process.Start(BinPath + "hammer.exe");
             }
+            else {
+                Console.WriteLine("Cant find Path " + BinPath + "hammer.exe");
+            }
         }
 
         private void hLMVToolStripMenuItem_Click(object sender, EventArgs e) {
             var BinPath = Directory.GetParent(SFMPATH) + @"\bin\";
             if (File.Exists(BinPath + "hlmv.exe")) {
                 Process.Start(BinPath + "hlmv.exe");
+            }
+            else {
+                Console.WriteLine("Cant find Path " + BinPath + "hlmv.exe");
             }
         }
 

@@ -10,28 +10,21 @@ using System.Windows.Forms;
 namespace WindowsFormsApplication1 {
 
     public partial class Settings : Form {
-        private string AUTOCHECKUPDATE = ConfigurationManager.AppSettings["Auto_Check_For_Updates"];
-        private string DownloadServer = ConfigurationManager.AppSettings["Download_Server"];
+        private IniFile configIni = new IniFile("config.ini");
 
         public Settings() {
             InitializeComponent();
             idLabel.Text = "SFManager\nVersion: " + Form1.VERSIONID;
             id_numberLabel.Text = Form1.CurrentVer.ToString();
-            textBox1.Text = ConfigurationManager.AppSettings["SFM_PATH"];
-            // Enable drag and drop for this form
-            // (this can also be applied to any controls)
+            textBox1.Text = configIni.Read("SFMPATH");
             this.AllowDrop = false;
-
-            // Add event handlers for the drag & drop functionality
-
-
 
             //RadioButtons...Duh
             RadioBottons();
         }
 
         public void RadioBottons() {
-            bool autoupdate = Convert.ToBoolean(AUTOCHECKUPDATE);
+            bool autoupdate = Convert.ToBoolean(configIni.Read("AutoUpdate"));
             if (autoupdate == true) {
                 radioButton1.Checked = true;
                 radioButton2.Checked = false;
@@ -40,26 +33,23 @@ namespace WindowsFormsApplication1 {
                 radioButton2.Checked = true;
             }
 
-            if (DownloadServer == "1") {
+            if (configIni.Read("DownloadServer") == "1") {
                 radioButton3.Checked = true;
                 radioButton4.Checked = false;
                 radioButton5.Checked = false;
             }
-            if (DownloadServer == "2") {
+            if (configIni.Read("DownloadServer") == "2") {
                 radioButton3.Checked = false;
                 radioButton4.Checked = true;
                 radioButton5.Checked = false;
             }
-            if (DownloadServer == "3") {
+            if (configIni.Read("DownloadServer") == "3") {
                 radioButton3.Checked = false;
                 radioButton4.Checked = false;
                 radioButton5.Checked = true;
             }
         }
 
-        private void Settings_Load(object sender, EventArgs e)
-        {
-        }
 
         public void IgnoreExceptions(Action act) {
             try {
@@ -70,42 +60,27 @@ namespace WindowsFormsApplication1 {
 
 
         private void button8_Click(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["SFM_PATH"].Value = textBox1.Text;
-            config.Save(ConfigurationSaveMode.Minimal);
+            configIni.Write("SFMPATH",textBox1.Text);
             MessageBox.Show("Please Relaunch SFMM");
         }
 
-
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["Auto_Check_For_Updates"].Value = "false";
-            config.Save(ConfigurationSaveMode.Minimal);
+        private void AutoUpdateTrue_Checked(object sender, EventArgs e) {
+            configIni.Write("AutoUpdate", "true");
         }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["Auto_Check_For_Updates"].Value = "true";
-            config.Save(ConfigurationSaveMode.Minimal);
+        private void AutoUpdateFalse_Checked(object sender, EventArgs e) {
+            configIni.Write("AutoUpdate", "false");
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["Download_Server"].Value = "1";
-            config.Save(ConfigurationSaveMode.Minimal);
+            configIni.Write("DownloadServer", "1");
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["Download_Server"].Value = "2";
-            config.Save(ConfigurationSaveMode.Minimal);
+            configIni.Write("DownloadServer", "2");
         }
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["Download_Server"].Value = "3";
-            config.Save(ConfigurationSaveMode.Minimal);
+            configIni.Write("DownloadServer", "3");
         }
 
         private void updateButton_Click(object sender, EventArgs e) {
@@ -137,5 +112,7 @@ namespace WindowsFormsApplication1 {
                 MessageBox.Show("Couldn't check for verison, Your not connected to the internet.\n You can disable auto check in the config file");
             }
         }
+
+        
     }//Form End
 }

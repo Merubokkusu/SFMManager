@@ -7,18 +7,19 @@ using System.Windows.Forms;
 namespace SourceFilmMakerManager {
 
     public partial class Splash_scn : System.Windows.Forms.Form {
-        private string AUTOCHECKUPDATE = ConfigurationManager.AppSettings["Auto_Check_For_Updates"];
+        //private string AUTOCHECKUPDATE = ConfigurationManager.AppSettings["Auto_Check_For_Updates"];
+        private IniFile configIni = new IniFile("config.ini");
         private float CurrentVer;
         public bool CanCheckUpdate;
         public bool onceUpdate = true;
 
         public Splash_scn() {
             InitializeComponent();
-
+            configCreate();
             //Create SFM\PuCE Folder.
             FolderCreate();
             Migrate();
-
+            
             onceUpdate = true;
         }
 
@@ -45,6 +46,15 @@ namespace SourceFilmMakerManager {
                     }
                 }
                 Directory.Delete(@"SFM\PuCE");
+            }
+        }
+
+        private void configCreate() {
+            if (!File.Exists("config.ini")) { 
+            var infoIni = new IniFile("config.ini");
+            infoIni.Write("DownloadServer", "1");
+            infoIni.Write("SFMPATH", @"C:\Program Files (x86)\Steam\steamapps\common\SourceFilmmaker\game\usermod");
+            infoIni.Write("AutoUpdate", "true");
             }
         }
 
@@ -118,7 +128,8 @@ namespace SourceFilmMakerManager {
             if (onceUpdate == true) {
                 onceUpdate = false;
                 CurrentVer = WindowsFormsApplication1.Form1.CurrentVer;
-                bool CheckForUpdate = Convert.ToBoolean(AUTOCHECKUPDATE);
+                var updateBool = configIni.Read("AutoUpdate");
+                bool CheckForUpdate = Convert.ToBoolean(updateBool);
 
                 if (CheckForUpdate == true) {
                     WindowsFormsApplication1.Form1.SplashOver = true;

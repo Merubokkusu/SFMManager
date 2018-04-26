@@ -166,6 +166,7 @@
             this.radioButton2.TabIndex = 20;
             this.radioButton2.Text = "Disabled";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.AutoUpdateFalse_Checked);
             // 
             // radioButton1
             // 
@@ -178,6 +179,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Enabled";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.AutoUpdateTrue_Checked);
             // 
             // tabPage3
             // 
@@ -298,7 +300,6 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "SFMM - Settings";
-            this.Load += new System.EventHandler(this.Settings_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
